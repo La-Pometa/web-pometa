@@ -1,0 +1,11 @@
+@import url('../fonts/Butler_Webfont/stylesheet.css');
+body {
+  @apply text-main-dark font-sset dark:text-white dark:bg-black bg-white;
+}
+
+a {
+  @apply transition-all hover:text-primary;
+}
+h3 {
+  @apply font-butler text-6xl;
+}
