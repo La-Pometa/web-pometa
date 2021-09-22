@@ -1,6 +1,18 @@
 module.exports = {
-  mode: 'jit',
-  purge: [],
+  purge: {
+    content: ['./src/**/*.html', './src/**/*.vue', './src/**/*.jsx'],
+    safelist: [
+      'grid',
+      'grid-cols-2',
+      'w-full',
+      'h-full',
+      'row-span-2',
+      'justify-items-center',
+      'items-center',
+      ' gap-3',
+    ],
+  },
+
   darkMode: 'media', // or 'media' or 'class'
   theme: {
     fontFamily: {
