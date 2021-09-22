@@ -1,0 +1,66 @@
+@font-face {
+    font-family: 'Sukhumvit Set';
+    src: url('SukhumvitSet-Text.woff2') format('woff2'),
+        url('SukhumvitSet-Text.woff') format('woff'),
+        url('SukhumvitSet-Text.ttf') format('truetype'),
+        url('SukhumvitSet-Text.svg#SukhumvitSet-Text') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Sukhumvit Set';
+    src: url('SukhumvitSet-Thin.woff2') format('woff2'),
+        url('SukhumvitSet-Thin.woff') format('woff'),
+        url('SukhumvitSet-Thin.ttf') format('truetype'),
+        url('SukhumvitSet-Thin.svg#SukhumvitSet-Thin') format('svg');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Sukhumvit Set';
+    src: url('SukhumvitSet-SemiBold.woff2') format('woff2'),
+        url('SukhumvitSet-SemiBold.woff') format('woff'),
+        url('SukhumvitSet-SemiBold.ttf') format('truetype'),
+        url('SukhumvitSet-SemiBold.svg#SukhumvitSet-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Sukhumvit Set';
+    src: url('SukhumvitSet-Light.woff2') format('woff2'),
+        url('SukhumvitSet-Light.woff') format('woff'),
+        url('SukhumvitSet-Light.ttf') format('truetype'),
+        url('SukhumvitSet-Light.svg#SukhumvitSet-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Sukhumvit Set';
+    src: url('SukhumvitSet-Medium.woff2') format('woff2'),
+        url('SukhumvitSet-Medium.woff') format('woff'),
+        url('SukhumvitSet-Medium.ttf') format('truetype'),
+        url('SukhumvitSet-Medium.svg#SukhumvitSet-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Sukhumvit Set';
+    src: url('SukhumvitSet-Bold.woff2') format('woff2'),
+        url('SukhumvitSet-Bold.woff') format('woff'),
+        url('SukhumvitSet-Bold.ttf') format('truetype'),
+        url('SukhumvitSet-Bold.svg#SukhumvitSet-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+

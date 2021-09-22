@@ -1,4 +1,5 @@
-@import url('../fonts/Butler_Webfont/stylesheet.css');
+@import url('../fonts/butler/stylesheet.css');
+@import url('../fonts/sset/stylesheet.css');
 body {
   @apply text-main-dark font-sset dark:text-white dark:bg-black bg-white;
 }
@@ -8,4 +9,15 @@ a {
 }
 h3 {
   @apply font-butler text-6xl;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.3s, transform 0.3s, filter 0.5s;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(30px);
+  transform: scale(0.9);
 }
