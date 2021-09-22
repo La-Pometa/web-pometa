@@ -126,4 +126,7 @@ export default {
     }
   }
 }
+#content-margin {
+  min-width: 312px;
+}
 </style>

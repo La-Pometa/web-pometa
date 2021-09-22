@@ -9,7 +9,10 @@ module.exports = {
       'row-span-2',
       'justify-items-center',
       'items-center',
-      ' gap-3',
+      'gap-3',
+      'object-cover',
+      'dark:block',
+      'dark:hidden',
     ],
   },
 
@@ -35,7 +38,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      display: ['dark'],
+    },
   },
   plugins: [
     require('@tailwindcss/aspect-ratio'),
