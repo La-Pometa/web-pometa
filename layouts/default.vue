@@ -7,16 +7,55 @@
     >
       <div class="p-7 w-64 flex flex-col overflow-y-auto">
         <div class="logo">
-          <responsive-image
-            class="dark:hidden"
-            media-id="10"
-            :blur="false"
-          ></responsive-image>
-          <responsive-image
-            class="hidden dark:block"
-            media-id="11"
-            :blur="false"
-          ></responsive-image>
+          <div class="responsive-image">
+            <image-lazy
+              class="dark:hidden"
+              alt="logo la pometa"
+              :sizes="{
+                full_webp: {
+                  source_url:
+                    'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/logos-pometa-cat.png.webp',
+                },
+                mini: {
+                  source_url:
+                    'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/logos-pometa-cat-40x11.png',
+                },
+                mini_webp: {
+                  source_url:
+                    'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/logos-pometa-cat-40x11.png.webp',
+                },
+                full: {
+                  source_url:
+                    'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/logos-pometa-cat.png',
+                },
+              }"
+              :blur="false"
+            ></image-lazy>
+            <div class="responsive-image"></div>
+            <image-lazy
+              class="hidden dark:block"
+              alt="logo la pometa"
+              :sizes="{
+                full_webp: {
+                  source_url:
+                    'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/logos-pometa-cat-white.png.webp',
+                },
+                mini: {
+                  source_url:
+                    'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/logos-pometa-cat-white-40x11.png',
+                },
+                mini_webp: {
+                  source_url:
+                    'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/logos-pometa-cat-white-40x11.png.webp',
+                },
+                full: {
+                  source_url:
+                    'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/logos-pometa-cat-white.png',
+                },
+              }"
+              :blur="false"
+            ></image-lazy>
+          </div>
         </div>
         <nav id="menu" class="flex flex-col mt-7 font-medium text-xs gap-3">
           <span><nuxt-link to="/">Inicio</nuxt-link></span>
@@ -86,7 +125,9 @@
   </div>
 </template>
 <script>
+import imageLazy from '~/components/imageLazy.vue'
 export default {
+  components: { imageLazy },
   data() {
     return {
       offsetWidth: 0,
