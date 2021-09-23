@@ -36,6 +36,7 @@ export default {
       observer: null,
       intersected: false,
       elCopy: null,
+      loaded: false,
     }
   },
   computed: {
@@ -71,6 +72,12 @@ export default {
       return this.defaultImage()
     },
     loadImage() {
+      if (this.loaded) {
+        return this.sizes.full_webp
+          ? this.sizes.full_webp.source_url
+          : this.sizes.full.source_url
+      }
+
       this.elCopy = this.$refs.image.cloneNode(true)
       this.elCopy.setAttribute('src', this.defaultImage())
 
@@ -86,7 +93,10 @@ export default {
         this.$refs.image.classList.remove('hidden')
         this.$refs.image.classList.remove('loading')
         this.$refs.image.classList.add('loaded')
+        this.loaded = true
+        this.observer.disconnect()
       })
+
       return this.sizes.full_webp
         ? this.sizes.full_webp.source_url
         : this.sizes.full.source_url

@@ -1,23 +1,43 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
+  mode: 'jit',
   purge: {
     content: ['./src/**/*.html', './src/**/*.vue', './src/**/*.jsx'],
     safelist: [
       'grid',
-      'grid-cols-2',
+      'md:grid-cols-2',
       'w-full',
       'h-full',
-      'row-span-2',
+      'md:row-span-2',
       'justify-items-center',
       'items-center',
       'gap-3',
       'object-cover',
       'dark:block',
       'dark:hidden',
+      'mmd:aspect-w-1',
+      'mmd:aspect-h-1',
+      'mmd:min-h-screen',
     ],
   },
-
   darkMode: 'media', // or 'media' or 'class'
   theme: {
+    screens: {
+      m2xl: { max: '1535px' },
+      // => @media (max-width: 1535px) { ... }
+
+      mxl: { max: '1279px' },
+      // => @media (max-width: 1279px) { ... }
+
+      mlg: { max: '1023px' },
+      // => @media (max-width: 1023px) { ... }
+
+      mmd: { max: '767px' },
+      // => @media (max-width: 767px) { ... }
+
+      msm: { max: '639px' },
+      ...defaultTheme.screens,
+    },
     fontFamily: {
       sset: ['Sukhumvit Set', 'Arial'],
       butler: ['Butler', 'Helvetica'],
