@@ -14,7 +14,15 @@
         <div
           id="left-sideBar"
           ref="sidebar"
-          class="transition-all fixed inset-y-0 flex bg-white dark:bg-gray-900"
+          class="
+            transition-all
+            fixed
+            inset-y-0
+            flex
+            bg-white
+            dark:bg-gray-900
+            z-20
+          "
         >
           <div class="p-7 w-64 flex flex-col overflow-y-auto">
             <nuxt-link to="/">
@@ -142,9 +150,91 @@
             dark:border-gray-800 dark:bg-gray-900
             p-3
             transition-all
+            relative
+            z-10
           "
         >
-          <div class="logo-mini transition-all">
+          <div
+            id="visible-content"
+            class="h-screen flex items-center justify-center"
+          >
+            <div class="grid items-center justify-items-center gap-5">
+              <a href="#">CA</a>
+              <a href="#" class="msm:hidden">
+                <div class="burger black small">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </a>
+              <a href="#">
+                <div class="responsive-image w-6">
+                  <image-lazy
+                    class="dark:hidden"
+                    alt="desayuno con manzanas"
+                    :width="141"
+                    :height="113"
+                    :sizes="{
+                      full_webp: {
+                        source_url:
+                          'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa_black.png.webp',
+                      },
+                      mini: {
+                        source_url:
+                          'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa_black-40x32.png',
+                      },
+                      mini_webp: {
+                        source_url:
+                          'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa_black-40x32.png.webp',
+                      },
+                      full: {
+                        source_url:
+                          'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa_black.png',
+                      },
+                    }"
+                    :blur="false"
+                  ></image-lazy>
+                  <image-lazy
+                    class="hidden dark:block"
+                    alt="desayuno con manzanas"
+                    :width="141"
+                    :height="113"
+                    :sizes="{
+                      full_webp: {
+                        source_url:
+                          'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa.png.webp',
+                      },
+                      mini: {
+                        source_url:
+                          'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa-40x32.png',
+                      },
+                      mini_webp: {
+                        source_url:
+                          'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa-40x32.png.webp',
+                      },
+                      full: {
+                        source_url:
+                          'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa.png',
+                      },
+                    }"
+                    :blur="false"
+                  ></image-lazy></div
+              ></a>
+            </div>
+          </div>
+
+          <div
+            class="
+              logo-mini
+              transition-all
+              absolute
+              top-3
+              left-1/2
+              transform
+              -translate-x-1/2
+              msm:hidden
+            "
+          >
             <div class="responsive-image">
               <image-lazy
                 class="dark:hidden"
@@ -249,7 +339,11 @@
           "
           @click="toggleSidebar"
         >
-          <fa icon="bars" />
+          <div class="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
         <div class="w-full h-full" @click="removeSidebar"><Nuxt /></div>
       </div>
@@ -308,11 +402,15 @@ export default {
       width: 0;
       padding: 0;
       border: 0;
+
+      #visible-content {
+        transform: translateX(-3.5rem);
+      }
     }
   }
 }
 #sidebar-wrapper {
-  @apply transition-all;
+  @apply transition-all bg-white dark:bg-gray-900;
 }
 
 #sidebar-visible {
@@ -363,6 +461,33 @@ export default {
       #left-sideBar {
         @apply transform -translate-x-full;
       }
+    }
+  }
+}
+.burger {
+  @apply flex flex-col space-y-2;
+  span {
+    @apply bg-white;
+    width: 2rem;
+    height: 2px;
+  }
+
+  &.small {
+    @apply space-y-1;
+    span {
+      width: 1.5rem;
+      height: 2px;
+    }
+  }
+  &.black {
+    span {
+      @apply bg-main-dark dark:bg-white;
+    }
+  }
+
+  &:hover {
+    span {
+      @apply bg-primary;
     }
   }
 }
