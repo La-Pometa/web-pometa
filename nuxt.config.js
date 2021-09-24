@@ -14,13 +14,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {
-        rel: 'stylesheet',
-        href: 'https://pro.fontawesome.com/releases/v5.10.0/css/all.css',
-        integrity:
-          'sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p',
-        crossorigin: 'anonymous',
-      },
+      { rel: 'preconnect', href: process.env.WP_API_ENDPOINT },
     ],
   },
 
@@ -28,7 +22,11 @@ export default {
   css: ['~/assets/scss/theme.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/skeletonLoader', '~/plugins/content'],
+  plugins: [
+    '~/plugins/skeletonLoader',
+    '~/plugins/content',
+    '~/plugins/fontawesome',
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

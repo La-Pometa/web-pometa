@@ -53,23 +53,8 @@ export default {
   },
 }
 </script>
-<style scoped lang="scss">
+<style lang="scss">
 .responsive-image {
-  overflow: hidden;
-
-  img {
-    max-width: 100%;
-    transition: filter 0.5s;
-    opacity: 0;
-  }
-
-  img.loading {
-    opacity: 1;
-    filter: blur(60px);
-  }
-  img.loaded {
-    opacity: 1;
-    filter: blur(0px);
-  }
+  @apply overflow-hidden;
 }
 </style>

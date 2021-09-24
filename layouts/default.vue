@@ -102,10 +102,10 @@
             </nav>
             <footer class="mt-auto flex flex-col gap-4">
               <div id="social" class="flex gap-3 justify-center">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><fa :icon="['fab', 'instagram']" /></a>
+                <a href="#"><fa :icon="['fab', 'facebook']" /></a>
+                <a href="#"><fa :icon="['fab', 'linkedin-in']" /></a>
+                <a href="#"><fa :icon="['fab', 'twitter']" /></a>
               </div>
               <div
                 id="info"
@@ -249,7 +249,7 @@
           "
           @click="toggleSidebar"
         >
-          <i class="fas fa-bars"></i>
+          <fa icon="bars" />
         </div>
         <div class="w-full h-full" @click="removeSidebar"><Nuxt /></div>
       </div>

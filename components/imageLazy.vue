@@ -81,10 +81,6 @@ export default {
       this.elCopy = this.$refs.image.cloneNode(true)
       this.elCopy.setAttribute('src', this.defaultImage())
 
-      if (this.blur) {
-        this.elCopy.classList.add('loading')
-      }
-
       this.$refs.image.parentElement.appendChild(this.elCopy)
       this.$refs.image.classList.add('hidden')
 
