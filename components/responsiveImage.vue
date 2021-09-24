@@ -14,7 +14,7 @@
 export default {
   props: {
     mediaId: {
-      type: String,
+      type: Number,
       default: null,
     },
     mediaSlug: {
@@ -28,6 +28,7 @@ export default {
       sizes: null,
     }
   },
+  fetchOnServer: false,
   async fetch() {
     if (this.mediaSlug) {
       await this.$content

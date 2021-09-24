@@ -1,6 +1,7 @@
 import axios from 'axios'
 export class Content {
   private cmsEndpoint: string
+  private perPage = 9
 
   constructor(endpoint: any) {
     this.cmsEndpoint = endpoint
@@ -43,6 +44,14 @@ export class Content {
   async getPostById(id: number) {
     const response = await axios.get(
       `${this.cmsEndpoint}wp-json/wp/v2/posts/${id}`
+    )
+
+    return response.data
+  }
+
+  async getAllPosts() {
+    const response = await axios.get(
+      `${this.cmsEndpoint}wp-json/wp/v2/posts/?per_page=${this.perPage}`
     )
 
     return response.data

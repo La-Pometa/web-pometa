@@ -24,7 +24,7 @@
             z-20
           "
         >
-          <div class="p-7 w-64 flex flex-col overflow-y-auto">
+          <div class="p-7 w-64 flex flex-col overflow-y-auto t-duration-20">
             <nuxt-link to="/">
               <div class="logo">
                 <div class="responsive-image">
@@ -148,7 +148,7 @@
             shadow-md
             border-l border-gray-100
             dark:border-gray-800 dark:bg-gray-900
-            p-3
+            px-3
             transition-all
             relative
             z-10
@@ -345,7 +345,9 @@
             <span></span>
           </div>
         </div>
-        <div class="w-full h-full" @click="removeSidebar"><Nuxt /></div>
+        <div class="w-full h-full" @click="removeSidebar">
+          <Nuxt keep-alive />
+        </div>
       </div>
     </div>
   </div>
@@ -367,6 +369,11 @@ export default {
       return this.$route.path === '/' ? 'stick' : ''
     },
   },
+  watch: {
+    $route() {
+      this.$refs.wrapper.classList.remove('open')
+    },
+  },
   mounted() {
     this.offsetWidth = this.$refs.sidebar.offsetWidth
   },
@@ -384,16 +391,61 @@ export default {
 * {
   transition-duration: 0.4s !important;
 }
+.t-duration-20 * {
+  transition-duration: 0.2s !important;
+}
+
 @media (max-width: 639px) {
+  #wrapper {
+    #content > div:not(#sidebarToggler) {
+      overflow: hidden;
+
+      &::after {
+        content: '';
+        @apply transition-all absolute inset-0 backdrop-filter backdrop-blur-md backdrop-saturate-0 opacity-0 pointer-events-none;
+      }
+    }
+  }
   #wrapper.open {
     #sidebarToggler {
       transform: translateX(-100%);
+    }
+    #content > div:not(#sidebarToggler) {
+      &::after {
+        @apply opacity-100 pointer-events-auto;
+      }
     }
   }
   #content {
     flex: 0 0 100vw;
   }
   #wrapper:not(.open) {
+    #sidebar-wrapper:not(.open).stick {
+      .logo-mini {
+        @apply opacity-100;
+      }
+      #content-margin {
+        flex: 0 0 0 !important;
+        min-width: 0 !important;
+        width: 0;
+      }
+      #left-sideBar {
+        @apply transform -translate-x-full;
+      }
+    }
+    #sidebar-wrapper:not(.stick) {
+      .logo-mini {
+        @apply opacity-100;
+      }
+      #content-margin {
+        flex: 0 0 0rem !important;
+        min-width: 0 !important;
+        width: 0;
+      }
+      #left-sideBar {
+        @apply transform -translate-x-full;
+      }
+    }
     #sidebar-wrapper {
       pointer-events: none;
     }
@@ -424,20 +476,6 @@ export default {
 #wrapper:not(.open) {
   @apply transition-all;
 
-  #sidebar-wrapper:not(:hover):not(.stick) {
-    .logo-mini {
-      @apply opacity-100;
-    }
-    #content-margin {
-      flex: 0 0 0rem !important;
-      min-width: 0 !important;
-      width: 0;
-    }
-    #left-sideBar {
-      @apply transform -translate-x-full;
-    }
-  }
-
   &:hover {
     .logo-mini {
       @apply opacity-0;
@@ -448,18 +486,33 @@ export default {
       @apply opacity-0;
     }
   }
-  #sidebar-wrapper:not(:hover):not(.open).stick {
-    @media (max-width: 1279px) {
+  @media (min-width: 640px) {
+    #sidebar-wrapper:not(:hover):not(.stick) {
       .logo-mini {
         @apply opacity-100;
       }
       #content-margin {
-        flex: 0 0 0 !important;
+        flex: 0 0 0rem !important;
         min-width: 0 !important;
         width: 0;
       }
       #left-sideBar {
         @apply transform -translate-x-full;
+      }
+    }
+    #sidebar-wrapper:not(:hover):not(.open).stick {
+      @media (max-width: 1279px) {
+        .logo-mini {
+          @apply opacity-100;
+        }
+        #content-margin {
+          flex: 0 0 0 !important;
+          min-width: 0 !important;
+          width: 0;
+        }
+        #left-sideBar {
+          @apply transform -translate-x-full;
+        }
       }
     }
   }
