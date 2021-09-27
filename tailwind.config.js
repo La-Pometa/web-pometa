@@ -18,6 +18,8 @@ module.exports = {
       'mmd:aspect-w-1',
       'mmd:aspect-h-1',
       'mmd:min-h-screen',
+      'mmd:row-start-1',
+      'mmd:row-start-2',
     ],
   },
   darkMode: 'media', // or 'media' or 'class'

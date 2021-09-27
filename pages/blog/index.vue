@@ -10,10 +10,10 @@
         class="grid msm:grid-cols-1 mlg:grid-cols-2 grid-cols-3 gap-10 px-10"
       >
         <div v-for="post in posts" :key="post.id" class="blog-card">
-          <div v-if="post.featured_media" class="blog-card-img">
-            <responsive-image
-              :media-id="post.featured_media"
-            ></responsive-image>
+          <div v-if="post.featured_source.sizes" class="blog-card-img">
+            <div class="responsive-image">
+              <image-lazy :sizes="post.featured_source.sizes"></image-lazy>
+            </div>
           </div>
           <div v-else class="blog-card-img"><PuSkeleton height="100%" /></div>
           <div>

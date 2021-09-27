@@ -12,10 +12,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' },
       { name: 'theme-color', content: '#bfd5c2' },
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'preconnect', href: process.env.WP_API_ENDPOINT },
-    ],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

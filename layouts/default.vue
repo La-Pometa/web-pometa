@@ -3,7 +3,7 @@
     <div
       id="wrapper"
       ref="wrapper"
-      class="transition-all min-w-screen min-h-screen flex"
+      class="transition-all min-w-screen min-h-screen flex msm:overflow-hidden"
     >
       <div
         id="sidebar-wrapper"
@@ -21,10 +21,15 @@
             flex
             bg-white
             dark:bg-gray-900
+            border-r border-gray-100
+            dark:border-gray-800
             z-20
           "
         >
-          <div class="p-7 w-64 flex flex-col overflow-y-auto t-duration-20">
+          <div
+            id="left-sidebar-content"
+            class="p-7 w-64 flex flex-col overflow-y-auto"
+          >
             <nuxt-link to="/">
               <div class="logo">
                 <div class="responsive-image">
@@ -88,7 +93,7 @@
               <span><a href="#">¡La Pometa!</a></span>
               <span><a href="#">Proyectos</a></span>
               <span
-                ><a>Somos especialistas en...</a>
+                ><div class="not-click">Somos especialistas en...</div>
                 <div class="sub-menu">
                   <div class="item">
                     <a href="#">Departamento de marketing externo</a>
@@ -110,10 +115,18 @@
             </nav>
             <footer class="mt-auto flex flex-col gap-4">
               <div id="social" class="flex gap-3 justify-center">
-                <a href="#"><fa :icon="['fab', 'instagram']" /></a>
-                <a href="#"><fa :icon="['fab', 'facebook']" /></a>
-                <a href="#"><fa :icon="['fab', 'linkedin-in']" /></a>
-                <a href="#"><fa :icon="['fab', 'twitter']" /></a>
+                <a href="#" title="Instagram La Pometa"
+                  ><fa :icon="['fab', 'instagram']"
+                /></a>
+                <a href="#" title="Facebook La Pometa"
+                  ><fa :icon="['fab', 'facebook']"
+                /></a>
+                <a href="#" title="LinkedIn La Pometa"
+                  ><fa :icon="['fab', 'linkedin-in']"
+                /></a>
+                <a href="#" title="Twitter La Pometa"
+                  ><fa :icon="['fab', 'twitter']"
+                /></a>
               </div>
               <div
                 id="info"
@@ -146,8 +159,8 @@
           id="sidebar-visible"
           class="
             shadow-md
-            border-l border-gray-100
-            dark:border-gray-800 dark:bg-gray-900
+            bg-white
+            dark:bg-gray-900
             px-3
             transition-all
             relative
@@ -156,7 +169,15 @@
         >
           <div
             id="visible-content"
-            class="h-screen flex items-center justify-center"
+            class="
+              transition-all
+              h-screen
+              flex
+              items-center
+              justify-center
+              sticky
+              top-0
+            "
           >
             <div class="grid items-center justify-items-center gap-5">
               <a href="#">CA</a>
@@ -326,7 +347,6 @@
             absolute
             top-0
             left-0
-            z-10
             text-white
             w-14
             h-14
@@ -336,6 +356,7 @@
             text-xl
             bg-main-dark
             transition-all
+            z-20
           "
           @click="toggleSidebar"
         >
@@ -388,11 +409,16 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-* {
-  transition-duration: 0.4s !important;
+#wrapper {
+  &,
+  & > *,
+  & > * > *,
+  #visible-content {
+    transition-duration: 0.6s !important;
+  }
 }
-.t-duration-20 * {
-  transition-duration: 0.2s !important;
+.t-duration-60 * {
+  transition-duration: 0.3s !important;
 }
 
 @media (max-width: 639px) {
@@ -402,7 +428,7 @@ export default {
 
       &::after {
         content: '';
-        @apply transition-all absolute inset-0 backdrop-filter backdrop-blur-md backdrop-saturate-0 opacity-0 pointer-events-none;
+        @apply transition-all absolute inset-0 backdrop-filter backdrop-blur-sm opacity-0 pointer-events-none;
       }
     }
   }
@@ -450,14 +476,11 @@ export default {
       pointer-events: none;
     }
     #sidebar-visible {
-      flex: 0 0 0;
       width: 0;
       padding: 0;
       border: 0;
-
-      #visible-content {
-        transform: translateX(-3.5rem);
-      }
+      transform: translateX(-3.5rem);
+      opacity: 0;
     }
   }
 }
@@ -471,7 +494,6 @@ export default {
 }
 #wrapper {
   max-width: 100vw;
-  overflow: hidden;
 }
 #wrapper:not(.open) {
   @apply transition-all;
@@ -546,8 +568,13 @@ export default {
 }
 #menu {
   & > span {
-    a {
+    a,
+    span {
       @apply transition-all hover:text-primary;
+    }
+
+    .not-click {
+      @apply transition-all hover:text-primary uppercase cursor-pointer;
     }
 
     & > a {
@@ -562,6 +589,7 @@ export default {
 
     .sub-menu {
       @apply transition-all ml-3 h-full flex flex-col gap-3 max-h-0 overflow-hidden opacity-0;
+      transition-delay: 0.5s;
       transition-duration: 500ms;
     }
   }
