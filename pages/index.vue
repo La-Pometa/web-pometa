@@ -10,7 +10,7 @@ export default {
   name: 'Home',
   async asyncData({ $content }) {
     const pageData = await $content.getPageById(8)
-    const pageContent = pageData.content
+    const pageContent = pageData.content.rendered
 
     return { pageContent, pageData }
   },

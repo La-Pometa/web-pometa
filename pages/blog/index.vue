@@ -33,7 +33,7 @@
             <span class="date"><PuSkeleton width="20%" /></span>
             <h3 class="blog-card-title"><PuSkeleton /></h3>
           </div>
-          <p class="blog-card-excerpt"><PuSkeleton count="3" /></p>
+          <p class="blog-card-excerpt"><PuSkeleton :count="3" /></p>
         </div>
       </div>
     </section>

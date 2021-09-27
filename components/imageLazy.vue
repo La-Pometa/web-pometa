@@ -85,7 +85,12 @@ export default {
       this.$refs.image.classList.add('hidden')
 
       this.$refs.image.addEventListener('load', () => {
-        this.$refs.image.parentElement.removeChild(this.elCopy)
+        try {
+          this.$refs.image.parentElement.removeChild(this.elCopy)
+        } catch (e) {
+          console.log('error:' + e + '| image: ' + this.$refs.image)
+        }
+
         this.$refs.image.classList.remove('hidden')
         this.$refs.image.classList.remove('loading')
         this.$refs.image.classList.add('loaded')

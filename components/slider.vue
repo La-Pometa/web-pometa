@@ -1,5 +1,5 @@
 <template>
-  <div id="slider">
+  <div id="slider" ref="slider">
     <slot />
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
       if (!this._isMounted) {
         return
       }
-      const actual = document.querySelector('#slider > div:last-child')
+      const actual = this.$refs.slider.querySelector('div:last-child')
       const next = actual.previousElementSibling
       next.classList.remove('opacity-0')
       actual.classList.add('opacity-0')
@@ -30,6 +30,7 @@ export default {
   beforeDestroy() {
     clearInterval(this.interval)
   },
+  methods: {},
 }
 </script>
 <style lang="scss">
