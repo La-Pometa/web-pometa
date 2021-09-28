@@ -49,6 +49,14 @@ export class Content {
     return response.data
   }
 
+  async getPostBySlug(slug: string) {
+    const response = await axios.get(
+      `${this.cmsEndpoint}wp-json/wp/v2/posts/?slug=${slug}`
+    )
+
+    return response.data[0]
+  }
+
   async getAllPosts() {
     const response = await axios.get(
       `${this.cmsEndpoint}wp-json/wp/v2/posts/?per_page=${this.perPage}`

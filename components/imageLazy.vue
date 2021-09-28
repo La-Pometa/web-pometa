@@ -6,6 +6,7 @@
       :alt="alt"
       :width="width"
       :height="height"
+      :title="title"
     />
   </picture>
 </template>
@@ -17,6 +18,7 @@ export default {
     alt: {
       type: String,
       default: null,
+      required: true,
     },
     width: {
       type: Number,
@@ -29,6 +31,10 @@ export default {
     blur: {
       type: Boolean,
       default: true,
+    },
+    title: {
+      type: String,
+      default: null,
     },
   },
   data() {
@@ -45,10 +51,6 @@ export default {
     },
   },
   mounted() {
-    if (this.blur) {
-      this.$refs.image.classList.add('loading')
-    }
-
     this.observer = new IntersectionObserver((entries) => {
       const image = entries[0]
       if (image.isIntersecting) {
@@ -105,3 +107,18 @@ export default {
   },
 }
 </script>
+<style lang="scss" scoped>
+picture {
+  img {
+    transition: all 0.4s ease-in;
+    filter: blur(20px);
+    &.loaded {
+      filter: blur(0px);
+    }
+    &.no-blur {
+      transition: all 0s ease-in;
+      filter: blur(0px) !important;
+    }
+  }
+}
+</style>

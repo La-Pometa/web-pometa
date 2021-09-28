@@ -23,6 +23,7 @@ export default {
     '~/plugins/skeletonLoader',
     '~/plugins/content',
     '~/plugins/fontawesome',
+    '~/plugins/filters',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

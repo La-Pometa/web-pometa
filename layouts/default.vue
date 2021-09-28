@@ -90,8 +90,8 @@
             </nuxt-link>
             <nav id="menu" class="flex flex-col mt-7 font-medium text-xs gap-3">
               <span><nuxt-link to="/">Inicio</nuxt-link></span>
-              <span><a href="#">¡La Pometa!</a></span>
-              <span><a href="#">Proyectos</a></span>
+              <span><nuxt-link to="/pometa">¡La Pometa!</nuxt-link></span>
+              <span><nuxt-link to="/proyectos">Proyectos</nuxt-link></span>
               <span
                 ><div class="not-click">Somos especialistas en...</div>
                 <div class="sub-menu">
@@ -110,8 +110,12 @@
                 </div>
               </span>
               <span><nuxt-link to="/blog">Blog</nuxt-link></span>
-              <span><a href="#">Contacto</a></span>
-              <span><a href="#">Desayuna con manzanas</a></span>
+              <span><nuxt-link to="/contacto">Contacto</nuxt-link></span>
+              <span
+                ><nuxt-link to="/desayuna-con-manzanas"
+                  >Desayuna con manzanas</nuxt-link
+                ></span
+              >
             </nav>
             <footer class="mt-auto flex flex-col gap-4">
               <div id="social" class="flex gap-3 justify-center">
@@ -409,14 +413,15 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-#wrapper {
+/* #wrapper {
   &,
   & > *,
   & > * > *,
   #visible-content {
     transition-duration: 0.6s !important;
+    transition-delay: 0.4s;
   }
-}
+} */
 .t-duration-60 * {
   transition-duration: 0.3s !important;
 }
@@ -428,7 +433,7 @@ export default {
 
       &::after {
         content: '';
-        @apply transition-all absolute inset-0 backdrop-filter backdrop-blur-sm opacity-0 pointer-events-none;
+        @apply transition-all  absolute inset-0 backdrop-filter backdrop-blur-sm opacity-0 pointer-events-none;
       }
     }
   }
@@ -485,7 +490,7 @@ export default {
   }
 }
 #sidebar-wrapper {
-  @apply transition-all bg-white dark:bg-gray-900;
+  @apply transition-all  bg-white dark:bg-gray-900;
 }
 
 #sidebar-visible {
@@ -570,11 +575,11 @@ export default {
   & > span {
     a,
     span {
-      @apply transition-all hover:text-primary;
+      @apply transition-all  hover:text-primary;
     }
 
     .not-click {
-      @apply transition-all hover:text-primary uppercase cursor-pointer;
+      @apply transition-all  hover:text-primary uppercase cursor-pointer;
     }
 
     & > a {
@@ -588,7 +593,7 @@ export default {
     }
 
     .sub-menu {
-      @apply transition-all ml-3 h-full flex flex-col gap-3 max-h-0 overflow-hidden opacity-0;
+      @apply transition-all  ml-3 h-full flex flex-col gap-3 max-h-0 overflow-hidden opacity-0;
       transition-delay: 0.5s;
       transition-duration: 500ms;
     }
