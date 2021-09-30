@@ -12,8 +12,10 @@ h3 {
   @apply font-butler text-6xl;
 }
 
-.nuxt-link-exact-active {
-  @apply font-bold;
+#menu {
+  .nuxt-link-exact-active {
+    @apply font-bold;
+  }
 }
 
 .page-enter-active,

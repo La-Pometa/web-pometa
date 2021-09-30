@@ -1,13 +1,19 @@
 import axios from 'axios'
 export class Content {
   private cmsEndpoint: string
+  private app: any
 
-  constructor(endpoint: any) {
+  constructor(endpoint: any, app: any) {
     this.cmsEndpoint = endpoint
+    this.app = app
   }
 
   getEndpoint() {
     return this.cmsEndpoint
+  }
+
+  getLocale() {
+    return this.app.i18n.locale
   }
 
   async getImage(id: number) {
@@ -50,7 +56,9 @@ export class Content {
 
   async getPostBySlug(slug: string) {
     const response = await axios.get(
-      `${this.cmsEndpoint}wp-json/wp/v2/posts/?slug=${slug}`
+      `${
+        this.cmsEndpoint
+      }wp-json/wp/v2/posts/?slug=${slug}&lang=${this.getLocale()}`
     )
 
     return response.data[0]
@@ -58,7 +66,9 @@ export class Content {
 
   async getAllPosts(page: number = 1, perPage: number = 9) {
     const response = await axios.get(
-      `${this.cmsEndpoint}wp-json/wp/v2/posts/?per_page=${perPage}&page=${page}`
+      `${
+        this.cmsEndpoint
+      }wp-json/wp/v2/posts/?per_page=${perPage}&page=${page}&lang=${this.getLocale()}`
     )
 
     return response.data
@@ -66,7 +76,7 @@ export class Content {
 
   async getPageById(id: number) {
     const response = await axios.get(
-      `${this.cmsEndpoint}wp-json/wp/v2/pages/${id}`
+      `${this.cmsEndpoint}wp-json/wp/v2/pages/${id}/?lang=${this.getLocale()}`
     )
 
     return response.data

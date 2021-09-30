@@ -12,7 +12,7 @@
         <nuxt-link
           v-for="post in posts"
           :key="post.id"
-          :to="`/blog/${post.slug}`"
+          :to="localePath(`/blog/${post.slug}`)"
           class="hover:text-main-dark dark:hover:text-white"
           :title="post.title.rendered"
         >
@@ -25,7 +25,7 @@
             <div v-else class="blog-card-img"><PuSkeleton height="100%" /></div>
             <div>
               <span class="date">{{ post.date | formatDate }}</span>
-              <h3 class="blog-card-title">{{ post.title.rendered }}</h3>
+              <h2 class="blog-card-title">{{ post.title.rendered }}</h2>
             </div>
             <div class="blog-card-excerpt">
               <p>{{ post.excerpt.rendered }}</p>
@@ -36,13 +36,13 @@
       </div>
       <div
         v-else
-        class="grid msm:grid-cols-1 mmd:grid-cols-2 grid-cols-3 gap-10"
+        class="grid msm:grid-cols-1 mlg:grid-cols-2 grid-cols-3 gap-10"
       >
         <div v-for="index in 9" :key="index" class="blog-card">
           <div class="blog-card-img"><PuSkeleton height="100%" /></div>
           <div>
             <span class="date"><PuSkeleton width="20%" /></span>
-            <h3 class="blog-card-title"><PuSkeleton /></h3>
+            <h2 class="blog-card-title"><PuSkeleton /></h2>
           </div>
           <p class="blog-card-excerpt"><PuSkeleton :count="3" /></p>
         </div>
@@ -88,27 +88,43 @@ export default {
     })
   },
   mounted() {
-    this.checkScroll()
+    this.listenScroll()
+  },
+  activated() {
+    this.listenScroll()
+  },
+  deactivated() {
+    this.stopListenScroll()
+  },
+  beforeDestroy() {
+    this.stopListenScroll()
   },
   methods: {
-    checkScroll() {
-      window.onscroll = () => {
-        const bottomOfWindow =
-          Math.max(
-            window.pageYOffset,
-            document.documentElement.scrollTop,
-            document.body.scrollTop
-          ) +
-            window.innerHeight ===
-          document.documentElement.offsetHeight
+    listenScroll() {
+      window.addEventListener('scroll', this.scrollListener)
+    },
+    stopListenScroll() {
+      window.removeEventListener('scroll', this.scrollListener)
+    },
+    scrollListener() {
+      if (!this._isMounted) {
+        return
+      }
+      const bottomOfWindow =
+        Math.max(
+          window.pageYOffset,
+          document.documentElement.scrollTop,
+          document.body.scrollTop
+        ) +
+          window.innerHeight ===
+        document.documentElement.offsetHeight
 
-        if (bottomOfWindow) {
-          if (this.loadingMore) {
-            return
-          }
-          this.page++
-          this.$fetch()
+      if (bottomOfWindow) {
+        if (this.loadingMore) {
+          return
         }
+        this.page++
+        this.$fetch()
       }
     },
   },
@@ -118,7 +134,7 @@ export default {
 .blog-card {
   @apply space-y-5 h-full flex flex-col;
   .blog-card-img {
-    @apply aspect-w-4 aspect-h-3 msm:aspect-w-1 msm:aspect-h-1 relative;
+    @apply aspect-w-4 aspect-h-3 relative;
 
     img {
       @apply object-cover w-full h-full;

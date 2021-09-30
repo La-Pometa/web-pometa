@@ -94,9 +94,17 @@
               </div>
             </nuxt-link>
             <nav id="menu" class="flex flex-col mt-7 font-medium text-xs gap-3">
-              <span><nuxt-link to="/">Inicio</nuxt-link></span>
-              <span><nuxt-link to="/pometa">¡La Pometa!</nuxt-link></span>
-              <span><nuxt-link to="/proyectos">Proyectos</nuxt-link></span>
+              <span><nuxt-link :to="localePath('/')">Inicio</nuxt-link></span>
+              <span
+                ><nuxt-link :to="localePath('/pometa')"
+                  >¡La Pometa!</nuxt-link
+                ></span
+              >
+              <span
+                ><nuxt-link :to="localePath('/proyectos')"
+                  >Proyectos</nuxt-link
+                ></span
+              >
               <span
                 ><div class="not-click">Somos especialistas en...</div>
                 <div class="sub-menu">
@@ -114,10 +122,14 @@
                   </div>
                 </div>
               </span>
-              <span><nuxt-link to="/blog">Blog</nuxt-link></span>
-              <span><nuxt-link to="/contacto">Contacto</nuxt-link></span>
+              <span><nuxt-link :to="localePath('/blog')">Blog</nuxt-link></span>
               <span
-                ><nuxt-link to="/desayuna-con-manzanas"
+                ><nuxt-link :to="localePath('/contacto')"
+                  >Contacto</nuxt-link
+                ></span
+              >
+              <span
+                ><nuxt-link :to="localePath('/desayuna-con-manzanas')"
                   >Desayuna con manzanas</nuxt-link
                 ></span
               >
@@ -191,7 +203,12 @@
             "
           >
             <div class="grid items-center justify-items-center gap-5">
-              <a href="#">CA</a>
+              <nuxt-link
+                v-if="$i18n.locale == 'ca'"
+                :to="switchLocalePath('es')"
+                >ES</nuxt-link
+              >
+              <nuxt-link v-else :to="switchLocalePath('ca')">CA</nuxt-link>
               <a href="#" class="msm:hidden">
                 <div class="burger black small">
                   <span></span>
@@ -400,7 +417,7 @@ export default {
       return `flex: 0 0 ${this.offsetWidth}px;`
     },
     stick() {
-      return this.$route.path === '/' ? 'stick' : ''
+      return this.$route.name.startsWith('index') ? 'stick' : ''
     },
   },
   watch: {

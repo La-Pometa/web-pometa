@@ -1,6 +1,6 @@
 <template>
   <div class="post-container margins space-y-10">
-    <nuxt-link to="/blog" class="flex items-center"
+    <nuxt-link :to="localePath('/blog')" class="flex items-center"
       ><fa class="mr-5 max-h-3" icon="arrow-left" /> Volver</nuxt-link
     >
     <div v-if="post" class="single-post">
@@ -24,7 +24,7 @@
           <span v-for="(tax, index) in post.tax_info" :key="tax.term_id"
             ><span v-if="index != 0">, </span>{{ tax.name }}</span
           >
-          <span> - </span>
+          <span v-if="post.tax_info.length > 0"> - </span>
           <span>{{ post.date | formatDate }}</span>
         </div>
       </div>
@@ -54,6 +54,9 @@ export default {
   async fetch() {
     await this.$content.getPostBySlug(this.$route.params.slug).then((res) => {
       this.post = res
+      if (!res) {
+        this.$nuxt.error({ statusCode: 404, message: 'Post not found' })
+      }
     })
   },
   mounted() {},

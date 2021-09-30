@@ -14,6 +14,9 @@ export default {
 
     return { pageContent, pageData }
   },
+  mounted() {
+    console.log(this.$i18n)
+  },
 }
 </script>
 <style lang="scss">

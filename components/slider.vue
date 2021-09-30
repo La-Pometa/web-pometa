@@ -9,28 +9,41 @@ export default {
     return { interval: null }
   },
   mounted() {
-    document
-      .querySelectorAll('#slider > div:not(:last-child)')
-      .forEach((el) => {
-        el.classList.add('opacity-0')
-      })
-    this.interval = setInterval(() => {
-      if (!this._isMounted) {
-        return
-      }
-      const actual = this.$refs.slider.querySelector('div:last-child')
-      const next = actual.previousElementSibling
-      next.classList.remove('opacity-0')
-      actual.classList.add('opacity-0')
-      setTimeout(() => {
-        actual.parentElement.prepend(actual)
-      }, 1000)
-    }, 3000)
+    this.addInterval()
+  },
+  activated() {
+    this.addInterval()
+  },
+  deactivated() {
+    this.clearInterval()
   },
   beforeDestroy() {
-    clearInterval(this.interval)
+    this.clearInterval()
   },
-  methods: {},
+  methods: {
+    clearInterval() {
+      clearInterval(this.interval)
+    },
+    addInterval() {
+      document
+        .querySelectorAll('#slider > div:not(:last-child)')
+        .forEach((el) => {
+          el.classList.add('opacity-0')
+        })
+      this.interval = setInterval(() => {
+        if (!this._isMounted) {
+          return
+        }
+        const actual = this.$refs.slider.querySelector('div:last-child')
+        const next = actual.previousElementSibling
+        next.classList.remove('opacity-0')
+        actual.classList.add('opacity-0')
+        setTimeout(() => {
+          actual.parentElement.prepend(actual)
+        }, 1000)
+      }, 3000)
+    },
+  },
 }
 </script>
 <style lang="scss">

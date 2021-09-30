@@ -1,18 +1,25 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
-  head: {
-    title: 'web-pometa',
-    htmlAttrs: {
-      lang: 'en',
-    },
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' },
-      { name: 'theme-color', content: '#bfd5c2' },
-    ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+  head() {
+    const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true })
+    return {
+      title: 'web-pometa',
+      htmlAttrs: {
+        ...i18nHead.htmlAttrs,
+      },
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { hid: 'description', name: 'description', content: '' },
+        { name: 'format-detection', content: 'telephone=no' },
+        { name: 'theme-color', content: '#bfd5c2' },
+        ...i18nHead.meta,
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        ...i18nHead.link,
+      ],
+    }
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -42,7 +49,24 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/i18n',
   ],
+
+  i18n: {
+    locales: [
+      { code: 'es', iso: 'es-ES', file: 'en.js', dir: 'ltr' },
+      { code: 'ca', iso: 'ca', file: 'ar.js', dir: 'ltr' },
+    ],
+    defaultLocale: 'es',
+    detectBrowserLanguage: true,
+    vueI18n: {
+      fallbackLocale: 'es',
+      messages: {
+        ca: {},
+        es: {},
+      },
+    },
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
