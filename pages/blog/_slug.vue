@@ -21,9 +21,9 @@
             dark:text-white
           "
         >
-          <span v-for="tax in post.tax_info" :key="tax.term_id">{{
-            tax.name
-          }}</span>
+          <span v-for="(tax, index) in post.tax_info" :key="tax.term_id"
+            ><span v-if="index != 0">, </span>{{ tax.name }}</span
+          >
           <span> - </span>
           <span>{{ post.date | formatDate }}</span>
         </div>

@@ -3,7 +3,13 @@
     <div
       id="wrapper"
       ref="wrapper"
-      class="transition-all min-w-screen min-h-screen flex msm:overflow-hidden"
+      class="
+        transition-all
+        duration-500
+        min-w-screen min-h-screen
+        flex
+        msm:overflow-hidden
+      "
     >
       <div
         id="sidebar-wrapper"
@@ -16,13 +22,12 @@
           ref="sidebar"
           class="
             transition-all
+            duration-500
             fixed
             inset-y-0
             flex
             bg-white
             dark:bg-gray-900
-            border-r border-gray-100
-            dark:border-gray-800
             z-20
           "
         >
@@ -156,7 +161,7 @@
         </div>
         <div
           id="content-margin"
-          class="transition-all min-h-screen h-full inline-block"
+          class="transition-all duration-500 min-h-screen h-full inline-block"
           :style="sidebarWidth"
         ></div>
         <div
@@ -167,6 +172,7 @@
             dark:bg-gray-900
             px-3
             transition-all
+            duration-500
             relative
             z-10
           "
@@ -175,6 +181,7 @@
             id="visible-content"
             class="
               transition-all
+              duration-500
               h-screen
               flex
               items-center
@@ -252,6 +259,7 @@
             class="
               logo-mini
               transition-all
+              duration-500
               absolute
               top-3
               left-1/2
@@ -360,6 +368,7 @@
             text-xl
             bg-main-dark
             transition-all
+            duration-500
             z-20
           "
           @click="toggleSidebar"
@@ -433,7 +442,7 @@ export default {
 
       &::after {
         content: '';
-        @apply transition-all  absolute inset-0 backdrop-filter backdrop-blur-sm opacity-0 pointer-events-none;
+        @apply transition-all duration-500  absolute inset-0 backdrop-filter backdrop-blur-sm opacity-0 pointer-events-none;
       }
     }
   }
@@ -490,7 +499,7 @@ export default {
   }
 }
 #sidebar-wrapper {
-  @apply transition-all  bg-white dark:bg-gray-900;
+  @apply transition-all duration-500  bg-white dark:bg-gray-900;
 }
 
 #sidebar-visible {
@@ -501,7 +510,7 @@ export default {
   max-width: 100vw;
 }
 #wrapper:not(.open) {
-  @apply transition-all;
+  @apply transition-all duration-500;
 
   &:hover {
     .logo-mini {
@@ -575,11 +584,11 @@ export default {
   & > span {
     a,
     span {
-      @apply transition-all  hover:text-primary;
+      @apply transition-all duration-500  hover:text-primary;
     }
 
     .not-click {
-      @apply transition-all  hover:text-primary uppercase cursor-pointer;
+      @apply transition-all duration-500  hover:text-primary uppercase cursor-pointer;
     }
 
     & > a {
@@ -593,17 +602,20 @@ export default {
     }
 
     .sub-menu {
-      @apply transition-all  ml-3 h-full flex flex-col gap-3 max-h-0 overflow-hidden opacity-0;
+      @apply transition-all duration-500  ml-3 h-full flex flex-col gap-3 max-h-0 overflow-hidden opacity-0;
       transition-delay: 0.5s;
       transition-duration: 500ms;
     }
   }
 }
 #content-margin {
-  @apply transition-all;
+  @apply transition-all duration-500;
   min-width: 256px;
 }
 #content {
-  @apply transition-all;
+  @apply transition-all duration-500;
+}
+#left-sideBar {
+  box-shadow: 0 0 0 1px rgba(122, 122, 122, 0.1);
 }
 </style>

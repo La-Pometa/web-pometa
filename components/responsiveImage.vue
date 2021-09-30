@@ -28,7 +28,6 @@ export default {
     alt: {
       type: String,
       default: null,
-      required: true,
     },
     width: {
       type: Number,

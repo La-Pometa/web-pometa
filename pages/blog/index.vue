@@ -6,7 +6,7 @@
         <span class="text-primary">La pometa te habla</span>
       </div>
       <div
-        v-if="posts"
+        v-if="posts.length > 0"
         class="grid msm:grid-cols-1 mlg:grid-cols-2 grid-cols-3 gap-10"
       >
         <nuxt-link
@@ -27,7 +27,10 @@
               <span class="date">{{ post.date | formatDate }}</span>
               <h3 class="blog-card-title">{{ post.title.rendered }}</h3>
             </div>
-            <p class="blog-card-excerpt">{{ post.excerpt.rendered }}</p>
+            <div class="blog-card-excerpt">
+              <p>{{ post.excerpt.rendered }}</p>
+            </div>
+            <div class="read-more">Cuéntame más</div>
           </div>
         </nuxt-link>
       </div>
@@ -44,6 +47,15 @@
           <p class="blog-card-excerpt"><PuSkeleton :count="3" /></p>
         </div>
       </div>
+      <div v-if="posts.length > 0">
+        <div
+          id="pagination"
+          ref="pagination"
+          :class="!more ? 'hide' : !loadingMore ? 'opacity-0' : ''"
+        >
+          <div class="loader"></div>
+        </div>
+      </div>
     </section>
   </div>
 </template>
@@ -53,19 +65,58 @@ export default {
   components: { responsiveImage },
   data() {
     return {
-      posts: null,
+      posts: [],
+      page: 1,
+      loadingMore: false,
+      more: true,
     }
   },
   async fetch() {
-    await this.$content.getAllPosts().then((res) => {
-      this.posts = res
+    if (!this.more) {
+      return
+    }
+
+    this.loadingMore = true
+
+    await this.$content.getAllPosts(this.page).then((res) => {
+      this.posts.push(...res)
+      this.loadingMore = false
+
+      if (res.length < 9) {
+        this.more = false
+      }
     })
+  },
+  mounted() {
+    this.checkScroll()
+  },
+  methods: {
+    checkScroll() {
+      window.onscroll = () => {
+        const bottomOfWindow =
+          Math.max(
+            window.pageYOffset,
+            document.documentElement.scrollTop,
+            document.body.scrollTop
+          ) +
+            window.innerHeight ===
+          document.documentElement.offsetHeight
+
+        if (bottomOfWindow) {
+          if (this.loadingMore) {
+            return
+          }
+          this.page++
+          this.$fetch()
+        }
+      }
+    },
   },
 }
 </script>
 <style lang="scss">
 .blog-card {
-  @apply space-y-5;
+  @apply space-y-5 h-full flex flex-col;
   .blog-card-img {
     @apply aspect-w-4 aspect-h-3 msm:aspect-w-1 msm:aspect-h-1 relative;
 
@@ -81,7 +132,26 @@ export default {
     @apply text-gray-400 font-thin;
   }
   .blog-card-excerpt {
-    @apply leading-normal line-clamp-3;
+    @apply pb-5;
+
+    p {
+      @apply leading-normal line-clamp-3;
+    }
   }
+  .read-more {
+    @apply font-butler cursor-pointer text-primary hover:text-white dark:hover:text-main-dark bg-transparent hover:bg-primary transition-all px-2 py-1 inline-block ml-auto;
+    margin-top: auto !important;
+  }
+}
+#pagination {
+  @apply h-14 flex justify-center;
+
+  &.hide {
+    @apply hidden;
+  }
+}
+.loader {
+  @apply w-14 h-14 rounded-full border-4 border-gray-200 dark:border-gray-400 animate-spin;
+  border-top-color: theme('colors.primary');
 }
 </style>

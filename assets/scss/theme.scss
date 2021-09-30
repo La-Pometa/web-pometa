@@ -40,3 +40,7 @@ h1 {
     filter: invert(0.9);
   }
 }
+
+:root {
+  --primary: theme('colors.primary');
+}
