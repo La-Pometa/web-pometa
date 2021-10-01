@@ -35,7 +35,7 @@
             id="left-sidebar-content"
             class="p-7 w-64 flex flex-col overflow-y-auto"
           >
-            <nuxt-link to="/">
+            <nuxt-link :to="localePath('/')">
               <div class="logo">
                 <div class="responsive-image">
                   <image-lazy
@@ -94,19 +94,23 @@
               </div>
             </nuxt-link>
             <nav id="menu" class="flex flex-col mt-7 font-medium text-xs gap-3">
-              <span><nuxt-link :to="localePath('/')">Inicio</nuxt-link></span>
               <span
-                ><nuxt-link :to="localePath('/pometa')"
-                  >¡La Pometa!</nuxt-link
-                ></span
+                ><nuxt-link :to="localePath('/')">{{
+                  $t('home')
+                }}</nuxt-link></span
               >
               <span
-                ><nuxt-link :to="localePath('/proyectos')"
-                  >Proyectos</nuxt-link
-                ></span
+                ><nuxt-link :to="localePath('/pometa')">{{
+                  $t('laPometa')
+                }}</nuxt-link></span
               >
               <span
-                ><div class="not-click">Somos especialistas en...</div>
+                ><nuxt-link :to="localePath('/proyectos')">{{
+                  $t('projects')
+                }}</nuxt-link></span
+              >
+              <span
+                ><div class="not-click">{{ $t('special') }}</div>
                 <div class="sub-menu">
                   <div class="item">
                     <a href="#">Departamento de marketing externo</a>
@@ -122,16 +126,20 @@
                   </div>
                 </div>
               </span>
-              <span><nuxt-link :to="localePath('/blog')">Blog</nuxt-link></span>
               <span
-                ><nuxt-link :to="localePath('/contacto')"
-                  >Contacto</nuxt-link
-                ></span
+                ><nuxt-link :to="localePath('/blog')">{{
+                  $t('blog')
+                }}</nuxt-link></span
               >
               <span
-                ><nuxt-link :to="localePath('/desayuna-con-manzanas')"
-                  >Desayuna con manzanas</nuxt-link
-                ></span
+                ><nuxt-link :to="localePath('/contacto')">{{
+                  $t('contact')
+                }}</nuxt-link></span
+              >
+              <span
+                ><nuxt-link :to="localePath('/desayuna-con-manzanas')">{{
+                  $t('breakfast')
+                }}</nuxt-link></span
               >
             </nav>
             <footer class="mt-auto flex flex-col gap-4">
@@ -170,193 +178,222 @@
               </div>
             </footer>
           </div>
+          <div
+            id="sidebar-visible"
+            class="
+              border-l border-gray-100
+              dark:border-gray-700
+              bg-white
+              dark:bg-gray-900
+              px-3
+              transition-all
+              duration-500
+              relative
+              z-10
+            "
+          >
+            <div
+              id="sidebarToggler"
+              ref="sidebarToggler"
+              class="
+                sm:opacity-0 sm:pointer-events-none
+                absolute
+                top-0
+                left-0
+                text-white
+                w-14
+                h-14
+                flex
+                items-center
+                justify-center
+                text-xl
+                bg-main-dark
+                transition-all
+                duration-500
+                z-20
+              "
+              @click="toggleSidebar"
+            >
+              <div class="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+            <div
+              id="visible-content"
+              class="
+                transition-all
+                duration-500
+                h-screen
+                flex
+                items-center
+                justify-center
+                sticky
+                top-0
+              "
+            >
+              <div class="grid items-center justify-items-center gap-5">
+                <nuxt-link
+                  v-if="$i18n.locale == 'ca'"
+                  :to="switchLocalePath('es')"
+                  >ES</nuxt-link
+                >
+                <nuxt-link v-else :to="switchLocalePath('ca')">CA</nuxt-link>
+                <a href="#" class="msm:hidden">
+                  <div class="burger black small">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </a>
+                <a href="#">
+                  <div class="responsive-image w-6">
+                    <image-lazy
+                      class="dark:hidden"
+                      alt="desayuno con manzanas"
+                      :width="141"
+                      :height="113"
+                      :sizes="{
+                        full_webp: {
+                          source_url:
+                            'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa_black.png.webp',
+                        },
+                        mini: {
+                          source_url:
+                            'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa_black-40x32.png',
+                        },
+                        mini_webp: {
+                          source_url:
+                            'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa_black-40x32.png.webp',
+                        },
+                        full: {
+                          source_url:
+                            'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa_black.png',
+                        },
+                      }"
+                      :blur="false"
+                    ></image-lazy>
+                    <image-lazy
+                      class="hidden dark:block"
+                      alt="desayuno con manzanas"
+                      :width="141"
+                      :height="113"
+                      :sizes="{
+                        full_webp: {
+                          source_url:
+                            'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa.png.webp',
+                        },
+                        mini: {
+                          source_url:
+                            'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa-40x32.png',
+                        },
+                        mini_webp: {
+                          source_url:
+                            'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa-40x32.png.webp',
+                        },
+                        full: {
+                          source_url:
+                            'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa.png',
+                        },
+                      }"
+                      :blur="false"
+                    ></image-lazy></div
+                ></a>
+              </div>
+            </div>
+
+            <div
+              class="
+                logo-mini
+                transition-all
+                duration-500
+                absolute
+                top-3
+                left-1/2
+                transform
+                -translate-x-1/2
+                msm:hidden
+              "
+            >
+              <div class="responsive-image">
+                <image-lazy
+                  class="dark:hidden"
+                  alt="logo la pometa"
+                  :width="221"
+                  :height="300"
+                  :sizes="{
+                    full: {
+                      file: 'anagrama_pometa_black-221x300.png',
+                      width: 221,
+                      height: 300,
+                      mime_type: 'image\/png',
+                      source_url:
+                        'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_black-221x300.png',
+                    },
+                    full_webp: {
+                      file: 'anagrama_pometa_black-221x300.png.webp',
+                      width: 221,
+                      height: 300,
+                      mime_type: 'image\/webp',
+                      source_url:
+                        'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_black-221x300.png.webp',
+                    },
+                    mini: {
+                      file: 'anagrama_pometa_black-29x40.png',
+                      width: 29,
+                      height: 40,
+                      mime_type: 'image\/png',
+                      source_url:
+                        'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_black-29x40.png',
+                    },
+                    mini_webp: {
+                      file: 'anagrama_pometa_black-29x40.png.webp',
+                      width: 29,
+                      height: 40,
+                      mime_type: 'image\/webp',
+                      source_url:
+                        'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_black-29x40.png.webp',
+                    },
+                  }"
+                  :blur="false"
+                ></image-lazy>
+              </div>
+              <div class="responsive-image">
+                <image-lazy
+                  class="hidden dark:block"
+                  alt="logo la pometa"
+                  :width="221"
+                  :height="300"
+                  :sizes="{
+                    full: {
+                      source_url:
+                        'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_white-221x300.png',
+                    },
+                    full_webp: {
+                      source_url:
+                        'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_white-221x300.png.webp',
+                    },
+                    mini: {
+                      source_url:
+                        'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_white-29x40.png',
+                    },
+                    mini_webp: {
+                      source_url:
+                        'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_white-29x40.png.webp',
+                    },
+                  }"
+                  :blur="false"
+                ></image-lazy>
+              </div>
+            </div>
+          </div>
         </div>
         <div
           id="content-margin"
           class="transition-all duration-500 min-h-screen h-full inline-block"
           :style="sidebarWidth"
         ></div>
-        <div
-          id="sidebar-visible"
-          class="
-            shadow-md
-            bg-white
-            dark:bg-gray-900
-            px-3
-            transition-all
-            duration-500
-            relative
-            z-10
-          "
-        >
-          <div
-            id="visible-content"
-            class="
-              transition-all
-              duration-500
-              h-screen
-              flex
-              items-center
-              justify-center
-              sticky
-              top-0
-            "
-          >
-            <div class="grid items-center justify-items-center gap-5">
-              <nuxt-link
-                v-if="$i18n.locale == 'ca'"
-                :to="switchLocalePath('es')"
-                >ES</nuxt-link
-              >
-              <nuxt-link v-else :to="switchLocalePath('ca')">CA</nuxt-link>
-              <a href="#" class="msm:hidden">
-                <div class="burger black small">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-              </a>
-              <a href="#">
-                <div class="responsive-image w-6">
-                  <image-lazy
-                    class="dark:hidden"
-                    alt="desayuno con manzanas"
-                    :width="141"
-                    :height="113"
-                    :sizes="{
-                      full_webp: {
-                        source_url:
-                          'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa_black.png.webp',
-                      },
-                      mini: {
-                        source_url:
-                          'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa_black-40x32.png',
-                      },
-                      mini_webp: {
-                        source_url:
-                          'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa_black-40x32.png.webp',
-                      },
-                      full: {
-                        source_url:
-                          'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa_black.png',
-                      },
-                    }"
-                    :blur="false"
-                  ></image-lazy>
-                  <image-lazy
-                    class="hidden dark:block"
-                    alt="desayuno con manzanas"
-                    :width="141"
-                    :height="113"
-                    :sizes="{
-                      full_webp: {
-                        source_url:
-                          'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa.png.webp',
-                      },
-                      mini: {
-                        source_url:
-                          'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa-40x32.png',
-                      },
-                      mini_webp: {
-                        source_url:
-                          'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa-40x32.png.webp',
-                      },
-                      full: {
-                        source_url:
-                          'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa.png',
-                      },
-                    }"
-                    :blur="false"
-                  ></image-lazy></div
-              ></a>
-            </div>
-          </div>
-
-          <div
-            class="
-              logo-mini
-              transition-all
-              duration-500
-              absolute
-              top-3
-              left-1/2
-              transform
-              -translate-x-1/2
-              msm:hidden
-            "
-          >
-            <div class="responsive-image">
-              <image-lazy
-                class="dark:hidden"
-                alt="logo la pometa"
-                :width="221"
-                :height="300"
-                :sizes="{
-                  full: {
-                    file: 'anagrama_pometa_black-221x300.png',
-                    width: 221,
-                    height: 300,
-                    mime_type: 'image\/png',
-                    source_url:
-                      'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_black-221x300.png',
-                  },
-                  full_webp: {
-                    file: 'anagrama_pometa_black-221x300.png.webp',
-                    width: 221,
-                    height: 300,
-                    mime_type: 'image\/webp',
-                    source_url:
-                      'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_black-221x300.png.webp',
-                  },
-                  mini: {
-                    file: 'anagrama_pometa_black-29x40.png',
-                    width: 29,
-                    height: 40,
-                    mime_type: 'image\/png',
-                    source_url:
-                      'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_black-29x40.png',
-                  },
-                  mini_webp: {
-                    file: 'anagrama_pometa_black-29x40.png.webp',
-                    width: 29,
-                    height: 40,
-                    mime_type: 'image\/webp',
-                    source_url:
-                      'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_black-29x40.png.webp',
-                  },
-                }"
-                :blur="false"
-              ></image-lazy>
-            </div>
-            <div class="responsive-image">
-              <image-lazy
-                class="hidden dark:block"
-                alt="logo la pometa"
-                :width="221"
-                :height="300"
-                :sizes="{
-                  full: {
-                    source_url:
-                      'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_white-221x300.png',
-                  },
-                  full_webp: {
-                    source_url:
-                      'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_white-221x300.png.webp',
-                  },
-                  mini: {
-                    source_url:
-                      'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_white-29x40.png',
-                  },
-                  mini_webp: {
-                    source_url:
-                      'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_white-29x40.png.webp',
-                  },
-                }"
-                :blur="false"
-              ></image-lazy>
-            </div>
-          </div>
-        </div>
       </div>
       <div
         id="content"
@@ -368,34 +405,6 @@
           relative
         "
       >
-        <div
-          id="sidebarToggler"
-          ref="sidebarToggler"
-          class="
-            sm:opacity-0 sm:pointer-events-none
-            absolute
-            top-0
-            left-0
-            text-white
-            w-14
-            h-14
-            flex
-            items-center
-            justify-center
-            text-xl
-            bg-main-dark
-            transition-all
-            duration-500
-            z-20
-          "
-          @click="toggleSidebar"
-        >
-          <div class="burger">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
         <div class="w-full h-full" @click="removeSidebar">
           <Nuxt keep-alive />
         </div>
@@ -417,6 +426,9 @@ export default {
       return `flex: 0 0 ${this.offsetWidth}px;`
     },
     stick() {
+      if (!this.$route.name) {
+        return
+      }
       return this.$route.name.startsWith('index') ? 'stick' : ''
     },
   },
@@ -439,82 +451,60 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-/* #wrapper {
-  &,
-  & > *,
-  & > * > *,
-  #visible-content {
-    transition-duration: 0.6s !important;
-    transition-delay: 0.4s;
-  }
-} */
-.t-duration-60 * {
-  transition-duration: 0.3s !important;
-}
-
 @media (max-width: 639px) {
-  #wrapper {
-    #content > div:not(#sidebarToggler) {
-      overflow: hidden;
+  #content {
+    flex: 0 0 100vw;
+  }
 
-      &::after {
-        content: '';
-        @apply transition-all duration-500  absolute inset-0 backdrop-filter backdrop-blur-sm opacity-0 pointer-events-none;
+  #wrapper:not(.open) {
+    #sidebarToggler {
+      @apply transform translate-x-full;
+    }
+    #sidebar-wrapper {
+      #left-sideBar {
+        transform: translateX(calc(-100% - 1px));
+      }
+
+      #content-margin {
+        min-width: 0;
       }
     }
   }
   #wrapper.open {
-    #sidebarToggler {
-      transform: translateX(-100%);
-    }
-    #content > div:not(#sidebarToggler) {
-      &::after {
-        @apply opacity-100 pointer-events-auto;
-      }
-    }
-  }
-  #content {
-    flex: 0 0 100vw;
-  }
-  #wrapper:not(.open) {
-    #sidebar-wrapper:not(.open).stick {
-      .logo-mini {
-        @apply opacity-100;
-      }
-      #content-margin {
-        flex: 0 0 0 !important;
-        min-width: 0 !important;
-        width: 0;
-      }
-      #left-sideBar {
-        @apply transform -translate-x-full;
-      }
-    }
-    #sidebar-wrapper:not(.stick) {
-      .logo-mini {
-        @apply opacity-100;
-      }
-      #content-margin {
-        flex: 0 0 0rem !important;
-        min-width: 0 !important;
-        width: 0;
-      }
-      #left-sideBar {
-        @apply transform -translate-x-full;
-      }
-    }
-    #sidebar-wrapper {
-      pointer-events: none;
-    }
-    #sidebar-visible {
-      width: 0;
-      padding: 0;
-      border: 0;
-      transform: translateX(-3.5rem);
-      opacity: 0;
+    #left-sideBar {
+      transform: translateX(0);
     }
   }
 }
+
+@media (min-width: 640px) {
+  #wrapper:not(.open) {
+    #sidebar-wrapper:not(.stick) {
+      #left-sideBar {
+        transform: translateX(-16rem);
+      }
+
+      &:hover {
+        #left-sideBar {
+          transform: translateX(0);
+        }
+      }
+
+      &:not(:hover) {
+        #content-margin {
+          min-width: 3.5rem;
+        }
+      }
+
+      &:not(:hover) {
+        .logo-mini {
+          @apply opacity-100;
+        }
+      }
+    }
+  }
+}
+
 #sidebar-wrapper {
   @apply transition-all duration-500  bg-white dark:bg-gray-900;
 }
@@ -525,49 +515,8 @@ export default {
 }
 #wrapper {
   max-width: 100vw;
-}
-#wrapper:not(.open) {
-  @apply transition-all duration-500;
-
-  &:hover {
-    .logo-mini {
-      @apply opacity-0;
-    }
-  }
-  .stick {
-    .logo-mini {
-      @apply opacity-0;
-    }
-  }
-  @media (min-width: 640px) {
-    #sidebar-wrapper:not(:hover):not(.stick) {
-      .logo-mini {
-        @apply opacity-100;
-      }
-      #content-margin {
-        flex: 0 0 0rem !important;
-        min-width: 0 !important;
-        width: 0;
-      }
-      #left-sideBar {
-        @apply transform -translate-x-full;
-      }
-    }
-    #sidebar-wrapper:not(:hover):not(.open).stick {
-      @media (max-width: 1279px) {
-        .logo-mini {
-          @apply opacity-100;
-        }
-        #content-margin {
-          flex: 0 0 0 !important;
-          min-width: 0 !important;
-          width: 0;
-        }
-        #left-sideBar {
-          @apply transform -translate-x-full;
-        }
-      }
-    }
+  .logo-mini {
+    @apply opacity-0;
   }
 }
 .burger {
@@ -627,7 +576,7 @@ export default {
 }
 #content-margin {
   @apply transition-all duration-500;
-  min-width: 256px;
+  min-width: 312px;
 }
 #content {
   @apply transition-all duration-500;

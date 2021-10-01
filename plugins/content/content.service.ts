@@ -46,6 +46,14 @@ export class Content {
     return response.data.content.rendered
   }
 
+  async getHomePage() {
+    const response = await axios.get(
+      `${this.cmsEndpoint}wp-json/wp/v2/path/?lang=${this.getLocale()}`
+    )
+
+    return response.data
+  }
+
   async getPostById(id: number) {
     const response = await axios.get(
       `${this.cmsEndpoint}wp-json/wp/v2/posts/${id}`

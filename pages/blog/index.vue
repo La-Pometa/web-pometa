@@ -3,7 +3,7 @@
     <section id="all-posts" class="container margins space-y-10">
       <div class="header text-center">
         <h1>Blog</h1>
-        <span class="text-primary">La pometa te habla</span>
+        <span class="text-primary">{{ $t('blogSubtitle') }}</span>
       </div>
       <div
         v-if="posts.length > 0"
@@ -30,7 +30,7 @@
             <div class="blog-card-excerpt">
               <p>{{ post.excerpt.rendered }}</p>
             </div>
-            <div class="read-more">Cuéntame más</div>
+            <div class="read-more">{{ $t('readMore') }}</div>
           </div>
         </nuxt-link>
       </div>

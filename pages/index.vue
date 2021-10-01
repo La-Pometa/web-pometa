@@ -9,13 +9,10 @@
 export default {
   name: 'Home',
   async asyncData({ $content }) {
-    const pageData = await $content.getPageById(8)
+    const pageData = await $content.getHomePage()
     const pageContent = pageData.content.rendered
 
     return { pageContent, pageData }
-  },
-  mounted() {
-    console.log(this.$i18n)
   },
 }
 </script>

@@ -1,7 +1,8 @@
 <template>
   <div class="post-container margins space-y-10">
     <nuxt-link :to="localePath('/blog')" class="flex items-center"
-      ><fa class="mr-5 max-h-3" icon="arrow-left" /> Volver</nuxt-link
+      ><fa class="mr-5 max-h-3" icon="arrow-left" />
+      {{ $t('goBack') }}</nuxt-link
     >
     <div v-if="post" class="single-post">
       <responsive-image
@@ -56,6 +57,14 @@ export default {
       this.post = res
       if (!res) {
         this.$nuxt.error({ statusCode: 404, message: 'Post not found' })
+      } else {
+        const translations = {}
+
+        for (const translation of res.translations) {
+          translations[translation.locale] = { slug: translation.slug }
+        }
+
+        this.$store.dispatch('i18n/setRouteParams', translations)
       }
     })
   },

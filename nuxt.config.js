@@ -9,7 +9,11 @@ export default {
       },
       meta: [
         { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        {
+          name: 'viewport',
+          content:
+            'width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no',
+        },
         { hid: 'description', name: 'description', content: '' },
         { name: 'format-detection', content: 'telephone=no' },
         { name: 'theme-color', content: '#bfd5c2' },
@@ -22,6 +26,10 @@ export default {
     }
   },
 
+  loading: {
+    color: '#bfd5c2',
+    height: '3px',
+  },
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['~/assets/scss/theme.scss'],
 
@@ -53,17 +61,18 @@ export default {
   ],
 
   i18n: {
+    langDir: './locales/',
     locales: [
-      { code: 'es', iso: 'es-ES', file: 'en.js', dir: 'ltr' },
-      { code: 'ca', iso: 'ca', file: 'ar.js', dir: 'ltr' },
+      { code: 'es', iso: 'es-ES', file: 'es/index.js', dir: 'ltr' },
+      { code: 'ca', iso: 'ca', file: 'ca/index.js', dir: 'ltr' },
     ],
     defaultLocale: 'es',
-    detectBrowserLanguage: true,
-    vueI18n: {
-      fallbackLocale: 'es',
-      messages: {
-        ca: {},
-        es: {},
+    detectBrowserLanguage: false,
+    useCookie: false,
+    parsePages: false,
+    pages: {
+      proyectos: {
+        ca: '/projectes',
       },
     },
   },
