@@ -182,7 +182,7 @@
             id="sidebar-visible"
             class="
               border-l border-gray-100
-              dark:border-gray-700
+              dark:border-gray-800
               bg-white
               dark:bg-gray-900
               px-3
@@ -199,7 +199,7 @@
                 sm:opacity-0 sm:pointer-events-none
                 absolute
                 top-0
-                left-0
+                -left-px
                 text-white
                 w-14
                 h-14
@@ -455,22 +455,25 @@ export default {
   #content {
     flex: 0 0 100vw;
   }
-
+  #wrapper {
+    #content-margin {
+      min-width: 0 !important;
+    }
+  }
   #wrapper:not(.open) {
     #sidebarToggler {
       @apply transform translate-x-full;
     }
     #sidebar-wrapper {
       #left-sideBar {
-        transform: translateX(calc(-100% - 1px));
-      }
-
-      #content-margin {
-        min-width: 0;
+        transform: translateX(-100%);
       }
     }
   }
   #wrapper.open {
+    #content {
+      transform: translateX(calc(3.5rem + 16rem));
+    }
     #left-sideBar {
       transform: translateX(0);
     }
