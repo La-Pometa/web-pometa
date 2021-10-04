@@ -89,4 +89,14 @@ export class Content {
 
     return response.data
   }
+
+  async getPageByPath(path: string) {
+    const response = await axios.get(
+      `${
+        this.cmsEndpoint
+      }wp-json/wp/v2/path/?slug=${path}&translate=${this.getLocale()}`
+    )
+
+    return response.data
+  }
 }

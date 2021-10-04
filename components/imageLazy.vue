@@ -107,7 +107,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-picture {
+/* picture {
   img {
     transition: all 0.4s ease-in;
     filter: blur(20px);
@@ -119,5 +119,5 @@ picture {
       filter: blur(0px) !important;
     }
   }
-}
+} */
 </style>

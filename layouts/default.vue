@@ -113,7 +113,9 @@
                 ><div class="not-click">{{ $t('special') }}</div>
                 <div class="sub-menu">
                   <div class="item">
-                    <a href="#">Departamento de marketing externo</a>
+                    <nuxt-link :to="localePath($t('marketing').link)">{{
+                      $t('marketing').text
+                    }}</nuxt-link>
                   </div>
                   <div class="item">
                     <a href="#">Diseño gráfico</a>
@@ -161,9 +163,9 @@
                 id="info"
                 class="flex flex-col gap-2 text-center text-xs font-thin"
               >
-                <a href="https://www.lapometa.com/contacto/"
-                  >Oficinas en Lleida y Terrassa (BCN)</a
-                >
+                <a href="https://www.lapometa.com/contacto/">{{
+                  $t('oficinas')
+                }}</a>
                 <a href="mailto:info@lapometa.com">info@lapometa.com</a>
                 <span>T:<a href="tel:+34973282570">(+34) 973 28 25 70</a></span>
               </div>
@@ -171,10 +173,10 @@
                 id="footer-menu"
                 class="flex flex-col text-center text-xs font-bold"
               >
-                <a href="#">Política de Privacidad</a>
-                <a href="#">Política de Cookies</a>
-                <a href="#">Aviso legal</a>
-                <a href="#">Mapa del sitio</a>
+                <a href="#">{{ $t('privacidad') }}</a>
+                <a href="#">{{ $t('cookies') }}</a>
+                <a href="#">{{ $t('aviso') }}</a>
+                <a href="#">{{ $t('map') }}</a>
               </div>
             </footer>
           </div>

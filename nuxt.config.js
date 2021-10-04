@@ -28,8 +28,9 @@ export default {
 
   loading: {
     color: '#bfd5c2',
-    height: '3px',
+    height: '2px',
   },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['~/assets/scss/theme.scss'],
 
@@ -73,6 +74,15 @@ export default {
     pages: {
       proyectos: {
         ca: '/projectes',
+      },
+      contacto: {
+        ca: '/contacte',
+      },
+      'departamento-marketing-externo': {
+        ca: '/departament-marqueting-extern',
+      },
+      'desayuna-con-manzanas': {
+        ca: '/esmorza-amb-pomes',
       },
     },
   },

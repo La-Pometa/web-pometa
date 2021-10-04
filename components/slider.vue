@@ -11,12 +11,6 @@ export default {
   mounted() {
     this.addInterval()
   },
-  activated() {
-    this.addInterval()
-  },
-  deactivated() {
-    this.clearInterval()
-  },
   beforeDestroy() {
     this.clearInterval()
   },
