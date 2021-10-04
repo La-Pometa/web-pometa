@@ -12,7 +12,7 @@
         <nuxt-link
           v-for="post in posts"
           :key="post.id"
-          :to="localePath(`/blog/${post.slug}`)"
+          :to="localePath(`/${post.slug}`)"
           class="hover:text-main-dark dark:hover:text-white"
           :title="post.title.rendered"
         >

@@ -1,0 +1,84 @@
+<template>
+  <div class="post-container margins space-y-10">
+    <nuxt-link :to="localePath('/blog')" class="flex items-center"
+      ><fa class="mr-5 max-h-3" icon="arrow-left" />
+      {{ $t('goBack') }}</nuxt-link
+    >
+    <div class="single-post">
+      <responsive-image
+        :width="data.featured_source.width"
+        :height="data.featured_source.height"
+        :alt="data.featured_source.alt"
+        :title="data.featured_source.title"
+        :sizes="data.featured_source.sizes"
+      ></responsive-image>
+      <div>
+        <h1>{{ data.title.rendered }}</h1>
+        <div
+          class="
+            text-opacity-70
+            dark:text-opacity-70
+            text-main-dark
+            dark:text-white
+          "
+        >
+          <span v-for="(tax, index) in data.tax_info" :key="tax.term_id"
+            ><span v-if="index != 0">, </span>{{ tax.name }}</span
+          >
+          <span v-if="data.tax_info.length > 0"> - </span>
+          <span>{{ data.date | formatDate }}</span>
+        </div>
+      </div>
+      <the-content
+        class="post-content"
+        :content="data.content.rendered"
+      ></the-content>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  props: {
+    data: {
+      type: Object,
+      required: true,
+      default: null,
+    },
+  },
+}
+</script>
+<style lang="scss" scoped>
+.post-container {
+  width: 100%;
+}
+@media (min-width: 640px) {
+  .post-container {
+    max-width: 640px;
+  }
+}
+@media (min-width: 768px) {
+  .post-container {
+    max-width: 768px;
+  }
+}
+</style>
+<style lang="scss">
+.post-content {
+  h3 {
+    @apply text-xl my-5 font-sset;
+  }
+  p {
+    @apply my-4;
+  }
+}
+.single-post {
+  @apply space-y-10 msm:space-y-5;
+
+  .responsive-image {
+    @apply aspect-w-4 aspect-h-3 msm:aspect-w-1 msm:aspect-h-1;
+    img {
+      @apply w-full h-full object-cover;
+    }
+  }
+}
+</style>

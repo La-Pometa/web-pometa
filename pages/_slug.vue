@@ -1,8 +1,5 @@
 <template>
-  <single-type-landing
-    v-if="(pageType = 'landing')"
-    :data="pageData"
-  ></single-type-landing>
+  <component :is="`single-type-${pageType}`" :data="pageData" />
 </template>
 <script>
 export default {

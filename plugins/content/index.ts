@@ -1,13 +1,11 @@
-import { Content } from './content.service'
+import { Context } from '@nuxt/types'
+import { Content } from './api'
 
 export default (
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  { app }: any,
-  inject: (arg0: string, arg1: Content) => void
+  { app }: Context,
+  inject: (name: string, instance: Content) => void
 ) => {
   // create an instance of the LoggingService with the prefix 'My App'
-  const content = new Content(process.env.API_ENDPOINT, app)
-
   // inject the service, making it available in the context, component, store, etc.
-  inject('content', content)
+  inject('content', new Content(process.env.API_ENDPOINT, app))
 }

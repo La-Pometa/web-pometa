@@ -8,31 +8,31 @@ export class Content {
     this.app = app
   }
 
-  getEndpoint() {
+  private getEndpoint() {
     return this.cmsEndpoint
   }
 
-  getLocale() {
+  private getLocale() {
     return this.app.i18n.locale
   }
 
   async getImage(id: number) {
     const response = await axios.get(
-      `${this.cmsEndpoint}wp-json/wp/v2/media/${id}`
+      `${this.getEndpoint()}wp-json/wp/v2/media/${id}`
     )
     return response.data
   }
 
   async getImagebySlug(slug: string) {
     const response = await axios.get(
-      `${this.cmsEndpoint}wp-json/wp/v2/media/?${slug}`
+      `${this.getEndpoint()}wp-json/wp/v2/media/?${slug}`
     )
     return response.data[0]
   }
 
   async getPostContentById(id: number) {
     const response = await axios.get(
-      `${this.cmsEndpoint}wp-json/wp/v2/posts/${id}`
+      `${this.getEndpoint()}wp-json/wp/v2/posts/${id}`
     )
 
     return response.data.content.rendered
@@ -40,7 +40,7 @@ export class Content {
 
   async getPageContentById(id: number) {
     const response = await axios.get(
-      `${this.cmsEndpoint}wp-json/wp/v2/pages/${id}`
+      `${this.getEndpoint()}wp-json/wp/v2/pages/${id}`
     )
 
     return response.data.content.rendered
@@ -48,7 +48,7 @@ export class Content {
 
   async getHomePage() {
     const response = await axios.get(
-      `${this.cmsEndpoint}wp-json/wp/v2/path/?lang=${this.getLocale()}`
+      `${this.getEndpoint()}wp-json/wp/v2/path/?lang=${this.getLocale()}`
     )
 
     return response.data
@@ -56,7 +56,7 @@ export class Content {
 
   async getPostById(id: number) {
     const response = await axios.get(
-      `${this.cmsEndpoint}wp-json/wp/v2/posts/${id}`
+      `${this.getEndpoint()}wp-json/wp/v2/posts/${id}`
     )
 
     return response.data
@@ -64,9 +64,7 @@ export class Content {
 
   async getPostBySlug(slug: string) {
     const response = await axios.get(
-      `${
-        this.cmsEndpoint
-      }wp-json/wp/v2/posts/?slug=${slug}&lang=${this.getLocale()}`
+      `${this.getEndpoint()}wp-json/wp/v2/posts/?slug=${slug}&lang=${this.getLocale()}`
     )
 
     return response.data[0]
@@ -74,9 +72,7 @@ export class Content {
 
   async getAllPosts(page: number = 1, perPage: number = 9) {
     const response = await axios.get(
-      `${
-        this.cmsEndpoint
-      }wp-json/wp/v2/posts/?per_page=${perPage}&page=${page}&lang=${this.getLocale()}`
+      `${this.getEndpoint()}wp-json/wp/v2/posts/?per_page=${perPage}&page=${page}&lang=${this.getLocale()}`
     )
 
     return response.data
@@ -84,7 +80,7 @@ export class Content {
 
   async getPageById(id: number) {
     const response = await axios.get(
-      `${this.cmsEndpoint}wp-json/wp/v2/pages/${id}/?lang=${this.getLocale()}`
+      `${this.getEndpoint()}wp-json/wp/v2/pages/${id}/?lang=${this.getLocale()}`
     )
 
     return response.data
@@ -92,11 +88,13 @@ export class Content {
 
   async getPageByPath(path: string) {
     const response = await axios.get(
-      `${
-        this.cmsEndpoint
-      }wp-json/wp/v2/path/?slug=${path}&translate=${this.getLocale()}`
+      `${this.getEndpoint()}wp-json/wp/v2/path/?slug=${path}&translate=${this.getLocale()}`
     )
 
     return response.data
+  }
+
+  getApp() {
+    return this.app
   }
 }
