@@ -1,19 +1,19 @@
 <template>
-  <div class="post-container margins space-y-10">
+  <div class="post-container margins msm:mt-14 space-y-10">
     <nuxt-link :to="localePath('/blog')" class="flex items-center"
       ><fa class="mr-5 max-h-3" icon="arrow-left" />
       {{ $t('goBack') }}</nuxt-link
     >
     <div class="single-post">
       <responsive-image
-        :width="data.featured_source.width"
-        :height="data.featured_source.height"
-        :alt="data.featured_source.alt"
-        :title="data.featured_source.title"
-        :sizes="data.featured_source.sizes"
+        :width="post.featured_source.width"
+        :height="post.featured_source.height"
+        :alt="post.featured_source.alt"
+        :title="post.featured_source.title"
+        :sizes="post.featured_source.sizes"
       ></responsive-image>
       <div>
-        <h1>{{ data.title.rendered }}</h1>
+        <h1>{{ post.title.rendered }}</h1>
         <div
           class="
             text-opacity-70
@@ -22,16 +22,16 @@
             dark:text-white
           "
         >
-          <span v-for="(tax, index) in data.tax_info" :key="tax.term_id"
+          <span v-for="(tax, index) in post.tax_info" :key="tax.term_id"
             ><span v-if="index != 0">, </span>{{ tax.name }}</span
           >
-          <span v-if="data.tax_info.length > 0"> - </span>
-          <span>{{ data.date | formatDate }}</span>
+          <span v-if="post.tax_info.length > 0"> - </span>
+          <span>{{ post.date | formatDate }}</span>
         </div>
       </div>
       <the-content
         class="post-content"
-        :content="data.content.rendered"
+        :content="post.content.rendered"
       ></the-content>
     </div>
   </div>
@@ -39,7 +39,7 @@
 <script>
 export default {
   props: {
-    data: {
+    post: {
       type: Object,
       required: true,
       default: null,

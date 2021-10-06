@@ -1,4 +1,6 @@
 import axios from 'axios'
+import Post from './post'
+
 export class Content {
   private cmsEndpoint: string
   private app: any
@@ -86,12 +88,24 @@ export class Content {
     return response.data
   }
 
-  async getPageByPath(path: string) {
+  async getSingleTypeByPath(path: string) {
     const response = await axios.get(
       `${this.getEndpoint()}wp-json/wp/v2/path/?slug=${path}&translate=${this.getLocale()}`
     )
 
-    return response.data
+    return this.parseAndSaveResponse(response)
+  }
+
+  private parseAndSaveResponse(res: any) {
+    return res.data
+  }
+
+  getPostTitle(post: any) {
+    return post.title.rendered
+  }
+
+  getPostMeta(post: any, meta: string): any | null {
+    return new Post(post).getMeta(meta)
   }
 
   getApp() {

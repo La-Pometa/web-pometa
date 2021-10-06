@@ -1,11 +1,11 @@
 <template>
-  <component :is="`single-type-${pageType}`" :data="pageData" />
+  <component :is="`single-type-${pageType}`" :post="pageData" />
 </template>
 <script>
 export default {
   name: 'GetByPath',
   async asyncData({ $content, params, error, store }) {
-    const pageData = await $content.getPageByPath(params.slug)
+    const pageData = await $content.getSingleTypeByPath(params.slug)
     if (!pageData || pageData.length === 0) {
       error({ statusCode: 404, message: 'Post not found' })
     } else {

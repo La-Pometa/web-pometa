@@ -5,4 +5,5 @@ export default {
   ...blog,
   ...menu,
   goBack: 'Volver',
+  callYou: '¿Te llamamos?',
 }

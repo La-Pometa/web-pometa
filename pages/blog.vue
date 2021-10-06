@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section id="all-posts" class="container margins space-y-10">
+    <section id="all-posts" class="container margins msm:mt-14 space-y-10">
       <div class="header text-center">
         <h1>Blog</h1>
         <span class="text-primary">{{ $t('blogSubtitle') }}</span>
@@ -60,9 +60,8 @@
   </div>
 </template>
 <script>
-import responsiveImage from '~/components/responsiveImage.vue'
 export default {
-  components: { responsiveImage },
+  name: 'BlogArchive',
   data() {
     return {
       posts: [],

@@ -93,7 +93,7 @@
                 </div>
               </div>
             </nuxt-link>
-            <nav id="menu" class="flex flex-col mt-7 font-medium text-xs gap-3">
+            <nav id="menu" class="flex flex-col mt-7 font-medium text-xs gap-4">
               <span
                 ><nuxt-link :to="localePath('/')">{{
                   $t('home')
@@ -110,7 +110,7 @@
                 }}</nuxt-link></span
               >
               <span
-                ><div class="not-click">{{ $t('special') }}</div>
+                ><a class="not-click" href="#">{{ $t('special') }}</a>
                 <div class="sub-menu">
                   <div class="item">
                     <nuxt-link :to="localePath($t('marketing').link)">{{
@@ -121,7 +121,9 @@
                     <a href="#">Diseño gráfico</a>
                   </div>
                   <div class="item">
-                    <a href="#">Diseño páginas web</a>
+                    <nuxt-link :to="localePath($t('web').link)">{{
+                      $t('web').text
+                    }}</nuxt-link>
                   </div>
                   <div class="item">
                     <a href="#">Publicidad online y offline</a>
@@ -574,8 +576,6 @@ export default {
 
     .sub-menu {
       @apply transition-all duration-500  ml-3 h-full flex flex-col gap-3 max-h-0 overflow-hidden opacity-0;
-      transition-delay: 0.5s;
-      transition-duration: 500ms;
     }
   }
 }

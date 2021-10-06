@@ -8,7 +8,10 @@ export default {
     link: '/departament-marqueting-extern',
   },
   design: 'Disseny gràfic',
-  web: 'Disseny pàgines web',
+  web: {
+    text: 'Disseny pàgines web',
+    link: '/disseny-pagines-web',
+  },
   publicity: 'Publicitat online i offline',
   blog: 'Blog',
   contact: 'Contacte',

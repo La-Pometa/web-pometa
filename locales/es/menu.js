@@ -8,7 +8,10 @@ export default {
     link: '/departamento-marketing-externo',
   },
   design: 'Diseño gráfico',
-  web: 'Diseño páginas web',
+  web: {
+    text: 'Diseño páginas web',
+    link: '/diseno-paginas-web',
+  },
   publicity: 'Publicidad online y offline',
   blog: 'Blog',
   contact: 'Contacto',

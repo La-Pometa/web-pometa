@@ -20,7 +20,8 @@
     "@nuxtjs/i18n": "^7.0.3",
     "core-js": "^3.15.1",
     "nuxt": "^2.15.7",
-    "vue-loading-skeleton": "^1.1.9"
+    "vue-loading-skeleton": "^1.1.9",
+    "vue-snap": "^0.7.1"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.7",
