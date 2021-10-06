@@ -114,6 +114,9 @@ a:hover {
 }
 </style>
 <style lang="scss">
+.vs-carousel__arrows {
+  @apply bg-white dark:bg-gray-900;
+}
 .two-items {
   --items: 2;
   --gap: 0.75rem;
@@ -176,16 +179,20 @@ a:hover {
   h2 {
     @apply text-center text-4xl font-bold mb-4 dark:text-white;
     color: var(--landing-color);
+
+    @media (prefers-color-scheme: dark) {
+      color: white !important;
+    }
   }
   h3 {
     @apply font-sset uppercase font-bold text-center text-base;
   }
 
   .links {
-    @apply flex pt-9 flex-wrap gap-8;
+    @apply flex pt-9 mmd:flex-col gap-8;
 
     .link {
-      @apply flex items-center uppercase font-bold gap-5;
+      @apply flex items-center justify-center mmd:flex-col uppercase font-bold gap-5;
     }
   }
 }
