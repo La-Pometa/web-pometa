@@ -100,6 +100,23 @@ export class Content {
     return res.data
   }
 
+  async postContactForm(fields: any[], formId: number) {
+    const formData = new FormData()
+
+    fields.forEach((field) => {
+      formData.append(field.name, field.value)
+    })
+
+    const res = await axios({
+      method: 'post',
+      url: `${this.getEndpoint()}wp-json/contact-form-7/v1/contact-forms/${formId}/feedback`,
+      data: formData,
+      headers: { 'Content-Type': 'multipart/form-data' },
+    })
+
+    return res.data
+  }
+
   getPostTitle(post: any) {
     return post.title.rendered
   }

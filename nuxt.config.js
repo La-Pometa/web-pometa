@@ -20,7 +20,7 @@ export default {
         ...i18nHead.meta,
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'icon', type: 'image/x-icon', href: 'favicon.ico' },
         ...i18nHead.link,
       ],
     }
