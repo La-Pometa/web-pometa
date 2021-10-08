@@ -50,3 +50,8 @@ h1 {
 :root {
   --primary: theme('colors.primary');
 }
+
+.loader {
+  @apply w-14 h-14 rounded-full border-4 border-gray-200 dark:border-gray-400 animate-spin;
+  border-top-color: theme('colors.primary');
+}

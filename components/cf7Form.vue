@@ -35,6 +35,7 @@ export default {
 
     form.addEventListener('submit', async (evt) => {
       evt.preventDefault()
+      this.removeAllSpans()
       this.fetchAllInputs()
       this.submitElm.classList.add('loading')
       this.parseResponse(
@@ -44,13 +45,33 @@ export default {
     })
   },
   methods: {
+    removeAllSpans() {
+      this.elm
+        .querySelectorAll('span.error_message, span.success_message')
+        .forEach((elm) => {
+          elm.parentElement.removeChild(elm)
+        })
+      this.elm.querySelectorAll('.invalid').forEach((elm) => {
+        elm.classList.remove('invalid')
+      })
+    },
     fetchAllInputs() {
       this.inputs = []
       const allFields = this.elm.querySelectorAll(
         'input:not([type="submit"]), textarea, select'
       )
       allFields.forEach((elm) => {
-        const field = { name: elm.name, value: elm.value }
+        let field
+
+        if (elm.type === 'checkbox') {
+          if (elm.checked) {
+            field = { name: elm.name, value: elm.value }
+          } else {
+            return
+          }
+        } else {
+          field = { name: elm.name, value: elm.value }
+        }
 
         if (field.name === '_wpcf7') {
           this.formId = parseInt(field.value)
@@ -60,7 +81,6 @@ export default {
       })
     },
     parseResponse(res) {
-      console.log(res)
       if (res.status === 'validation_failed') {
         res.invalid_fields.forEach((field) => {
           field.elm = this.elm.querySelector(field.into + '> *')
@@ -76,6 +96,15 @@ export default {
             field.elm.parentElement.removeChild(errorSpan)
           })
         })
+      } else if (this.submitElm) {
+        this.elm.reset()
+        const successSpan = document.createElement('span')
+        successSpan.innerHTML = res.message
+        successSpan.classList.add('success_message')
+        this.submitElm.parentElement.appendChild(successSpan)
+        setTimeout(() => {
+          this.submitElm.parentElement.removeChild(successSpan)
+        }, 3000)
       }
     },
   },
@@ -106,7 +135,10 @@ export default {
     }
   }
   .error_message {
-    @apply text-xs text-red-600;
+    @apply text-xs text-red-600 mt-2 block;
+  }
+  .success_message {
+    @apply text-xs text-green-500 mt-3 block;
   }
   textarea {
     @apply resize-none h-32;
@@ -124,7 +156,12 @@ export default {
     }
   }
   [type='submit'] {
-    @apply w-full outline-none py-2 cursor-pointer hover:bg-primary transition-all rounded-sm bg-gray-100 dark:border-gray-600 dark:bg-gray-900 shadow-sm focus:border-primary focus:ring focus:ring-offset-0 focus:ring-primary focus:ring-opacity-50;
+    @apply w-full relative outline-none py-2 cursor-pointer hover:bg-primary dark:hover:text-main-dark transition-all rounded-sm bg-gray-100 dark:border-gray-600 dark:bg-gray-900 shadow-sm focus:border-primary focus:ring focus:ring-offset-0 focus:ring-primary focus:ring-opacity-50;
+
+    &.loading {
+      @apply bg-primary transition-all text-main-dark;
+      animation: bg-fade 0.8s ease-in infinite;
+    }
 
     &[disabled] {
       @apply pointer-events-none opacity-50;
@@ -135,6 +172,21 @@ export default {
   }
   .info {
     @apply text-sm opacity-50;
+  }
+}
+
+@keyframes bg-fade {
+  0% {
+    @apply opacity-100;
+    transform: scale(1);
+  }
+  50% {
+    @apply opacity-50;
+    transform: scale(0.97);
+  }
+  100% {
+    @apply opacity-100;
+    transform: scale(1);
   }
 }
 </style>

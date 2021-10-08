@@ -118,7 +118,9 @@
                     }}</nuxt-link>
                   </div>
                   <div class="item">
-                    <a href="#">Diseño gráfico</a>
+                    <nuxt-link :to="localePath($t('design').link)">{{
+                      $t('design').text
+                    }}</nuxt-link>
                   </div>
                   <div class="item">
                     <nuxt-link :to="localePath($t('web').link)">{{
@@ -126,7 +128,9 @@
                     }}</nuxt-link>
                   </div>
                   <div class="item">
-                    <a href="#">Publicidad online y offline</a>
+                    <nuxt-link :to="localePath($t('publicity').link)">{{
+                      $t('publicity').text
+                    }}</nuxt-link>
                   </div>
                 </div>
               </span>

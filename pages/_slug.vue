@@ -1,23 +1,29 @@
 <template>
-  <component :is="`single-type-${pageType}`" :post="pageData" />
+  <component :is="`single-type-${postType}`" :post="postData" />
 </template>
 <script>
 export default {
   name: 'GetByPath',
   async asyncData({ $content, params, error, store }) {
-    const pageData = await $content.getSingleTypeByPath(params.slug)
-    if (!pageData || pageData.length === 0) {
+    const postData = await $content.getSingleTypeByPath(params.slug)
+    if (!postData || postData.length === 0) {
       error({ statusCode: 404, message: 'Post not found' })
     } else {
       const translations = {}
 
-      for (const translation of pageData.translations) {
+      for (const translation of postData.translations) {
         translations[translation.locale] = { slug: translation.slug }
       }
 
       store.dispatch('i18n/setRouteParams', translations)
     }
-    return { pageData, pageType: pageData.type }
+    return { postData, postType: postData.type }
+  },
+
+  head() {
+    return {
+      title: this.$content.getPostMetaSeo(this.postData, 'title'),
+    }
   },
 }
 </script>

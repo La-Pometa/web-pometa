@@ -47,13 +47,13 @@
           <p class="blog-card-excerpt"><PuSkeleton :count="3" /></p>
         </div>
       </div>
-      <div v-if="posts.length > 0">
+      <div v-show="posts.length > 0">
         <div
           id="pagination"
           ref="pagination"
           :class="!more ? 'hide' : !loadingMore ? 'opacity-0' : ''"
         >
-          <div class="loader"></div>
+          <div id="loadMore" class="loader"></div>
         </div>
       </div>
     </section>
@@ -87,44 +87,21 @@ export default {
     })
   },
   mounted() {
-    this.listenScroll()
-  },
-  activated() {
-    this.listenScroll()
-  },
-  deactivated() {
-    this.stopListenScroll()
-  },
-  beforeDestroy() {
-    this.stopListenScroll()
+    this.observeLoadMore()
   },
   methods: {
-    listenScroll() {
-      window.addEventListener('scroll', this.scrollListener)
-    },
-    stopListenScroll() {
-      window.removeEventListener('scroll', this.scrollListener)
-    },
-    scrollListener() {
-      if (!this._isMounted) {
-        return
-      }
-      const bottomOfWindow =
-        Math.max(
-          window.pageYOffset,
-          document.documentElement.scrollTop,
-          document.body.scrollTop
-        ) +
-          window.innerHeight ===
-        document.documentElement.offsetHeight
-
-      if (bottomOfWindow) {
-        if (this.loadingMore) {
-          return
+    observeLoadMore() {
+      this.observer = new IntersectionObserver((entries) => {
+        const image = entries[0]
+        if (image.isIntersecting) {
+          if (this.loadingMore) {
+            return
+          }
+          this.page++
+          this.$fetch()
         }
-        this.page++
-        this.$fetch()
-      }
+      })
+      this.observer.observe(this.$refs.pagination)
     },
   },
 }
@@ -164,9 +141,5 @@ export default {
   &.hide {
     @apply hidden;
   }
-}
-.loader {
-  @apply w-14 h-14 rounded-full border-4 border-gray-200 dark:border-gray-400 animate-spin;
-  border-top-color: theme('colors.primary');
 }
 </style>

@@ -14,6 +14,11 @@ export default {
 
     return { pageContent, pageData }
   },
+  head() {
+    return {
+      title: this.$content.getPostMetaSeo(this.pageData, 'title'),
+    }
+  },
 }
 </script>
 <style lang="scss">

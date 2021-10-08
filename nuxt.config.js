@@ -3,7 +3,7 @@ export default {
   head() {
     const i18nHead = this.$nuxtI18nHead({ addSeoAttributes: true })
     return {
-      title: 'web-pometa',
+      title: 'La Pometa Agencia',
       htmlAttrs: {
         ...i18nHead.htmlAttrs,
       },

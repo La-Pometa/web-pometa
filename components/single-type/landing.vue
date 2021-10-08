@@ -1,13 +1,15 @@
 <template>
   <div id="landing" :style="cssVars">
     <div v-if="post.featured_source" id="header-image">
-      <responsive-image
-        class="w-full h-full"
-        :sizes="post.featured_source.sizes"
-        :alt="post.featured_source.alt"
-        :width="post.featured_source.width"
-        :height="post.featured_source.height"
-      ></responsive-image>
+      <parallax :section-height="'100%'">
+        <responsive-image
+          class="w-full h-full"
+          :sizes="post.featured_source.sizes"
+          :alt="post.featured_source.alt"
+          :width="post.featured_source.width"
+          :height="post.featured_source.height"
+        ></responsive-image>
+      </parallax>
     </div>
     <div class="container-landing margins-header">
       <h1 class="title">
@@ -51,7 +53,7 @@
             :to="item.link"
             class="link"
           >
-            <div class="rounded-full overflow-hidden">
+            <div class="rounded-full transform translate-x-0 overflow-hidden">
               <div class="w-32 aspect-w-1 aspect-h-1">
                 <responsive-image
                   :sizes="item.image.sizes"
@@ -141,6 +143,8 @@ a:hover {
   @apply bg-white dark:bg-gray-900;
 }
 .two-items {
+  @apply my-5;
+
   --items: 2;
   --gap: 0.75rem;
 
@@ -169,7 +173,7 @@ a:hover {
   }
 }
 #header-image {
-  @apply sm:h-96 msm:aspect-w-1 msm:aspect-h-1 msm:w-full mb-5;
+  @apply sm:h-96 msm:aspect-w-1 msm:aspect-h-1 msm:w-full mb-5 overflow-hidden;
 
   .responsive-image {
     img {
@@ -186,7 +190,7 @@ a:hover {
     color: rgba(var(--landing-color), 1);
   }
   h2 {
-    @apply font-butler text-4xl msm:text-xl my-5;
+    @apply font-butler text-4xl msm:text-xl my-5 text-center;
   }
   h4 {
     @apply font-medium text-2xl font-bold;
@@ -200,6 +204,10 @@ a:hover {
   @apply p-10;
 
   background-color: rgba(var(--landing-color), 0.03);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: rgba(var(--landing-color), 0.13);
+  }
 
   h2 {
     @apply text-center text-4xl font-bold mb-4 dark:text-white;

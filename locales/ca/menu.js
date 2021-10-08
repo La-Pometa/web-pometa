@@ -7,12 +7,18 @@ export default {
     text: 'Departament Màrqueting Extern',
     link: '/departament-marqueting-extern',
   },
-  design: 'Disseny gràfic',
+  design: {
+    text: 'Disseny gràfic',
+    link: '/disseny-grafic',
+  },
   web: {
     text: 'Disseny pàgines web',
     link: '/disseny-pagines-web',
   },
-  publicity: 'Publicitat online i offline',
+  publicity: {
+    text: 'Publicitat online i offline',
+    link: '/agencia-publicitat',
+  },
   blog: 'Blog',
   contact: 'Contacte',
   breakfast: 'Esmorza amb pomes',

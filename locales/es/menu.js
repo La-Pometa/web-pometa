@@ -7,12 +7,18 @@ export default {
     text: 'Departamento de marketing externo',
     link: '/departamento-marketing-externo',
   },
-  design: 'Diseño gráfico',
+  design: {
+    text: 'Diseño gráfico',
+    link: '/diseno-grafico',
+  },
   web: {
     text: 'Diseño páginas web',
     link: '/diseno-paginas-web',
   },
-  publicity: 'Publicidad online y offline',
+  publicity: {
+    text: 'Publicidad online y offline',
+    link: '/agencia-publicidad',
+  },
   blog: 'Blog',
   contact: 'Contacto',
   breakfast: 'Desayuna con manzanas',

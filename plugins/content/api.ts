@@ -125,6 +125,10 @@ export class Content {
     return new Post(post).getMeta(meta)
   }
 
+  getPostMetaSeo(post: any, meta: string): any | null {
+    return new Post(post).getMetaSeo(meta)
+  }
+
   getApp() {
     return this.app
   }

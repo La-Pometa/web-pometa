@@ -16,6 +16,18 @@ class Post {
       return null
     }
   }
+
+  public getMetaSeo(meta: string): any | null {
+    if ('yoast_head_json' in this) {
+      if (meta in this.yoast_head_json) {
+        return this.yoast_head_json[meta]
+      } else {
+        return null
+      }
+    } else {
+      return null
+    }
+  }
 }
 
 export default Post
