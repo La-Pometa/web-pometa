@@ -47,10 +47,12 @@ module.exports = {
     extend: {
       colors: {
         primary: '#bfd5c2',
+        secondary: '#8d9d8f',
         'main-dark': '#3c3c3b',
       },
       height: {
         100: '32rem',
+        110: '34rem',
         120: '36rem',
         screen2: 'calc(100vh - 60px)',
       },

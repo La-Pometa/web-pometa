@@ -10,6 +10,10 @@ export class Content {
     this.app = app
   }
 
+  private getTitle(name: string) {
+    return `${name} - ${process.env.SITE_NAME}`
+  }
+
   private getEndpoint() {
     return this.cmsEndpoint
   }

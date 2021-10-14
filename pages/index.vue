@@ -27,13 +27,6 @@ export default {
     @apply relative;
   }
 }
-.bg-image {
-  @apply absolute inset-0 h-full w-full;
-
-  img {
-    @apply absolute inset-0 w-full h-full object-cover;
-  }
-}
 .inner-on-hover {
   @apply backdrop-filter backdrop-blur-md transition-all absolute inset-0 bg-white dark:bg-gray-900 dark:bg-opacity-70 bg-opacity-70 opacity-0 hover:opacity-100 flex justify-center items-center;
 

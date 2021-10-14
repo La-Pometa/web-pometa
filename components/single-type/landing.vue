@@ -51,7 +51,7 @@
             v-for="item in $content.getPostMeta(post, 'pg_landings_links')"
             :key="item.link"
             :to="item.link"
-            class="link"
+            class="link no-highlight"
           >
             <div class="rounded-full transform translate-x-0 overflow-hidden">
               <div class="w-32 aspect-w-1 aspect-h-1">
@@ -169,15 +169,6 @@ a:hover {
 
     @screen mmd {
       --items: 1;
-    }
-  }
-}
-#header-image {
-  @apply sm:h-96 msm:aspect-w-1 msm:aspect-h-1 msm:w-full mb-5 overflow-hidden;
-
-  .responsive-image {
-    img {
-      @apply w-full h-full object-cover;
     }
   }
 }

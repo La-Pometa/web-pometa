@@ -119,5 +119,6 @@ export default {
 
   env: {
     API_ENDPOINT: process.env.WP_API_ENDPOINT,
+    SITE_NAME: process.env.SITE_NAME,
   },
 }

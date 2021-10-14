@@ -5,3 +5,12 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  head() {
+    return {
+      title: this.$content.getTitle(this.$t('projects')),
+    }
+  },
+}
+</script>

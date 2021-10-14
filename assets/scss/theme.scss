@@ -9,6 +9,11 @@ body {
 a {
   @apply transition-all hover:text-primary;
 }
+#content {
+  a:not(.no-highlight) {
+    @apply transition-all text-secondary hover:underline;
+  }
+}
 h3 {
   @apply font-butler text-6xl;
 }
@@ -32,6 +37,10 @@ h3 {
 h1 {
   @apply font-butler text-3xl;
 }
+h5 {
+  @apply font-butler text-2xl font-bold;
+}
+
 .responsive-image {
   @apply overflow-hidden;
 }
@@ -54,4 +63,29 @@ h1 {
 .loader {
   @apply w-14 h-14 rounded-full border-4 border-gray-200 dark:border-gray-400 animate-spin;
   border-top-color: theme('colors.primary');
+}
+
+#header-image {
+  @apply sm:h-96 msm:aspect-w-1 msm:aspect-h-1 msm:w-full mb-5 overflow-hidden;
+
+  .responsive-image {
+    img {
+      @apply w-full h-full object-cover;
+    }
+  }
+}
+
+.title {
+  @apply text-center mx-auto font-butler font-bold leading-snug text-5xl msm:text-3xl;
+}
+.subtitle {
+  @apply text-center mx-auto font-sset font-bold text-xl msm:text-base my-0 text-secondary;
+}
+
+.bg-image {
+  @apply absolute inset-0 h-full w-full;
+
+  img {
+    @apply absolute inset-0 w-full h-full object-cover;
+  }
 }

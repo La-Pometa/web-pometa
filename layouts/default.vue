@@ -151,20 +151,7 @@
               >
             </nav>
             <footer class="mt-auto flex flex-col gap-4">
-              <div id="social" class="flex gap-3 justify-center">
-                <a href="#" title="Instagram La Pometa"
-                  ><fa :icon="['fab', 'instagram']"
-                /></a>
-                <a href="#" title="Facebook La Pometa"
-                  ><fa :icon="['fab', 'facebook']"
-                /></a>
-                <a href="#" title="LinkedIn La Pometa"
-                  ><fa :icon="['fab', 'linkedin-in']"
-                /></a>
-                <a href="#" title="Twitter La Pometa"
-                  ><fa :icon="['fab', 'twitter']"
-                /></a>
-              </div>
+              <social-links class="justify-center" />
               <div
                 id="info"
                 class="flex flex-col gap-2 text-center text-xs font-thin"
@@ -255,7 +242,7 @@
                     <span></span>
                   </div>
                 </a>
-                <a href="#">
+                <nuxt-link :to="localePath('/desayuna-con-manzanas')">
                   <div class="responsive-image w-6">
                     <image-lazy
                       class="dark:hidden"
@@ -307,7 +294,7 @@
                       }"
                       :blur="false"
                     ></image-lazy></div
-                ></a>
+                ></nuxt-link>
               </div>
             </div>
 

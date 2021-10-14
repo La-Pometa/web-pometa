@@ -13,7 +13,7 @@
           v-for="post in posts"
           :key="post.id"
           :to="localePath(`/${post.slug}`)"
-          class="hover:text-main-dark dark:hover:text-white"
+          class="hover:text-main-dark dark:hover:text-white no-highlight"
           :title="post.title.rendered"
         >
           <div class="blog-card">
@@ -85,6 +85,11 @@ export default {
         this.more = false
       }
     })
+  },
+  head() {
+    return {
+      title: this.$content.getTitle('Blog'),
+    }
   },
   mounted() {
     this.observeLoadMore()

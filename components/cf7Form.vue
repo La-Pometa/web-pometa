@@ -1,5 +1,8 @@
 <template>
-  <the-content ref="form" :content="render" />
+  <div class="cf7-form">
+    <the-content v-if="render" :content="render" />
+    <slot v-else></slot>
+  </div>
 </template>
 <script>
 export default {
@@ -16,7 +19,7 @@ export default {
     }
   },
   mounted() {
-    const form = this.$refs.form.$vnode.elm.querySelector('form')
+    const form = this.$el.querySelector('form')
     this.elm = form
     this.submitElm = form.querySelector('[type="submit"]')
     this.acceptanceElm = form.querySelector('.wpcf7-acceptance input')
@@ -91,10 +94,12 @@ export default {
           field.elm.parentElement.appendChild(errorSpan)
 
           field.elm.classList.add('invalid')
-          field.elm.addEventListener('focus', () => {
+          const listener = () => {
             field.elm.classList.remove('invalid')
             field.elm.parentElement.removeChild(errorSpan)
-          })
+            field.elm.removeEventListener('focus', listener)
+          }
+          field.elm.addEventListener('focus', listener)
         })
       } else if (this.submitElm) {
         this.elm.reset()
@@ -111,7 +116,7 @@ export default {
 }
 </script>
 <style lang="scss">
-#left-form {
+.cf7-form {
   [type='text'],
   [type='email'],
   [type='url'],
@@ -134,6 +139,18 @@ export default {
       @apply bg-red-600 bg-opacity-10 border-red-400 ring ring-red-400 ring-opacity-50;
     }
   }
+  form > * {
+    @apply mb-5;
+
+    &:last-child {
+      @apply mb-0;
+    }
+  }
+
+  .two-cols {
+    @apply grid sm:grid-cols-2 gap-5;
+  }
+
   .error_message {
     @apply text-xs text-red-600 mt-2 block;
   }
@@ -156,7 +173,7 @@ export default {
     }
   }
   [type='submit'] {
-    @apply w-full relative outline-none py-2 cursor-pointer hover:bg-primary dark:hover:text-main-dark transition-all rounded-sm bg-gray-100 dark:border-gray-600 dark:bg-gray-900 shadow-sm focus:border-primary focus:ring focus:ring-offset-0 focus:ring-primary focus:ring-opacity-50;
+    @apply w-auto block px-8 mx-auto relative outline-none py-2 cursor-pointer hover:bg-primary dark:hover:text-main-dark transition-all rounded-sm bg-gray-100 dark:border-gray-600 dark:bg-gray-900 shadow-sm focus:border-primary focus:ring focus:ring-offset-0 focus:ring-primary focus:ring-opacity-50;
 
     &.loading {
       @apply bg-primary transition-all text-main-dark;

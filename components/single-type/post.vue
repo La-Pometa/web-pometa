@@ -1,6 +1,6 @@
 <template>
   <div class="post-container margins msm:mt-14 space-y-10">
-    <nuxt-link :to="localePath('/blog')" class="flex items-center"
+    <nuxt-link :to="localePath('/blog')" class="flex items-center no-highlight"
       ><fa class="mr-5 max-h-3" icon="arrow-left" />
       {{ $t('goBack') }}</nuxt-link
     >
