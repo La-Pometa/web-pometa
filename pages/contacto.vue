@@ -44,13 +44,8 @@ export default {
     }
 
     .cf7-form [type='submit'] {
-      @apply w-auto block px-8 ml-auto mr-0;
+      @apply w-auto block px-8 ml-auto;
     }
   }
-}
-</style>
-<style lang="scss" scoped>
-#header-image {
-  @apply sm:h-110;
 }
 </style>

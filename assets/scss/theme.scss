@@ -1,5 +1,8 @@
 @import url('../fonts/butler/stylesheet.css');
 @import url('../fonts/sset/stylesheet.css');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
   @apply text-main-dark font-sset dark:text-white dark:bg-black bg-white;
@@ -44,12 +47,18 @@ h5 {
 .responsive-image {
   @apply overflow-hidden;
 }
-.margins {
-  @apply mx-auto py-20 msm:py-10 px-10 msm:px-3;
+
+@layer utilities {
+  @variants responsive {
+    .margins {
+      @apply mx-auto py-20 msm:py-10 px-10 msm:px-3;
+    }
+    .margins-header {
+      @apply mx-auto py-10 msm:py-10 px-10 msm:px-3;
+    }
+  }
 }
-.margins-header {
-  @apply mx-auto py-10 msm:py-10 px-10 msm:px-3;
-}
+
 @media (prefers-color-scheme: dark) {
   .pu-skeleton {
     filter: invert(0.9);

@@ -18,7 +18,7 @@ export default {
 </script>
 <style lang="scss">
 #desayuna-con-manzanas {
-  @apply h-screen grid md:grid-cols-2;
+  @apply sm:h-screen grid md:grid-cols-2;
 
   & > .left {
     @apply relative mmd:aspect-w-1 mmd:aspect-h-1;

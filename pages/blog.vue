@@ -20,6 +20,9 @@
             <div v-if="post.featured_source.sizes" class="blog-card-img">
               <responsive-image
                 :sizes="post.featured_source.sizes"
+                :alt="post.featured_source.alt"
+                :width="post.featured_source.width"
+                :height="post.featured_source.height"
               ></responsive-image>
             </div>
             <div v-else class="blog-card-img"><PuSkeleton height="100%" /></div>
