@@ -1,9 +1,11 @@
 <template>
-  <the-content
-    v-if="pageContent"
-    class="h-full w-full"
-    :content="pageContent"
-  ></the-content>
+  <section id="page-home">
+    <the-content
+      v-if="pageContent"
+      class="h-full w-full"
+      :content="pageContent"
+    ></the-content>
+  </section>
 </template>
 <script>
 export default {

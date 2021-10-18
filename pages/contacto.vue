@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section id="page-contact">
     <div id="header-image">
       <parallax :section-height="'100%'">
         <responsive-image
@@ -12,7 +12,7 @@
       </parallax>
     </div>
     <the-content v-if="pageContent" :content="pageContent" />
-  </div>
+  </section>
 </template>
 <script>
 export default {

@@ -1,66 +1,61 @@
 <template>
-  <div>
-    <section id="all-posts" class="container margins msm:mt-14 space-y-10">
-      <div class="header text-center">
-        <h1>Blog</h1>
-        <span class="text-primary">{{ $t('blogSubtitle') }}</span>
-      </div>
-      <div
-        v-if="posts.length > 0"
-        class="grid msm:grid-cols-1 mlg:grid-cols-2 grid-cols-3 gap-10"
+  <section id="archive-blog" class="container margins msm:mt-14 space-y-10">
+    <div class="header text-center">
+      <h1>Blog</h1>
+      <span class="text-primary">{{ $t('blogSubtitle') }}</span>
+    </div>
+    <div
+      v-if="posts.length > 0"
+      class="grid msm:grid-cols-1 mlg:grid-cols-2 grid-cols-3 gap-10"
+    >
+      <nuxt-link
+        v-for="post in posts"
+        :key="post.id"
+        :to="localePath(`/${post.slug}`)"
+        class="hover:text-main-dark dark:hover:text-white no-highlight"
+        :title="post.title.rendered"
       >
-        <nuxt-link
-          v-for="post in posts"
-          :key="post.id"
-          :to="localePath(`/${post.slug}`)"
-          class="hover:text-main-dark dark:hover:text-white no-highlight"
-          :title="post.title.rendered"
-        >
-          <div class="blog-card">
-            <div v-if="post.featured_source.sizes" class="blog-card-img">
-              <responsive-image
-                :sizes="post.featured_source.sizes"
-                :alt="post.featured_source.alt"
-                :width="post.featured_source.width"
-                :height="post.featured_source.height"
-              ></responsive-image>
-            </div>
-            <div v-else class="blog-card-img"><PuSkeleton height="100%" /></div>
-            <div>
-              <span class="date">{{ post.date | formatDate }}</span>
-              <h2 class="blog-card-title">{{ post.title.rendered }}</h2>
-            </div>
-            <div class="blog-card-excerpt">
-              <p>{{ post.excerpt.rendered }}</p>
-            </div>
-            <div class="read-more">{{ $t('readMore') }}</div>
+        <div class="blog-card">
+          <div v-if="post.featured_source.sizes" class="blog-card-img">
+            <responsive-image
+              :sizes="post.featured_source.sizes"
+              :alt="post.featured_source.alt"
+              :width="post.featured_source.width"
+              :height="post.featured_source.height"
+            ></responsive-image>
           </div>
-        </nuxt-link>
-      </div>
-      <div
-        v-else
-        class="grid msm:grid-cols-1 mlg:grid-cols-2 grid-cols-3 gap-10"
-      >
-        <div v-for="index in 9" :key="index" class="blog-card">
-          <div class="blog-card-img"><PuSkeleton height="100%" /></div>
+          <div v-else class="blog-card-img"><PuSkeleton height="100%" /></div>
           <div>
-            <span class="date"><PuSkeleton width="20%" /></span>
-            <h2 class="blog-card-title"><PuSkeleton /></h2>
+            <span class="date">{{ post.date | formatDate }}</span>
+            <h2 class="blog-card-title">{{ post.title.rendered }}</h2>
           </div>
-          <p class="blog-card-excerpt"><PuSkeleton :count="3" /></p>
+          <div class="blog-card-excerpt">
+            <p>{{ post.excerpt.rendered }}</p>
+          </div>
+          <div class="read-more">{{ $t('readMore') }}</div>
         </div>
-      </div>
-      <div v-show="posts.length > 0">
-        <div
-          id="pagination"
-          ref="pagination"
-          :class="!more ? 'hide' : !loadingMore ? 'opacity-0' : ''"
-        >
-          <div id="loadMore" class="loader"></div>
+      </nuxt-link>
+    </div>
+    <div v-else class="grid msm:grid-cols-1 mlg:grid-cols-2 grid-cols-3 gap-10">
+      <div v-for="index in 9" :key="index" class="blog-card">
+        <div class="blog-card-img"><PuSkeleton height="100%" /></div>
+        <div>
+          <span class="date"><PuSkeleton width="20%" /></span>
+          <h2 class="blog-card-title"><PuSkeleton /></h2>
         </div>
+        <p class="blog-card-excerpt"><PuSkeleton :count="3" /></p>
       </div>
-    </section>
-  </div>
+    </div>
+    <div v-show="posts.length > 0">
+      <div
+        id="pagination"
+        ref="pagination"
+        :class="!more ? 'hide' : !loadingMore ? 'opacity-0' : ''"
+      >
+        <div id="loadMore" class="loader"></div>
+      </div>
+    </div>
+  </section>
 </template>
 <script>
 export default {

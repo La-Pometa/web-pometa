@@ -1,6 +1,6 @@
 <template>
   <section
-    id="projectsArchive"
+    id="archive-projects"
     class="
       grid
       lg:grid-cols-3
@@ -67,7 +67,7 @@ export default {
 }
 </script>
 <style lang="scss">
-#projectsArchive {
+#archive-projects {
   .project-card {
     @apply h-full w-full;
 

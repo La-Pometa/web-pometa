@@ -1,5 +1,7 @@
 <template>
-  <the-content :content="pageContent" />
+  <section id="page-desayuna-con-manzanas">
+    <the-content :content="pageContent" />
+  </section>
 </template>
 <script>
 export default {
