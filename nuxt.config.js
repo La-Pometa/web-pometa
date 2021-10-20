@@ -65,7 +65,7 @@ export default {
       'nuxt-lazy-load',
       {
         // These are the default values
-        images: false,
+        images: true,
         videos: true,
         audios: true,
         iframes: true,

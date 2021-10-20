@@ -19,8 +19,8 @@
           marketing para tu empresa.
         </h2>
       </div>
-      <div class="team grid grid-cols-12 px-20 gap-8">
-        <div class="col-span-5">
+      <div class="team grid md:grid-cols-12 lg:px-20 gap-8">
+        <div class="md:col-span-5">
           <div class="left-image">
             <img
               src="https://www.lapometa.com/wp-content/uploads/2015/02/laia.jpg"
@@ -29,7 +29,7 @@
             <span>Marketer y Community Manager</span>
           </div>
         </div>
-        <div class="col-span-7 space-y-8">
+        <div class="md:col-span-7 space-y-8">
           <h2 class="font-butler font-bold text-3xl">
             ¡Conoce a nuestro equipo!
           </h2>
@@ -39,56 +39,18 @@
             diferencia del resto y crear imagen de marca, ¿te apuntas?
           </p>
           <div class="team-selector flex flex-col">
-            <div class="member">
-              <span
-                >Laia Rogel <fa class="arrow" :icon="['fas', 'chevron-up']"
-              /></span>
-              <div class="content">
-                Licenciada en Bellas Artes por la UB. Máster en Estrategias de
-                Comunicación y Publicidad por ELISAVA. Executive MBA EAE
-                Business School
+            <a href="#laia-rogel" class="no-highlight hover:text-main-dark">
+              <div class="member open">
+                <span
+                  >Laia Rogel <fa class="arrow" :icon="['fas', 'chevron-up']"
+                /></span>
+                <div class="content">
+                  Licenciada en Bellas Artes por la UB. Máster en Estrategias de
+                  Comunicación y Publicidad por ELISAVA. Executive MBA EAE
+                  Business School
+                </div>
               </div>
-            </div>
-            <div class="member">
-              <span
-                >Laia Rogel <fa class="arrow" :icon="['fas', 'chevron-up']"
-              /></span>
-              <div class="content">
-                Licenciada en Bellas Artes por la UB. Máster en Estrategias de
-                Comunicación y Publicidad por ELISAVA. Executive MBA EAE
-                Business School
-              </div>
-            </div>
-            <div class="member">
-              <span
-                >Laia Rogel <fa class="arrow" :icon="['fas', 'chevron-up']"
-              /></span>
-              <div class="content">
-                Licenciada en Bellas Artes por la UB. Máster en Estrategias de
-                Comunicación y Publicidad por ELISAVA. Executive MBA EAE
-                Business School
-              </div>
-            </div>
-            <div class="member">
-              <span
-                >Laia Rogel <fa class="arrow" :icon="['fas', 'chevron-up']"
-              /></span>
-              <div class="content">
-                Licenciada en Bellas Artes por la UB. Máster en Estrategias de
-                Comunicación y Publicidad por ELISAVA. Executive MBA EAE
-                Business School
-              </div>
-            </div>
-            <div class="member">
-              <span
-                >Laia Rogel <fa class="arrow" :icon="['fas', 'chevron-up']"
-              /></span>
-              <div class="content">
-                Licenciada en Bellas Artes por la UB. Máster en Estrategias de
-                Comunicación y Publicidad por ELISAVA. Executive MBA EAE
-                Business School
-              </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>
@@ -111,6 +73,13 @@ export default {
       title: this.$content.getPostMetaSeo(this.pageData, 'title'),
     }
   },
+  mounted() {
+    document.querySelectorAll('.member').forEach((member) => {
+      member.addEventListener('click', () => {
+        member.classList.toggle('open')
+      })
+    })
+  },
 }
 </script>
 <style lang="scss">
@@ -119,16 +88,16 @@ export default {
     @apply relative text-sm cursor-pointer transition-all duration-300 mb-4;
 
     & > span {
-      @apply font-bold block w-full relative;
+      @apply font-bold block w-full md:max-w-xs relative transition-all duration-300;
     }
 
     & > .content {
-      @apply pl-2 pt-2 overflow-hidden transition-all duration-500;
+      @apply pl-2 pt-2 overflow-hidden transition-all duration-300;
       max-height: 100px;
     }
 
     .arrow {
-      @apply absolute top-1/2 right-0 text-sm w-3 transform -translate-y-1/2 transition-all duration-500;
+      @apply absolute top-1/2 right-0 text-sm w-3 transform -translate-y-1/2 transition-all duration-300;
     }
 
     &.open {
@@ -140,20 +109,20 @@ export default {
         max-height: 0;
       }
       .arrow {
-        @apply -rotate-90;
+        @apply -rotate-180;
       }
     }
   }
 }
 .header-text {
-  @apply mb-14 msm:bottom-1/2 msm:translate-y-1/2 msm:mb-0 flex flex-col items-center space-y-1;
+  @apply mb-14 flex flex-col items-center space-y-1;
   span {
     @apply font-butler font-bold text-6xl msm:text-5xl whitespace-nowrap text-white block bg-primary bg-opacity-80 backdrop-filter backdrop-blur px-6 msm:px-3 py-2 msm:py-1;
   }
 }
 #page-pometa-content {
   .title {
-    @apply px-20;
+    @apply md:px-20;
     * {
       @apply font-sset font-normal text-2xl;
     }
@@ -161,6 +130,10 @@ export default {
 
   .left-image {
     @apply relative;
+
+    img {
+      @apply w-full;
+    }
 
     span {
       @apply text-main-dark absolute bottom-0 inset-x-0 m-8 bg-primary bg-opacity-80 backdrop-filter backdrop-blur backdrop-saturate-150 text-sm text-center font-bold p-3;

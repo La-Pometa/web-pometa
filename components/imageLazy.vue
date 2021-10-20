@@ -1,13 +1,8 @@
 <template>
-  <picture
-    v-lazy-container="{
-      selector: 'img',
-    }"
-  >
+  <picture>
     <img
       ref="image"
-      :data-src="loadImage"
-      :data-loading="defaultImage"
+      :src="loadImage"
       :alt="alt"
       :width="width"
       :height="height"
@@ -118,17 +113,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-img {
-  transition: all ease 0.3s;
-  opacity: 0;
-  &[lazy='loading'] {
-    opacity: 1;
-    @apply filter blur-md;
-  }
-  &[lazy='loaded'] {
-    opacity: 1;
-  }
-}
 /* picture {
   img {
     transition: all 0.4s ease-in;

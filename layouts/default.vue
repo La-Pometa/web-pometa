@@ -150,15 +150,15 @@
                 }}</nuxt-link></span
               >
             </nav>
-            <footer class="mt-auto flex flex-col gap-4">
+            <footer class="mt-auto flex flex-col gap-4 pt-10">
               <social-links class="justify-center" />
               <div
                 id="info"
                 class="flex flex-col gap-2 text-center text-xs font-thin"
               >
-                <a href="https://www.lapometa.com/contacto/">{{
+                <nuxt-link :to="localePath('/contacto')">{{
                   $t('oficinas')
-                }}</a>
+                }}</nuxt-link>
                 <a href="mailto:info@lapometa.com">info@lapometa.com</a>
                 <span>T:<a href="tel:+34973282570">(+34) 973 28 25 70</a></span>
               </div>

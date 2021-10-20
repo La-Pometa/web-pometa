@@ -171,6 +171,14 @@ a:hover {
       margin-right: 0;
     }
 
+    & > * {
+      @apply w-full;
+
+      img {
+        @apply w-full;
+      }
+    }
+
     .responsive-image {
       @apply mr-0;
     }
