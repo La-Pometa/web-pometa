@@ -41,6 +41,7 @@ export default {
     '~/plugins/fontawesome',
     '~/plugins/filters',
     '~/plugins/vue-snap',
+    '~/plugins/vue-lazyload',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -60,6 +61,28 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/i18n',
+    [
+      'nuxt-lazy-load',
+      {
+        // These are the default values
+        images: false,
+        videos: true,
+        audios: true,
+        iframes: true,
+        native: false,
+        polyfill: true,
+        directiveOnly: false,
+
+        // To remove class set value to false
+        loadingClass: 'isLoading',
+        loadedClass: 'isLoaded',
+        appendClass: 'lazyLoad',
+
+        observerConfig: {
+          // See IntersectionObserver documentation
+        },
+      },
+    ],
   ],
 
   i18n: {

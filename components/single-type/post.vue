@@ -1,5 +1,5 @@
 <template>
-  <div class="post-container margins msm:mt-14 space-y-10">
+  <section id="single-post" class="post-container margins msm:mt-14 space-y-10">
     <nuxt-link :to="localePath('/blog')" class="flex items-center no-highlight"
       ><fa class="mr-5 max-h-3" icon="arrow-left" />
       {{ $t('goBack') }}</nuxt-link
@@ -34,7 +34,7 @@
         :content="post.content.rendered"
       ></the-content>
     </div>
-  </div>
+  </section>
 </template>
 <script>
 export default {

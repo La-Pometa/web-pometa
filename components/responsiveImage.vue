@@ -3,9 +3,9 @@
     <image-lazy
       v-if="imageData || correctSizes"
       :alt="imageData ? imageData.alt_text : alt"
-      :width="imageData ? imageData.media_details.width : width"
-      :height="imageData ? imageData.media_details.height : height"
-      :sizes="sizes ? sizes : fetchedSizes"
+      :width="imageData ? imageData.width : width"
+      :height="imageData ? imageData.height : height"
+      :sizes="sizes ? sizes : imageData.sizes"
     ></image-lazy>
     <PuSkeleton v-else height="100%" />
   </div>
@@ -45,34 +45,14 @@ export default {
       type: String,
       default: null,
     },
+    imageData: {
+      type: Object,
+      default: null,
+    },
   },
   data() {
     return {
-      imageData: null,
       fetchedSizes: null,
-    }
-  },
-  async fetch() {
-    if (this.mediaSlug) {
-      await this.$content
-        .getImagebySlug(this.mediaSlug)
-        .then((res) => {
-          this.fetchedSizes = res.media_details.sizes
-          this.imageData = res
-        })
-        .catch(() => {
-          throw new Error('Error fetching image...')
-        })
-    } else if (this.mediaId) {
-      await this.$content
-        .getImage(this.mediaId)
-        .then((res) => {
-          this.fetchedSizes = res.media_details.sizes
-          this.imageData = res
-        })
-        .catch(() => {
-          throw new Error('Error fetching image...')
-        })
     }
   },
   computed: {

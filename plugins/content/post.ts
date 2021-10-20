@@ -17,6 +17,30 @@ class Post {
     }
   }
 
+  public getTitle(): any | null {
+    if ('title' in this) {
+      if ('rendered' in this.title) {
+        return this.title.rendered
+      } else {
+        return null
+      }
+    } else {
+      return null
+    }
+  }
+
+  public getContent(): any | null {
+    if ('content' in this) {
+      if ('rendered' in this.content) {
+        return this.content.rendered
+      } else {
+        return null
+      }
+    } else {
+      return null
+    }
+  }
+
   public getMetaSeo(meta: string): any | null {
     if ('yoast_head_json' in this) {
       if (meta in this.yoast_head_json) {

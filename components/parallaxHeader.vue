@@ -11,6 +11,7 @@
       ></responsive-image>
       <PuSkeleton v-else height="100%" />
     </parallax>
+    <div><slot></slot></div>
   </div>
 </template>
 

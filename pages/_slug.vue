@@ -11,8 +11,10 @@ export default {
     } else {
       const translations = {}
 
-      for (const translation of postData.translations) {
-        translations[translation.locale] = { slug: translation.slug }
+      if (postData.translations) {
+        for (const translation of postData.translations) {
+          translations[translation.locale] = { slug: translation.slug }
+        }
       }
 
       store.dispatch('i18n/setRouteParams', translations)

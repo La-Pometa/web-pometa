@@ -26,6 +26,16 @@ h3 {
     @apply font-bold;
   }
 }
+.lazyLoad {
+  @apply transition-all duration-500 filter blur-md;
+
+  &.isLoading {
+  }
+
+  &.isLoaded {
+    @apply blur-0;
+  }
+}
 
 .page-enter-active,
 .page-leave-active {
@@ -56,6 +66,27 @@ h5 {
     .margins-header {
       @apply mx-auto py-10 msm:py-10 px-10 msm:px-3;
     }
+    .text-shadow {
+      text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.55);
+    }
+    .container-1024 {
+      width: 100%;
+    }
+    @media (min-width: 640px) {
+      .container-1024 {
+        max-width: 640px;
+      }
+    }
+    @media (min-width: 768px) {
+      .container-1024 {
+        max-width: 768px;
+      }
+    }
+    @media (min-width: 1024px) {
+      .container-1024 {
+        max-width: 1024px;
+      }
+    }
   }
 }
 
@@ -75,7 +106,7 @@ h5 {
 }
 
 #header-image {
-  @apply sm:h-96 msm:aspect-w-1 msm:aspect-h-1 msm:w-full mb-5 overflow-hidden;
+  @apply sm:h-96 msm:aspect-w-1 msm:aspect-h-1 msm:w-full overflow-hidden;
 
   .responsive-image {
     img {

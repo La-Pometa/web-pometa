@@ -1,8 +1,13 @@
 <template>
-  <picture>
+  <picture
+    v-lazy-container="{
+      selector: 'img',
+    }"
+  >
     <img
       ref="image"
-      :src="srcImage"
+      :data-src="loadImage"
+      :data-loading="defaultImage"
       :alt="alt"
       :width="width"
       :height="height"
@@ -45,12 +50,23 @@ export default {
     }
   },
   computed: {
-    srcImage() {
-      return this.intersected ? this.loadImage() : this.loadMini()
+    defaultImage() {
+      return this.sizes.mini_webp
+        ? this.sizes.mini_webp.source_url
+        : this.sizes.mini.source_url
     },
+    loadImage() {
+      return this.sizes.full_webp
+        ? this.sizes.full_webp.source_url
+        : this.sizes.full.source_url
+    },
+    // optional
+    /*     srcImage() {
+      return this.intersected ? this.loadImage() : this.loadMini()
+    }, */
   },
   mounted() {
-    this.observer = new IntersectionObserver((entries) => {
+    /*     this.observer = new IntersectionObserver((entries) => {
       const image = entries[0]
       if (image.isIntersecting) {
         this.intersected = true
@@ -58,21 +74,16 @@ export default {
       }
     })
 
-    this.observer.observe(this.$el)
+    this.observer.observe(this.$el) */
   },
   destroyed() {
-    this.observer.disconnect()
+    /*     this.observer.disconnect() */
   },
   methods: {
-    defaultImage() {
-      return this.sizes.mini_webp
-        ? this.sizes.mini_webp.source_url
-        : this.sizes.mini.source_url
-    },
     loadMini() {
       return this.defaultImage()
     },
-    loadImage() {
+    /*     loadImage() {
       if (this.loaded) {
         return this.sizes.full_webp
           ? this.sizes.full_webp.source_url
@@ -102,11 +113,22 @@ export default {
       return this.sizes.full_webp
         ? this.sizes.full_webp.source_url
         : this.sizes.full.source_url
-    },
+    }, */
   },
 }
 </script>
 <style lang="scss" scoped>
+img {
+  transition: all ease 0.3s;
+  opacity: 0;
+  &[lazy='loading'] {
+    opacity: 1;
+    @apply filter blur-md;
+  }
+  &[lazy='loaded'] {
+    opacity: 1;
+  }
+}
 /* picture {
   img {
     transition: all 0.4s ease-in;

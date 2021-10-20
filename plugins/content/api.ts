@@ -129,12 +129,16 @@ export class Content {
     return res.data
   }
 
-  getPostTitle(post: any) {
-    return post.title.rendered
-  }
-
   getPostMeta(post: any, meta: string): any | null {
     return new Post(post).getMeta(meta)
+  }
+
+  getPostContent(post: any): any | null {
+    return new Post(post).getContent()
+  }
+
+  getPostTitle(post: any): any | null {
+    return new Post(post).getTitle()
   }
 
   getPostMetaSeo(post: any, meta: string): any | null {

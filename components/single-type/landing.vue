@@ -1,5 +1,5 @@
 <template>
-  <div id="landing" :style="cssVars">
+  <section id="single-landing" :style="cssVars">
     <div v-if="post.featured_source" id="header-image">
       <parallax :section-height="'100%'">
         <responsive-image
@@ -69,7 +69,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 <script>
 export default {
@@ -98,6 +98,14 @@ export default {
   },
   methods: {
     hexToRgb(hex) {
+      if (!hex) {
+        return {
+          r: 0,
+          g: 0,
+          b: 0,
+        }
+      }
+
       const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i
       hex = hex.replace(shorthandRegex, function (m, r, g, b) {
         return r + r + g + g + b + b
@@ -110,7 +118,11 @@ export default {
             g: parseInt(result[2], 16),
             b: parseInt(result[3], 16),
           }
-        : null
+        : {
+            r: 0,
+            g: 0,
+            b: 0,
+          }
     },
   },
 }
@@ -172,7 +184,7 @@ a:hover {
     }
   }
 }
-#landing {
+#single-landing {
   .title {
     @apply text-center max-w-xl mx-auto font-butler font-bold pb-7 leading-snug text-4xl msm:text-3xl;
   }
