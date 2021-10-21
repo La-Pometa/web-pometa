@@ -33,7 +33,7 @@
         >
           <div
             id="left-sidebar-content"
-            class="p-7 w-64 flex flex-col overflow-y-auto"
+            class="p-7 msm:p-5 w-64 flex flex-col overflow-y-auto"
           >
             <nuxt-link :to="localePath('/')">
               <div class="logo">

@@ -84,9 +84,15 @@ export class Content {
     return response.data
   }
 
-  async getAllFromType(type: string, page: number = 1, perPage: number = 9) {
+  async getAllFromType(
+    type: string,
+    page: number = 1,
+    perPage: number = 9,
+    orderby: string = 'date',
+    order: string = 'desc'
+  ) {
     const response = await axios.get(
-      `${this.getEndpoint()}wp-json/wp/v2/${type}/?per_page=${perPage}&page=${page}&lang=${this.getLocale()}`
+      `${this.getEndpoint()}wp-json/wp/v2/${type}/?per_page=${perPage}&page=${page}&lang=${this.getLocale()}&orderby=${orderby}&order=${order}`
     )
 
     return response.data

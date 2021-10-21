@@ -26,7 +26,7 @@ h3 {
     @apply font-bold;
   }
 }
-img:not(.lazyLoad) {
+/* img:not(.lazyLoad) {
   @apply opacity-0;
 }
 .lazyLoad {
@@ -38,7 +38,7 @@ img:not(.lazyLoad) {
   &.isLoaded {
     @apply blur-0 opacity-100;
   }
-}
+} */
 
 .page-enter-active,
 .page-leave-active {

@@ -2,7 +2,7 @@
   <picture>
     <img
       ref="image"
-      :src="loadImage"
+      :src="srcImage"
       :alt="alt"
       :width="width"
       :height="height"
@@ -45,23 +45,12 @@ export default {
     }
   },
   computed: {
-    defaultImage() {
-      return this.sizes.mini_webp
-        ? this.sizes.mini_webp.source_url
-        : this.sizes.mini.source_url
-    },
-    loadImage() {
-      return this.sizes.full_webp
-        ? this.sizes.full_webp.source_url
-        : this.sizes.full.source_url
-    },
-    // optional
-    /*     srcImage() {
+    srcImage() {
       return this.intersected ? this.loadImage() : this.loadMini()
-    }, */
+    },
   },
   mounted() {
-    /*     this.observer = new IntersectionObserver((entries) => {
+    this.observer = new IntersectionObserver((entries) => {
       const image = entries[0]
       if (image.isIntersecting) {
         this.intersected = true
@@ -69,16 +58,21 @@ export default {
       }
     })
 
-    this.observer.observe(this.$el) */
+    this.observer.observe(this.$el)
   },
   destroyed() {
-    /*     this.observer.disconnect() */
+    this.observer.disconnect()
   },
   methods: {
+    defaultImage() {
+      return this.sizes.mini_webp
+        ? this.sizes.mini_webp.source_url
+        : this.sizes.mini.source_url
+    },
     loadMini() {
       return this.defaultImage()
     },
-    /*     loadImage() {
+    loadImage() {
       if (this.loaded) {
         return this.sizes.full_webp
           ? this.sizes.full_webp.source_url
@@ -108,7 +102,7 @@ export default {
       return this.sizes.full_webp
         ? this.sizes.full_webp.source_url
         : this.sizes.full.source_url
-    }, */
+    },
   },
 }
 </script>

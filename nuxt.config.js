@@ -61,28 +61,6 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/i18n',
-    [
-      'nuxt-lazy-load',
-      {
-        // These are the default values
-        images: true,
-        videos: true,
-        audios: true,
-        iframes: true,
-        native: false,
-        polyfill: true,
-        directiveOnly: false,
-
-        // To remove class set value to false
-        loadingClass: 'isLoading',
-        loadedClass: 'isLoaded',
-        appendClass: 'lazyLoad',
-
-        observerConfig: {
-          // See IntersectionObserver documentation
-        },
-      },
-    ],
   ],
 
   i18n: {
