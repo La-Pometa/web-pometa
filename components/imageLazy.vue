@@ -1,5 +1,22 @@
 <template>
-  <picture>
+  <picture v-if="srcset">
+    <source v-if="!loaded" :srcset="srcMini" />
+    <source
+      v-for="(src, index) in srcset"
+      :key="index"
+      :srcset="src.source_url"
+      :media="src.media"
+    />
+    <img
+      ref="image"
+      :src="srcImage"
+      :alt="alt"
+      :width="width"
+      :height="height"
+      :title="title"
+    />
+  </picture>
+  <picture v-else>
     <img
       ref="image"
       :src="srcImage"
@@ -35,6 +52,11 @@ export default {
       type: String,
       default: null,
     },
+    srcset: { type: Object, default: null },
+    format: {
+      type: String,
+      default: null,
+    },
   },
   data() {
     return {
@@ -47,6 +69,11 @@ export default {
   computed: {
     srcImage() {
       return this.intersected ? this.loadImage() : this.loadMini()
+    },
+    srcMini() {
+      return this.sizes.mini_webp
+        ? this.sizes.mini_webp.source_url
+        : this.sizes.mini.source_url
     },
   },
   mounted() {
@@ -73,25 +100,17 @@ export default {
       return this.defaultImage()
     },
     loadImage() {
+      const image = this.format
+        ? this.sizes[this.format].source_url
+        : this.sizes.full
+        ? this.sizes.full.source_url
+        : this.sizes.full_webp.source_url
+
       if (this.loaded) {
-        return this.sizes.full_webp
-          ? this.sizes.full_webp.source_url
-          : this.sizes.full.source_url
+        return image
       }
 
-      this.elCopy = this.$refs.image.cloneNode(true)
-      this.elCopy.setAttribute('src', this.defaultImage())
-
-      this.$refs.image.parentElement.appendChild(this.elCopy)
-      this.$refs.image.classList.add('hidden')
-
       this.$refs.image.addEventListener('load', () => {
-        try {
-          this.$refs.image.parentElement.removeChild(this.elCopy)
-        } catch (e) {
-          console.log('error:' + e + '| image: ' + this.$refs.image)
-        }
-
         this.$refs.image.classList.remove('hidden')
         this.$refs.image.classList.remove('loading')
         this.$refs.image.classList.add('loaded')
@@ -99,9 +118,7 @@ export default {
         this.observer.disconnect()
       })
 
-      return this.sizes.full_webp
-        ? this.sizes.full_webp.source_url
-        : this.sizes.full.source_url
+      return image
     },
   },
 }
@@ -110,9 +127,9 @@ export default {
 /* picture {
   img {
     transition: all 0.4s ease-in;
-    filter: blur(20px);
+    @apply filter blur-lg;
     &.loaded {
-      filter: blur(0px);
+      @apply filter blur-0;
     }
     &.no-blur {
       transition: all 0s ease-in;

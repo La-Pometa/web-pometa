@@ -4,10 +4,7 @@
       <responsive-image
         v-if="image"
         class="w-full h-full"
-        :sizes="image.sizes"
-        :alt="image.alt"
-        :width="image.width"
-        :height="image.height"
+        :image-data="image"
       ></responsive-image>
       <PuSkeleton v-else height="100%" />
     </parallax>

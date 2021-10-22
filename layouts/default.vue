@@ -6,9 +6,10 @@
       class="
         transition-all
         duration-500
-        min-w-screen min-h-screen
+        min-w-screen
+        h-screen
         flex
-        msm:overflow-hidden
+        msm:overflow-x-hidden
       "
     >
       <div

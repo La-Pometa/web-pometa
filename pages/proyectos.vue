@@ -25,12 +25,9 @@
         :title="project.title.rendered"
       >
         <div class="project-card">
-          <div v-if="project.featured_source.sizes" class="project-card-img">
+          <div v-if="project.featured_source" class="project-card-img">
             <responsive-image
-              :sizes="project.featured_source.sizes"
-              :alt="project.featured_source.alt"
-              :width="project.featured_source.width"
-              :height="project.featured_source.height"
+              :image-data="project.featured_source"
             ></responsive-image>
           </div>
           <div class="overlay">

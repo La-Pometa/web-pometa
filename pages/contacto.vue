@@ -4,10 +4,7 @@
       <parallax :section-height="'100%'">
         <responsive-image
           class="w-full h-full"
-          :sizes="pageData.featured_source.sizes"
-          :alt="pageData.featured_source.alt"
-          :width="pageData.featured_source.width"
-          :height="pageData.featured_source.height"
+          :image-data="pageData.featured_source"
         ></responsive-image>
       </parallax>
     </div>

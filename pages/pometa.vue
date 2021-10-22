@@ -20,6 +20,7 @@
         </h2>
       </div>
       <team-selector></team-selector>
+      <the-content :content="pageContent"></the-content>
     </section>
     <!--     <the-content v-if="pageContent" :content="pageContent" />
  -->

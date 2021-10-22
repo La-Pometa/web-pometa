@@ -6,6 +6,8 @@
       :width="imageData ? imageData.width : width"
       :height="imageData ? imageData.height : height"
       :sizes="sizes ? sizes : imageData.sizes"
+      :srcset="imageData ? (imageData.srcset ? imageData.srcset : []) : []"
+      :format="size"
     ></image-lazy>
     <PuSkeleton v-else height="100%" />
   </div>
@@ -47,6 +49,10 @@ export default {
     },
     imageData: {
       type: Object,
+      default: null,
+    },
+    size: {
+      type: String,
       default: null,
     },
   },
