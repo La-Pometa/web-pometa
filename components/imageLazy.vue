@@ -6,6 +6,7 @@
       :key="index"
       :srcset="src.source_url"
       :media="src.media"
+      :type="src.mime_type"
     />
     <img
       ref="image"
