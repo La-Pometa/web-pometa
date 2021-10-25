@@ -2,10 +2,9 @@
   <picture v-if="srcset">
     <source v-if="!loaded" :srcset="srcMini" />
     <source
-      v-for="(src, index) in srcset"
+      v-for="(src, index) in getSrcset"
       :key="index"
       :srcset="src.source_url"
-      :media="src.media"
       :type="src.mime_type"
     />
     <img
@@ -65,9 +64,33 @@ export default {
       intersected: false,
       elCopy: null,
       loaded: false,
+      elWidth: 0,
     }
   },
   computed: {
+    getSrcset() {
+      const sets = {}
+      let lastKey = false
+      for (const [key, src] of Object.entries(this.srcset)) {
+        if (src.width <= this.elWidth) {
+          if (lastKey) {
+            const toSet = Object.entries(this.srcset).filter(
+              (x) => x[1].width === this.srcset[lastKey].width
+            )
+            toSet.forEach((item) => {
+              sets[item[0]] = this.srcset[item[0]]
+            })
+
+            lastKey = false
+          }
+          sets[key] = src
+        } else {
+          lastKey = key
+        }
+      }
+
+      return sets
+    },
     srcImage() {
       return this.intersected ? this.loadImage() : this.loadMini()
     },
@@ -87,6 +110,8 @@ export default {
     })
 
     this.observer.observe(this.$el)
+
+    this.elWidth = this.$el.querySelector('img').offsetWidth
   },
   destroyed() {
     this.observer.disconnect()

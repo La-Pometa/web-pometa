@@ -5,13 +5,7 @@
       {{ $t('goBack') }}</nuxt-link
     >
     <div class="single-post">
-      <responsive-image
-        :width="post.featured_source.width"
-        :height="post.featured_source.height"
-        :alt="post.featured_source.alt"
-        :title="post.featured_source.title"
-        :sizes="post.featured_source.sizes"
-      ></responsive-image>
+      <responsive-image :image-data="post.featured_source"></responsive-image>
       <div>
         <h1>{{ post.title.rendered }}</h1>
         <div
