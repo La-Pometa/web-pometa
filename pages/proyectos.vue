@@ -89,9 +89,11 @@ export default {
     }
   },
   async fetch() {
-    await this.$content.getAllFromType('portfolio', 1, 100).then((res) => {
-      this.projects.push(...res)
-    })
+    await this.$content
+      .getAllFromType('portfolio', 1, 100, 'menu_order', 'asc')
+      .then((res) => {
+        this.projects.push(...res)
+      })
   },
   head() {
     return {

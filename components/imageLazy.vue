@@ -69,7 +69,7 @@ export default {
   },
   computed: {
     getSrcset() {
-      const sets = {}
+      let sets = {}
       let lastKey = false
       for (const [key, src] of Object.entries(this.srcset)) {
         if (src.width <= this.elWidth) {
@@ -86,6 +86,10 @@ export default {
           sets[key] = src
         } else {
           lastKey = key
+        }
+
+        if (src.mime_type === 'image/gif') {
+          sets = {}
         }
       }
 

@@ -35,7 +35,7 @@ export default {
         setTimeout(() => {
           actual.parentElement.prepend(actual)
         }, 1000)
-      }, 3000)
+      }, 4000)
     },
   },
 }

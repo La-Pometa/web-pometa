@@ -69,7 +69,7 @@ export default {
   @apply space-y-10 msm:space-y-5;
 
   .responsive-image {
-    @apply aspect-w-4 aspect-h-3 msm:aspect-w-1 msm:aspect-h-1;
+    @apply aspect-w-4 aspect-h-3;
     img {
       @apply w-full h-full object-cover;
     }

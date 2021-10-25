@@ -24,7 +24,9 @@ export default {
 
   head() {
     return {
-      title: this.$content.getPostMetaSeo(this.postData, 'title'),
+      title: this.$content.getPostMetaSeo(this.postData, 'title')
+        ? this.$content.getPostMetaSeo(this.postData, 'title')
+        : this.$content.getPostMetaSeo(this.postData, 'og_title'),
     }
   },
 }

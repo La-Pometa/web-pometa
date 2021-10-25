@@ -4,10 +4,7 @@
       <parallax :section-height="'100%'">
         <responsive-image
           class="w-full h-full"
-          :sizes="post.featured_source.sizes"
-          :alt="post.featured_source.alt"
-          :width="post.featured_source.width"
-          :height="post.featured_source.height"
+          :image-data="post.featured_source"
         ></responsive-image>
       </parallax>
     </div>
@@ -55,13 +52,7 @@
           >
             <div class="rounded-full transform translate-x-0 overflow-hidden">
               <div class="w-32 aspect-w-1 aspect-h-1">
-                <responsive-image
-                  :sizes="item.image.sizes"
-                  :width="item.image.width"
-                  :height="item.image.height"
-                  :alt="item.image.alt"
-                  :title="item.image.title"
-                ></responsive-image>
+                <responsive-image :image-data="item.image"></responsive-image>
               </div>
             </div>
             <span>{{ item.title }}</span>

@@ -22,12 +22,12 @@
         <the-content :content="$content.getPostContent(post)" />
         <div v-if="$content.getPostMeta(post, 'pg_portfolio_link')">
           <a
-            :href="$content.getPostMeta(post, 'pg_portfolio_link')[0]"
+            :href="$content.getPostMeta(post, 'pg_portfolio_link')"
             class="font-butler text-lg"
             target="_blank"
             >{{
               $content
-                .getPostMeta(post, 'pg_portfolio_link')[0]
+                .getPostMeta(post, 'pg_portfolio_link')
                 .replace(/(^\w+:|^)\/\//, '')
                 .replace(/\/$/, '')
             }}</a
@@ -35,14 +35,22 @@
         </div>
       </div>
     </header>
-    <nav class="flex justify-between align-center">
-      <a href="">prev</a
+    <nav
+      v-if="$content.getPostMeta(post, 'pg_portfolio_navigator')"
+      class="flex justify-between align-center"
+    >
+      <nuxt-link
+        :to="$content.getPostMeta(post, 'pg_portfolio_navigator').prev.slug"
+        >prev</nuxt-link
       ><nuxt-link class="projects" :to="localePath('/proyectos')">
         <span></span>
         <span></span>
         <span></span>
         <span></span> </nuxt-link
-      ><a href="">next</a>
+      ><nuxt-link
+        :to="$content.getPostMeta(post, 'pg_portfolio_navigator').next.slug"
+        >next</nuxt-link
+      >
     </nav>
     <section id="portfolio-content">
       <video
@@ -58,15 +66,66 @@
         />
         El teu navegador no soporta videos HTML5
       </video>
-      <div v-if="$content.getPostMeta(post, 'pg_portfolio_galeria')">
+      <div
+        v-if="$content.getPostMeta(post, 'pg_portfolio_galeria')"
+        class="portfolio-slider"
+      >
         <carousel class="two-items" hide-arrows-on-bound
           ><slide
             v-for="image in $content.getPostMeta(post, 'pg_portfolio_galeria')"
             :key="image.file"
           >
-            <responsive-image :image-data="image" /> </slide
+            <responsive-image v-if="image" :image-data="image" /> </slide
         ></carousel>
       </div>
+      <div class="tree-cols">
+        <div class="item">
+          <h3>
+            {{ $content.getPostMeta(post, 'pg_portfolio_titolesquerra') }}
+            <fa class="arrow" :icon="['fas', 'chevron-down']" />
+          </h3>
+          <p>
+            <the-content
+              :content="$content.getPostMeta(post, 'pg_portfolio_infoesquerra')"
+            />
+          </p>
+        </div>
+        <div class="item">
+          <h3>
+            {{ $content.getPostMeta(post, 'pg_portfolio_titolcentre') }}
+            <fa class="arrow" :icon="['fas', 'chevron-down']" />
+          </h3>
+          <p>
+            <the-content
+              :content="$content.getPostMeta(post, 'pg_portfolio_infocentre')"
+            />
+          </p>
+        </div>
+        <div class="item">
+          <h3>
+            {{ $content.getPostMeta(post, 'pg_portfolio_titoldreta') }}
+            <fa class="arrow" :icon="['fas', 'chevron-down']" />
+          </h3>
+          <p>
+            <the-content
+              :content="$content.getPostMeta(post, 'pg_portfolio_infodreta')"
+            />
+          </p>
+        </div>
+      </div>
+      <video
+        v-if="$content.getPostMeta(post, 'pg_portfolio_video2')"
+        width="100%"
+        height="auto"
+        controls=""
+        style="max-width: 100%"
+      >
+        <source
+          :src="$content.getPostMeta(post, 'pg_portfolio_video2')"
+          type="video/mp4"
+        />
+        El teu navegador no soporta videos HTML5
+      </video>
     </section>
   </section>
 </template>
@@ -86,6 +145,42 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+#portfolio-content {
+  @apply space-y-10;
+
+  .tree-cols {
+    @apply grid sm:grid-cols-3 gap-6;
+
+    .item {
+      &:hover {
+        & > p {
+          max-height: 300px;
+        }
+        & > h3 {
+          @apply mb-5;
+
+          .arrow {
+            @apply transform rotate-180;
+          }
+        }
+      }
+
+      h3 {
+        @apply transition-all text-2xl sm:mb-5  sm:text-center msm:p-4 msm:border border-primary msm:flex justify-between items-center;
+
+        .arrow {
+          @apply sm:hidden text-base text-gray-300 transition-all;
+        }
+      }
+      & > p {
+        @screen msm {
+          @apply overflow-hidden transition-all;
+          max-height: 0;
+        }
+      }
+    }
+  }
+}
 .container-portfolio {
   width: 100%;
 }
@@ -138,6 +233,9 @@ export default {
       @apply mt-0;
     }
   }
+}
+.vs-carousel__wrapper {
+  @apply items-center;
 }
 .vs-carousel__arrows {
   @apply bg-white dark:bg-gray-900;
