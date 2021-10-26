@@ -1,5 +1,5 @@
 <template>
-  <div class="team grid md:grid-cols-12 lg:px-20 gap-8">
+  <div v-if="members.length" class="team grid md:grid-cols-12 lg:px-20 gap-8">
     <div class="md:col-span-5">
       <div
         v-for="(member, index) in members"
@@ -13,11 +13,9 @@
       </div>
     </div>
     <div class="md:col-span-7 space-y-8">
-      <h2 class="font-butler font-bold text-3xl">¡Conoce a nuestro equipo!</h2>
+      <h2 class="font-butler font-bold text-3xl">{{ title }}</h2>
       <p>
-        Más del 90% de nuestro trabajo creativo es interno, no lo
-        subcontratamos. Somos especialistas en encontrar aquel punto que os
-        diferencia del resto y crear imagen de marca, ¿te apuntas?
+        {{ content }}
       </p>
       <div class="team-selector flex flex-col">
         <a
@@ -41,10 +39,57 @@
       </div>
     </div>
   </div>
+  <div v-else class="team grid md:grid-cols-12 lg:px-20 gap-8">
+    <div class="md:col-span-5 aspect-w-3 aspect-h-4">
+      <PuSkeleton height="100%" />
+    </div>
+    <div class="md:col-span-7 space-y-8">
+      <h2 class="font-butler font-bold text-3xl">{{ title }}</h2>
+      <p>
+        {{ content }}
+      </p>
+      <div class="team-selector flex flex-col">
+        <a class="no-highlight hover:text-main-dark">
+          <div class="member open">
+            <span
+              ><PuSkeleton width="30%" />
+              <fa class="arrow" :icon="['fas', 'chevron-up']"
+            /></span>
+            <div class="content">
+              <PuSkeleton :count="3" />
+            </div>
+          </div>
+        </a>
+        <a
+          v-for="index in 3"
+          :key="index"
+          class="no-highlight hover:text-main-dark"
+        >
+          <div class="member">
+            <span
+              ><PuSkeleton width="30%" />
+              <fa class="arrow" :icon="['fas', 'chevron-up']"
+            /></span>
+            <div class="content"></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
+  props: {
+    title: {
+      type: String,
+      default: '',
+    },
+    content: {
+      type: String,
+      default: '',
+    },
+  },
   data() {
     return {
       members: [],

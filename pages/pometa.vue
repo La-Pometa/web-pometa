@@ -8,33 +8,12 @@
         <span class="text-shadow">for new times</span>
       </div>
     </parallax-header>
-    <section
+
+    <the-content
       id="page-pometa-content"
+      :content="pageContent"
       class="container-1024 mx-auto margins-header space-y-10"
-    >
-      <div class="title">
-        <h1>Somos tu agencia creativa.</h1>
-        <h2>
-          Todo un equipo con experiencia en diseño gráfico, publicidad y
-          marketing para tu empresa.
-        </h2>
-      </div>
-      <team-selector></team-selector>
-      <div class="bottom-cols grid grid-cols-1 sm:grid-cols-2 gap-10">
-        <div class="">
-          <h3>Ellos confían en nosotros</h3>
-          <the-content :content="pageContent"></the-content>
-        </div>
-        <div class="">
-          <h3>Estamos especializados en estos sectores</h3>
-          <p>
-            Construcción, Alimentación, Automoción, Salud, Hostelería, Comercio,
-            Agroganadería, Turismo, Cultura, Inmobiliaria, Infantil,
-            Industrial...
-          </p>
-        </div>
-      </div>
-    </section>
+    ></the-content>
     <!--     <the-content v-if="pageContent" :content="pageContent" />
  -->
   </section>
@@ -71,7 +50,7 @@ export default {
   }
 
   .bottom-cols {
-    @apply sm:pt-20;
+    @apply sm:pt-20 grid grid-cols-1 sm:grid-cols-2 gap-10;
 
     h3 {
       @apply text-3xl mb-5 font-bold text-center;
