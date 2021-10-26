@@ -86,6 +86,19 @@ export default {
           sets[key] = src
         } else {
           lastKey = key
+          const [limitKey, limitSrc] = Object.entries(this.srcset)[
+            Object.entries(this.srcset).length - 1
+          ]
+          if (key === limitKey) {
+            const toSet = Object.entries(this.srcset).filter(
+              (x) => x[1].width === this.srcset[lastKey].width
+            )
+            toSet.forEach((item) => {
+              sets[item[0]] = this.srcset[item[0]]
+            })
+
+            lastKey = false
+          }
         }
 
         if (src.mime_type === 'image/gif') {

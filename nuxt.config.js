@@ -42,6 +42,7 @@ export default {
     '~/plugins/filters',
     '~/plugins/vue-snap',
     '~/plugins/vue-lazyload',
+    '~/plugins/vue-slick-carousel',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

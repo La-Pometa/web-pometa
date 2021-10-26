@@ -20,7 +20,20 @@
         </h2>
       </div>
       <team-selector></team-selector>
-      <the-content :content="pageContent"></the-content>
+      <div class="bottom-cols grid grid-cols-1 sm:grid-cols-2 gap-10">
+        <div class="">
+          <h3>Ellos confían en nosotros</h3>
+          <the-content :content="pageContent"></the-content>
+        </div>
+        <div class="">
+          <h3>Estamos especializados en estos sectores</h3>
+          <p>
+            Construcción, Alimentación, Automoción, Salud, Hostelería, Comercio,
+            Agroganadería, Turismo, Cultura, Inmobiliaria, Infantil,
+            Industrial...
+          </p>
+        </div>
+      </div>
     </section>
     <!--     <the-content v-if="pageContent" :content="pageContent" />
  -->
@@ -54,6 +67,25 @@ export default {
     @apply md:px-20;
     * {
       @apply font-sset font-normal text-2xl;
+    }
+  }
+
+  .bottom-cols {
+    @apply sm:pt-20;
+
+    h3 {
+      @apply text-3xl mb-5 font-bold text-center;
+    }
+    p {
+      @apply text-center;
+    }
+
+    .slick-slide {
+      @apply p-2;
+
+      img {
+        @apply select-none pointer-events-none;
+      }
     }
   }
 

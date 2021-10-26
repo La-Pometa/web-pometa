@@ -55,6 +55,12 @@
     <section id="portfolio-content">
       <video
         v-if="$content.getPostMeta(post, 'pg_portfolio_video')"
+        :poster="
+          $content.getPostMeta(post, 'pg_portfolio_video_cover')
+            ? $content.getPostMeta(post, 'pg_portfolio_video_cover').sizes.full
+                .source_url
+            : ''
+        "
         width="100%"
         height="auto"
         controls=""
@@ -115,6 +121,12 @@
       </div>
       <video
         v-if="$content.getPostMeta(post, 'pg_portfolio_video2')"
+        :poster="
+          $content.getPostMeta(post, 'pg_portfolio_video2_cover')
+            ? $content.getPostMeta(post, 'pg_portfolio_video2_cover').sizes.full
+                .source_url
+            : ''
+        "
         width="100%"
         height="auto"
         controls=""
@@ -166,7 +178,7 @@ export default {
       }
 
       h3 {
-        @apply transition-all text-2xl sm:mb-5  sm:text-center msm:p-4 msm:border border-primary msm:flex justify-between items-center;
+        @apply font-bold transition-all text-2xl sm:mb-5  sm:text-center msm:p-4 msm:border border-primary msm:flex justify-between items-center;
 
         .arrow {
           @apply sm:hidden text-base text-gray-300 transition-all;
