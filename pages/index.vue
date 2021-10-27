@@ -18,7 +18,8 @@ export default {
   },
   head() {
     return {
-      title: this.$content.getPostMetaSeo(this.pageData, 'og_title'),
+      title: this.$content.getPostHeadTitle(this.pageData),
+      meta: [...this.$content.getPostMetaSeo(this.pageData)],
     }
   },
 }

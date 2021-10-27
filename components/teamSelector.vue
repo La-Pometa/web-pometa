@@ -17,7 +17,7 @@
       <p>
         {{ content }}
       </p>
-      <div class="team-selector flex flex-col">
+      <div class="team-selector flex flex-col min-h-[400px]">
         <a
           v-for="(member, index) in members"
           :key="member.title.rendered"
@@ -141,7 +141,9 @@ export default {
         .replace(/[\u0300-\u036F]/g, '')
     },
     toggleItem(event) {
+      event.preventDefault()
       const member = event.target.closest('a')
+      window.location.hash = member.dataset.target
 
       document.querySelectorAll('.left-image').forEach((image) => {
         image.classList.add('hidden')

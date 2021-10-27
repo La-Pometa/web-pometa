@@ -6,4 +6,7 @@ export default {
   ...menu,
   goBack: 'Volver',
   callYou: '¿Te llamamos?',
+  prev: 'Proyecto anterior',
+  next: 'Siguiente Proyecto',
+  related: 'Entradas relacionadas',
 }

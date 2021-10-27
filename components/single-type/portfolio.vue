@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="md:col-span-5">
-        <h1>{{ $content.getPostTitle(post) }}</h1>
+        <h1><the-content :content="$content.getPostTitle(post)" /></h1>
         <div class="taxs mb-4">
           <the-content
             v-for="(tax, index) in post.tax_info"
@@ -39,13 +39,26 @@
       v-if="$content.getPostMeta(post, 'pg_portfolio_navigator')"
       class="flex justify-between align-center"
     >
-      <nuxt-link :to="'/'">prev</nuxt-link
+      <nuxt-link
+        :to="
+          localePath(
+            `/${$content.getPostMeta(post, 'pg_portfolio_navigator').prev.slug}`
+          )
+        "
+        >{{ $t('prev') }}</nuxt-link
       ><nuxt-link class="projects" :to="localePath('/proyectos')">
         <span></span>
         <span></span>
         <span></span>
         <span></span> </nuxt-link
-      ><nuxt-link :to="'/'">next</nuxt-link>
+      ><nuxt-link
+        :to="
+          localePath(
+            `/${$content.getPostMeta(post, 'pg_portfolio_navigator').next.slug}`
+          )
+        "
+        >{{ $t('next') }}</nuxt-link
+      >
     </nav>
     <section id="portfolio-content">
       <video
@@ -127,11 +140,28 @@
         />
         El teu navegador no soporta videos HTML5
       </video>
+      <h3 class="text-3xl">{{ $t('related') }}</h3>
+      <div
+        v-if="$content.getPostMeta(post, 'pg_portfolio_posts')"
+        class="grid msm:grid-cols-1 mlg:grid-cols-2 grid-cols-3 gap-10"
+      >
+        <nuxt-link
+          v-for="related in $content.getPostMeta(post, 'pg_portfolio_posts')"
+          :key="related.id"
+          :to="localePath(`/${related.slug}`)"
+          class="hover:text-main-dark dark:hover:text-white no-highlight"
+          :title="$content.getPostTitle(related)"
+        >
+          <post-card :post="related"></post-card>
+        </nuxt-link>
+      </div>
     </section>
   </section>
 </template>
 <script>
+import postCard from '../postCard.vue'
 export default {
+  components: { postCard },
   props: {
     post: {
       type: Object,
@@ -211,7 +241,7 @@ export default {
   nav {
     @apply py-14 mmd:py-10;
     a:not(.projects) {
-      @apply text-white bg-primary font-thin px-2 hover:no-underline hover:text-main-dark;
+      @apply text-white dark:text-main-dark bg-primary font-thin px-2 hover:no-underline hover:text-main-dark;
     }
 
     a.projects {

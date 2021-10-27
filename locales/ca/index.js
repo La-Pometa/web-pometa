@@ -6,4 +6,7 @@ export default {
   ...menu,
   goBack: 'Tornar',
   callYou: 'Et truquem?',
+  prev: 'Projecte anterior',
+  next: 'Següent Projecte',
+  related: 'Entrades relacionades',
 }

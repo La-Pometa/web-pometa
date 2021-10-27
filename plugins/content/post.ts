@@ -17,6 +17,16 @@ class Post {
     }
   }
 
+  public getHeadTitle(): any | null {
+    if ('yoast_head_json' in this) {
+      return 'title' in this.yoast_head_json
+        ? this.yoast_head_json.title
+        : this.yoast_head_json.og_title
+    } else {
+      return null
+    }
+  }
+
   public getTitle(): any | null {
     if ('title' in this) {
       if ('rendered' in this.title) {
@@ -41,13 +51,47 @@ class Post {
     }
   }
 
-  public getMetaSeo(meta: string): any | null {
+  public getMetaSeo(): any | null {
     if ('yoast_head_json' in this) {
-      if (meta in this.yoast_head_json) {
-        return this.yoast_head_json[meta]
-      } else {
-        return null
+      const metas = []
+      for (const key in this.yoast_head_json) {
+        if (
+          Object.hasOwnProperty.call(this.yoast_head_json, key) &&
+          (key.startsWith('og_') ||
+            key.startsWith('article_') ||
+            key.startsWith('description'))
+        ) {
+          if (key === 'og_image') {
+            metas.push({
+              name: key.replace('_', ':'),
+              content: this.yoast_head_json[key][0].url,
+            })
+            metas.push({
+              name: key.replace('_', ':') + ':width',
+              content: this.yoast_head_json[key][0].width,
+            })
+            metas.push({
+              name: key.replace('_', ':') + ':height',
+              content: this.yoast_head_json[key][0].height,
+            })
+          } else {
+            metas.push({
+              name: key.replace('_', ':'),
+              content: this.yoast_head_json[key],
+            })
+          }
+        } else if (
+          Object.hasOwnProperty.call(this.yoast_head_json, key) &&
+          key.startsWith('twitter_')
+        ) {
+          metas.push({
+            name: key.replace('_', ':'),
+            content: this.yoast_head_json[key],
+          })
+        }
       }
+
+      return metas
     } else {
       return null
     }

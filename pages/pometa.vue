@@ -29,7 +29,8 @@ export default {
   },
   head() {
     return {
-      title: this.$content.getPostMetaSeo(this.pageData, 'og_title'),
+      title: this.$content.getPostHeadTitle(this.pageData),
+      meta: [...this.$content.getPostMetaSeo(this.pageData)],
     }
   },
 }
@@ -50,7 +51,7 @@ export default {
   }
 
   .bottom-cols {
-    @apply sm:pt-20 grid grid-cols-1 sm:grid-cols-2 gap-10;
+    @apply grid grid-cols-1 sm:grid-cols-2 gap-10;
 
     h3 {
       @apply text-3xl mb-5 font-bold text-center;
@@ -58,9 +59,11 @@ export default {
     p {
       @apply text-center;
     }
-
+    .slick-dots li button:before {
+      @apply dark:text-white;
+    }
     .slick-slide {
-      @apply p-2;
+      @apply p-2 dark:filter invert;
 
       img {
         @apply select-none pointer-events-none;

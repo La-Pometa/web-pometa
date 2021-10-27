@@ -14,6 +14,7 @@
       :width="width"
       :height="height"
       :title="title"
+      loading="lazy"
     />
   </picture>
   <picture v-else>
@@ -24,6 +25,7 @@
       :width="width"
       :height="height"
       :title="title"
+      loading="lazy"
     />
   </picture>
 </template>

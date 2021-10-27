@@ -147,8 +147,12 @@ export class Content {
     return new Post(post).getTitle()
   }
 
-  getPostMetaSeo(post: any, meta: string): any | null {
-    return new Post(post).getMetaSeo(meta)
+  getPostMetaSeo(post: any): any | null {
+    return new Post(post).getMetaSeo()
+  }
+
+  getPostHeadTitle(post: any): any | null {
+    return new Post(post).getHeadTitle()
   }
 
   getApp() {

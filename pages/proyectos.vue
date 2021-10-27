@@ -32,7 +32,11 @@
           </div>
           <div class="overlay">
             <div class="inner">
-              <h4>{{ project.title.rendered }}</h4>
+              <h4>
+                <the-content
+                  :content="$content.getPostTitle(project)"
+                ></the-content>
+              </h4>
               <the-content
                 v-for="(tax, index) in project.tax_info"
                 :key="tax.term_id"
