@@ -63,7 +63,7 @@ export default {
       @apply dark:text-white;
     }
     .slick-slide {
-      @apply p-2 dark:filter invert;
+      @apply p-2 dark:filter dark:invert;
 
       img {
         @apply select-none pointer-events-none;

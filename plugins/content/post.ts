@@ -91,6 +91,16 @@ class Post {
         }
       }
 
+      if (!metas.filter((x) => x.name === 'description').length) {
+        if (metas.filter((x) => x.name === 'og:description').length) {
+          const description = metas.find((x) => x.name === 'og:description')
+          metas.push({
+            name: 'description',
+            content: description ? description.content : '',
+          })
+        }
+      }
+
       return metas
     } else {
       return null

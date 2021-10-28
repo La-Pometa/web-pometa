@@ -14,7 +14,6 @@ export default {
           content:
             'width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no',
         },
-        { hid: 'description', name: 'description', content: '' },
         { name: 'format-detection', content: 'telephone=no' },
         { name: 'theme-color', content: '#bfd5c2' },
         ...i18nHead.meta,
