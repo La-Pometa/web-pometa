@@ -34,14 +34,14 @@
             <div class="inner">
               <h4>
                 <the-content
-                  :content="$content.getPostTitle(project)"
+                  :render="$content.getPostTitle(project)"
                 ></the-content>
               </h4>
               <the-content
                 v-for="(tax, index) in project.tax_info"
                 :key="tax.term_id"
                 class="inline taxs"
-                :content="(index != 0 ? ', ' : '') + tax.name"
+                :render="(index != 0 ? ', ' : '') + tax.name"
               ></the-content>
             </div>
           </div>

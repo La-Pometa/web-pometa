@@ -11,10 +11,10 @@
 
     <the-content
       id="page-pometa-content"
-      :content="pageContent"
+      :render="pageContent"
       class="container-1024 mx-auto margins-header space-y-10"
     ></the-content>
-    <!--     <the-content v-if="pageContent" :content="pageContent" />
+    <!--     <the-content v-if="pageContent" :render="pageContent" />
  -->
   </section>
 </template>

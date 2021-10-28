@@ -3,7 +3,7 @@
     <the-content
       v-if="pageContent"
       class="h-full w-full"
-      :content="pageContent"
+      :render="pageContent"
     ></the-content>
   </section>
 </template>
@@ -21,6 +21,12 @@ export default {
       title: this.$content.getPostHeadTitle(this.pageData),
       meta: [...this.$content.getPostMetaSeo(this.pageData)],
     }
+  },
+  activated() {
+    document.querySelectorAll('video').forEach((video) => {
+      video.currentTime = 0
+      video.play()
+    })
   },
 }
 </script>

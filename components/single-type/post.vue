@@ -8,7 +8,7 @@
     <div class="single-post">
       <responsive-image :image-data="post.featured_source"></responsive-image>
       <div>
-        <h1>{{ post.title.rendered }}</h1>
+        <the-content :render="post.title.rendered" tag="h1" />
         <div
           class="
             text-opacity-70
@@ -26,7 +26,7 @@
       </div>
       <the-content
         class="post-content"
-        :content="post.content.rendered"
+        :render="post.content.rendered"
       ></the-content>
     </div>
   </section>

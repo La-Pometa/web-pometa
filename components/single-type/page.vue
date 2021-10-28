@@ -3,7 +3,7 @@
     <h1>{{ $content.getPostTitle(post) }}</h1>
     <the-content
       class="space-y-6"
-      :content="$content.getPostContent(post)"
+      :render="$content.getPostContent(post)"
     ></the-content>
   </div>
 </template>

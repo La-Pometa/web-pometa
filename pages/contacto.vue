@@ -8,7 +8,7 @@
         ></responsive-image>
       </parallax>
     </div>
-    <the-content v-if="pageContent" :content="pageContent" />
+    <the-content v-if="pageContent" :render="pageContent" />
   </section>
 </template>
 <script>

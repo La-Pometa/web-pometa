@@ -32,7 +32,7 @@
               <fa class="arrow" :icon="['fas', 'chevron-up']"
             /></span>
             <div class="content">
-              <the-content :content="$content.getPostContent(member)" />
+              <the-content :render="$content.getPostContent(member)" />
             </div>
           </div>
         </a>

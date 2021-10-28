@@ -19,14 +19,7 @@
       </nuxt-link>
     </div>
     <div v-else class="grid msm:grid-cols-1 mlg:grid-cols-2 grid-cols-3 gap-10">
-      <div v-for="index in 9" :key="index" class="blog-card">
-        <div class="blog-card-img"><PuSkeleton height="100%" /></div>
-        <div>
-          <span class="date"><PuSkeleton width="20%" /></span>
-          <h2 class="blog-card-title"><PuSkeleton /></h2>
-        </div>
-        <p class="blog-card-excerpt"><PuSkeleton :count="3" /></p>
-      </div>
+      <post-card v-for="index in 9" :key="index"></post-card>
     </div>
     <div v-show="posts.length > 0">
       <div

@@ -14,7 +14,7 @@
       </h1>
       <h2 class="subtitle">
         <the-content
-          :content="$content.getPostMeta(post, 'pg_landings_subtitle')"
+          :render="$content.getPostMeta(post, 'pg_landings_subtitle')"
         />
       </h2>
       <div class="grid grid-cols-1 lg:grid-cols-12 mt-10 gap-8">
@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class="col-span-8 mlg:col-span-1">
-          <the-content :content="post.content.rendered"></the-content>
+          <the-content :render="post.content.rendered"></the-content>
         </div>
       </div>
     </div>

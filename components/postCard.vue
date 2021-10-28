@@ -1,19 +1,29 @@
 <template>
-  <div class="blog-card">
+  <div v-if="post" class="blog-card">
     <div v-if="post.featured_source.sizes" class="blog-card-img">
       <responsive-image :image-data="post.featured_source"></responsive-image>
     </div>
     <div v-else class="blog-card-img"><PuSkeleton height="100%" /></div>
     <div>
       <span class="date">{{ post.date | formatDate }}</span>
-      <h2 class="blog-card-title">
-        <the-content :content="$content.getPostTitle(post)" />
-      </h2>
+      <the-content
+        :render="$content.getPostTitle(post)"
+        tag="h2"
+        class="blog-card-title"
+      />
     </div>
     <div class="blog-card-excerpt">
-      <p><the-content :content="post.excerpt.rendered" /></p>
+      <the-content :render="post.excerpt.rendered" tag="p" />
     </div>
     <div class="read-more">{{ $t('readMore') }}</div>
+  </div>
+  <div v-else class="blog-card">
+    <div class="blog-card-img"><PuSkeleton height="100%" /></div>
+    <div>
+      <span class="date"><PuSkeleton width="20%" /></span>
+      <h2 class="blog-card-title"><PuSkeleton /></h2>
+    </div>
+    <p class="blog-card-excerpt"><PuSkeleton :count="3" /></p>
   </div>
 </template>
 
@@ -47,7 +57,8 @@ export default {
   .blog-card-excerpt {
     @apply pb-5;
 
-    p {
+    p,
+    p div {
       @apply leading-normal line-clamp-3;
     }
   }

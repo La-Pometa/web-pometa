@@ -10,16 +10,16 @@
         </div>
       </div>
       <div class="md:col-span-5">
-        <h1><the-content :content="$content.getPostTitle(post)" /></h1>
+        <the-content :render="$content.getPostTitle(post)" tag="h1" />
         <div class="taxs mb-4">
           <the-content
             v-for="(tax, index) in post.tax_info"
             :key="tax.term_id"
             class="inline tax font-bold text-secondary text-lg"
-            :content="(index != 0 ? ', ' : '') + tax.name"
+            :render="(index != 0 ? ', ' : '') + tax.name"
           ></the-content>
         </div>
-        <the-content :content="$content.getPostContent(post)" />
+        <the-content :render="$content.getPostContent(post)" />
         <div v-if="$content.getPostMeta(post, 'pg_portfolio_link')">
           <a
             :href="$content.getPostMeta(post, 'pg_portfolio_link')"
@@ -99,7 +99,7 @@
             <fa class="arrow" :icon="['fas', 'chevron-down']" />
           </h3>
           <the-content
-            :content="$content.getPostMeta(post, 'pg_portfolio_infoesquerra')"
+            :render="$content.getPostMeta(post, 'pg_portfolio_infoesquerra')"
           />
         </div>
         <div class="item">
@@ -108,7 +108,7 @@
             <fa class="arrow" :icon="['fas', 'chevron-down']" />
           </h3>
           <the-content
-            :content="$content.getPostMeta(post, 'pg_portfolio_infocentre')"
+            :render="$content.getPostMeta(post, 'pg_portfolio_infocentre')"
           />
         </div>
         <div class="item">
@@ -117,7 +117,7 @@
             <fa class="arrow" :icon="['fas', 'chevron-down']" />
           </h3>
           <the-content
-            :content="$content.getPostMeta(post, 'pg_portfolio_infodreta')"
+            :render="$content.getPostMeta(post, 'pg_portfolio_infodreta')"
           />
         </div>
       </div>

@@ -42,7 +42,7 @@ module.exports = {
     },
     fontFamily: {
       sset: ['Sukhumvit Set', 'Arial'],
-      butler: ['Butler', 'Helvetica'],
+      butler: ['Butler', 'Helvetica', 'Arial'],
     },
     extend: {
       colors: {

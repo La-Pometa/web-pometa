@@ -67,6 +67,7 @@ export default {
       elCopy: null,
       loaded: false,
       elWidth: 0,
+      elHeight: 0,
     }
   },
   computed: {
@@ -74,7 +75,8 @@ export default {
       let sets = {}
       let lastKey = false
       for (const [key, src] of Object.entries(this.srcset)) {
-        if (src.width <= this.elWidth) {
+        if (src.width <= this.elWidth || src.height <= this.elHeight) {
+          console.log(this.$el, src.width, src.height)
           if (lastKey) {
             const toSet = Object.entries(this.srcset).filter(
               (x) => x[1].width === this.srcset[lastKey].width
@@ -131,6 +133,7 @@ export default {
     this.observer.observe(this.$el)
 
     this.elWidth = this.$el.querySelector('img').offsetWidth
+    this.elHeight = this.$el.querySelector('img').offsetHeight
   },
   destroyed() {
     this.observer.disconnect()

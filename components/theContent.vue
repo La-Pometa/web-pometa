@@ -1,14 +1,18 @@
 <script>
 export default {
   props: {
-    content: {
+    render: {
       type: String,
       default: null,
+    },
+    tag: {
+      type: String,
+      default: 'div',
     },
   },
   render(h) {
     return h({
-      template: `<div>${this.content}</div>`,
+      template: `<${this.tag}>${this.render}</${this.tag}>`,
     })
   },
 }

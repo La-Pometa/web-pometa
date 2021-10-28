@@ -1,6 +1,6 @@
 <template>
   <div class="cf7-form">
-    <the-content v-if="render" :content="render" />
+    <the-content v-if="render" :render="render" />
     <slot v-else></slot>
   </div>
 </template>

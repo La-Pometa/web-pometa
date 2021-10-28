@@ -1,6 +1,6 @@
 <template>
   <section id="page-desayuna-con-manzanas">
-    <the-content :content="pageContent" />
+    <the-content :render="pageContent" />
   </section>
 </template>
 <script>
