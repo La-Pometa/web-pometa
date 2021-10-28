@@ -50,7 +50,7 @@ export default {
 
     this.loadingMore = true
 
-    await this.$content.getAllPosts(this.page).then((res) => {
+    await this.$content.getAllFromType('posts', this.page).then((res) => {
       this.posts.push(...res)
       this.loadingMore = false
 
