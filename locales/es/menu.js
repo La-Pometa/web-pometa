@@ -23,8 +23,11 @@ export default {
   contact: 'Contacto',
   breakfast: 'Desayuna con manzanas',
   oficinas: 'Oficinas en Lleida y Terrassa (BCN)',
-  privacidad: 'Política de Privacidad',
-  cookies: 'Política de Cookies',
-  aviso: 'Aviso legal',
-  map: 'Mapa del sitio',
+  privacidad: {
+    text: 'Política de Privacidad',
+    link: '/politica-de-privacidad',
+  },
+  cookies: { text: 'Política de Cookies', link: '/politica-de-cookies' },
+  aviso: { text: 'Aviso legal', link: '/aviso-legal' },
+  map: { text: 'Mapa del sitio', link: '/mapa-del-sitio' },
 }

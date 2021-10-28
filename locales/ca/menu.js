@@ -23,8 +23,11 @@ export default {
   contact: 'Contacte',
   breakfast: 'Esmorza amb pomes',
   oficinas: 'Oficines en Lleida i Terrassa (BCN)',
-  privacidad: 'Política de Privacitat',
-  cookies: 'Política de Cookies',
-  aviso: 'Avís legal',
-  map: 'Mapa del lloc',
+  privacidad: {
+    text: 'Política de Privacitat',
+    link: '/politica-de-privacitat',
+  },
+  cookies: { text: 'Política de Cookies', link: '/politica-de-cookies-ca' },
+  aviso: { text: 'Avís legal', link: '/avis-legal' },
+  map: { text: 'Mapa del lloc', link: '/mapa-del-lloc' },
 }

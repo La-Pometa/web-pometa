@@ -167,10 +167,18 @@
                 id="footer-menu"
                 class="flex flex-col text-center text-xs font-bold"
               >
-                <a href="#">{{ $t('privacidad') }}</a>
-                <a href="#">{{ $t('cookies') }}</a>
-                <a href="#">{{ $t('aviso') }}</a>
-                <a href="#">{{ $t('map') }}</a>
+                <nuxt-link :to="localePath($t('privacidad').link)">{{
+                  $t('privacidad').text
+                }}</nuxt-link>
+                <nuxt-link :to="localePath($t('cookies').link)">{{
+                  $t('cookies').text
+                }}</nuxt-link>
+                <nuxt-link :to="localePath($t('aviso').link)">{{
+                  $t('aviso').text
+                }}</nuxt-link>
+                <nuxt-link :to="localePath($t('map').link)">{{
+                  $t('map').text
+                }}</nuxt-link>
               </div>
             </footer>
           </div>

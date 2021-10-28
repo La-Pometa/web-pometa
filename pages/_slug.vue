@@ -5,7 +5,16 @@
 export default {
   name: 'GetByPath',
   async asyncData({ $content, params, error, store }) {
-    const postData = await $content.getSingleTypeByPath(params.slug)
+    let postData
+    try {
+      postData = await $content.getSingleTypeByPath(params.slug)
+    } catch (error) {
+      error(error)
+    }
+    if (postData.code === 'rest_forbidden') {
+      error({ statusCode: 403, message: postData.message })
+    }
+
     if (!postData || postData.length === 0) {
       error({ statusCode: 404, message: 'Post not found' })
     } else {
