@@ -88,6 +88,17 @@ class Post {
             name: key.replace('_', ':'),
             content: this.yoast_head_json[key],
           })
+        } else if (key === 'robots') {
+          const robots: any[] = []
+
+          for (const robot in this.yoast_head_json[key]) {
+            robots.push(this.yoast_head_json[key][robot])
+          }
+
+          metas.push({
+            name: 'robots',
+            content: robots.join(', '),
+          })
         }
       }
 

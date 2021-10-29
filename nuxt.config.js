@@ -64,6 +64,7 @@ export default {
   ],
 
   i18n: {
+    baseUrl: process.env.BASE_URL || 'http://new.lapometa.com',
     langDir: './locales/',
     locales: [
       { code: 'es', iso: 'es-ES', file: 'es/index.js', dir: 'ltr' },

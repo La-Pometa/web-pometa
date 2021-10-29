@@ -76,7 +76,6 @@ export default {
       let lastKey = false
       for (const [key, src] of Object.entries(this.srcset)) {
         if (src.width <= this.elWidth || src.height <= this.elHeight) {
-          console.log(this.$el, src.width, src.height)
           if (lastKey) {
             const toSet = Object.entries(this.srcset).filter(
               (x) => x[1].width === this.srcset[lastKey].width

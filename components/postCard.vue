@@ -1,6 +1,6 @@
 <template>
   <div v-if="post" class="blog-card">
-    <div v-if="post.featured_source.sizes" class="blog-card-img">
+    <div v-if="post.featured_source" class="blog-card-img">
       <responsive-image :image-data="post.featured_source"></responsive-image>
     </div>
     <div v-else class="blog-card-img"><PuSkeleton height="100%" /></div>
@@ -13,7 +13,11 @@
       />
     </div>
     <div class="blog-card-excerpt">
-      <the-content :render="post.excerpt.rendered" tag="p" />
+      <the-content
+        v-if="post.excerpt"
+        :render="post.excerpt.rendered"
+        tag="p"
+      />
     </div>
     <div class="read-more">{{ $t('readMore') }}</div>
   </div>
