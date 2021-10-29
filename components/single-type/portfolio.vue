@@ -140,20 +140,19 @@
         />
         El teu navegador no soporta videos HTML5
       </video>
-      <h3 class="text-3xl">{{ $t('related') }}</h3>
-      <div
-        v-if="$content.getPostMeta(post, 'pg_portfolio_posts')"
-        class="grid msm:grid-cols-1 mlg:grid-cols-2 grid-cols-3 gap-10"
-      >
-        <nuxt-link
-          v-for="related in $content.getPostMeta(post, 'pg_portfolio_posts')"
-          :key="related.id"
-          :to="localePath(`/${related.slug}`)"
-          class="hover:text-main-dark dark:hover:text-white no-highlight"
-          :title="$content.getPostTitle(related)"
-        >
-          <post-card :post="related"></post-card>
-        </nuxt-link>
+      <div v-if="$content.getPostMeta(post, 'pg_portfolio_posts')" class="">
+        <h3 class="text-3xl mb-5">{{ $t('related') }}</h3>
+        <div class="grid msm:grid-cols-1 mlg:grid-cols-2 grid-cols-3 gap-10">
+          <nuxt-link
+            v-for="related in $content.getPostMeta(post, 'pg_portfolio_posts')"
+            :key="related.id"
+            :to="localePath(`/${related.slug}`)"
+            class="hover:text-main-dark dark:hover:text-white no-highlight"
+            :title="$content.getPostTitle(related)"
+          >
+            <post-card :post="related"></post-card>
+          </nuxt-link>
+        </div>
       </div>
     </section>
   </section>
