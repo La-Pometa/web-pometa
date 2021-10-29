@@ -244,13 +244,13 @@
                   >ES</nuxt-link
                 >
                 <nuxt-link v-else :to="switchLocalePath('ca')">CA</nuxt-link>
-                <a href="#" class="msm:hidden">
+                <div class="msm:hidden cursor-pointer">
                   <div class="burger black small">
                     <span></span>
                     <span></span>
                     <span></span>
                   </div>
-                </a>
+                </div>
                 <nuxt-link :to="localePath('/desayuna-con-manzanas')">
                   <div class="responsive-image w-6">
                     <image-lazy

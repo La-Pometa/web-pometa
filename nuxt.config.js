@@ -12,7 +12,7 @@ export default {
         {
           name: 'viewport',
           content:
-            'width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no',
+            'width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=5.0,user-scalable=yes',
         },
         { name: 'format-detection', content: 'telephone=no' },
         { name: 'theme-color', content: '#bfd5c2' },
