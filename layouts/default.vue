@@ -111,7 +111,7 @@
                 }}</nuxt-link></span
               >
               <span
-                ><a class="not-click" href="#">{{ $t('special') }}</a>
+                ><a class="not-click">{{ $t('special') }}</a>
                 <div class="sub-menu">
                   <div class="item">
                     <nuxt-link :to="localePath($t('marketing').link)">{{

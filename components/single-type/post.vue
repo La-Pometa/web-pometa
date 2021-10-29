@@ -2,7 +2,7 @@
   <section id="single-post" class="post-container margins msm:mt-14 space-y-10">
     <a
       class="flex items-center no-highlight cursor-pointer"
-      @click="$router.go(-1)"
+      @click="$router.go(-1) ? $router.go(-1) : localePath('/blog')"
       ><fa class="mr-5 max-h-3" icon="arrow-left" /> {{ $t('goBack') }}</a
     >
     <div class="single-post">

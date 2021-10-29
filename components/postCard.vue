@@ -51,6 +51,9 @@ export default {
       @apply object-cover w-full h-full;
     }
   }
+  h2 {
+    @apply my-0 #{!important};
+  }
   .blog-card-title {
     @apply font-butler font-bold leading-relaxed line-clamp-2;
     font-size: 18px;
