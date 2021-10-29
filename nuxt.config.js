@@ -105,6 +105,21 @@ export default {
         config.optimization.splitChunks.maxSize = 49856 // 244 Kib
       }
     },
+    html: {
+      minify: {
+        collapseBooleanAttributes: true,
+        decodeEntities: true,
+        minifyCSS: true,
+        minifyJS: true,
+        processConditionalComments: true,
+        removeEmptyAttributes: true,
+        removeRedundantAttributes: true,
+        trimCustomFragments: true,
+        useShortDoctype: true,
+        preserveLineBreaks: false,
+        collapseWhitespace: true,
+      },
+    },
   },
 
   vue: {
