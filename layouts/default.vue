@@ -44,7 +44,7 @@
                     alt="logo la pometa"
                     :width="300"
                     :height="82"
-                    :sizes="{
+                    :srcset="{
                       full_webp: {
                         source_url:
                           'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/logos-pometa-cat.png.webp',
@@ -71,7 +71,7 @@
                     alt="logo la pometa"
                     :width="300"
                     :height="82"
-                    :sizes="{
+                    :srcset="{
                       full: {
                         source_url:
                           'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/pometa_logo_white_cat-300x80.png',
@@ -258,7 +258,7 @@
                       alt="desayuno con manzanas"
                       :width="141"
                       :height="113"
-                      :sizes="{
+                      :srcset="{
                         full_webp: {
                           source_url:
                             'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa_black.png.webp',
@@ -283,7 +283,7 @@
                       alt="desayuno con manzanas"
                       :width="141"
                       :height="113"
-                      :sizes="{
+                      :srcset="{
                         full_webp: {
                           source_url:
                             'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa.png.webp',
@@ -326,7 +326,7 @@
                   alt="logo la pometa"
                   :width="221"
                   :height="300"
-                  :sizes="{
+                  :srcset="{
                     full: {
                       file: 'anagrama_pometa_black-221x300.png',
                       width: 221,
@@ -369,7 +369,7 @@
                   alt="logo la pometa"
                   :width="221"
                   :height="300"
-                  :sizes="{
+                  :srcset="{
                     full: {
                       source_url:
                         'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_white-221x300.png',

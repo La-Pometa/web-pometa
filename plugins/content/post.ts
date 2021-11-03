@@ -6,7 +6,7 @@ class Post {
   }
 
   public getMeta(meta: string): any | null {
-    if ('meta_info' in this) {
+    if (this.meta_info) {
       if (meta in this.meta_info) {
         return this.meta_info[meta]
       } else {
@@ -82,7 +82,8 @@ class Post {
           }
         } else if (
           Object.hasOwnProperty.call(this.yoast_head_json, key) &&
-          key.startsWith('twitter_')
+          key.startsWith('twitter_') &&
+          key !== 'twitter_misc'
         ) {
           metas.push({
             name: key.replace('_', ':'),

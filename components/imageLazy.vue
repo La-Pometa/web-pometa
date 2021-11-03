@@ -89,7 +89,7 @@ export default {
           sets[key] = src
         } else {
           lastKey = key
-          const [limitKey, limitSrc] = Object.entries(this.srcset)[
+          const [limitKey] = Object.entries(this.srcset)[
             Object.entries(this.srcset).length - 1
           ]
           if (key === limitKey) {
@@ -115,9 +115,9 @@ export default {
       return this.intersected ? this.loadImage() : this.loadMini()
     },
     srcMini() {
-      return this.sizes.mini_webp
-        ? this.sizes.mini_webp.source_url
-        : this.sizes.mini.source_url
+      return this.srcset.mini_webp
+        ? this.srcset.mini_webp.source_url
+        : this.srcset.mini.source_url
     },
   },
   mounted() {
@@ -130,28 +130,28 @@ export default {
     })
 
     this.observer.observe(this.$el)
-
-    this.elWidth = this.$el.querySelector('img').offsetWidth
-    this.elHeight = this.$el.querySelector('img').offsetHeight
   },
   destroyed() {
     this.observer.disconnect()
   },
   methods: {
     defaultImage() {
-      return this.sizes.mini_webp
-        ? this.sizes.mini_webp.source_url
-        : this.sizes.mini.source_url
+      return this.srcset.mini_webp
+        ? this.srcset.mini_webp.source_url
+        : this.srcset.mini.source_url
     },
     loadMini() {
       return this.defaultImage()
     },
     loadImage() {
-      const image = this.format
-        ? this.sizes[this.format].source_url
-        : this.sizes.full
-        ? this.sizes.full.source_url
-        : this.sizes.full_webp.source_url
+      this.elWidth = this.$el.querySelector('img').offsetWidth
+      this.elHeight = this.$el.querySelector('img').offsetHeight
+      const image =
+        this.format && this.srcset[this.format]
+          ? this.srcset[this.format].source_url
+          : this.srcset.full
+          ? this.srcset.full.source_url
+          : this.srcset.full_webp.source_url
 
       if (this.loaded) {
         return image

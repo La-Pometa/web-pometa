@@ -100,10 +100,10 @@ export default {
       // Include the compiler version of Vue so that wp-content works
       // eslint-disable-next-line dot-notation
       config.resolve.alias['vue'] = 'vue/dist/vue.esm.js'
-      const isProd = process.env.NODE_ENV === 'production'
+      /*       const isProd = process.env.NODE_ENV === 'production'
       if (isProd && isClient) {
         config.optimization.splitChunks.maxSize = 49856 // 244 Kib
-      }
+      } */
     },
     html: {
       minify: {

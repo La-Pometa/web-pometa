@@ -20,7 +20,7 @@ export default {
     } else {
       const translations = {}
 
-      if (postData.translations) {
+      if ('translations' in postData) {
         for (const translation of postData.translations) {
           translations[translation.locale] = { slug: translation.slug }
         }
