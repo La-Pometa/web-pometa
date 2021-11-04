@@ -5,6 +5,7 @@
         v-if="image"
         class="w-full h-full"
         :image-data="image"
+        :lazy="false"
       ></responsive-image>
       <PuSkeleton v-else height="100%" />
     </parallax>

@@ -1,13 +1,9 @@
 <template>
   <section id="single-landing" :style="cssVars">
-    <div v-if="post.featured_source" id="header-image">
-      <parallax :section-height="'100%'">
-        <responsive-image
-          class="w-full h-full"
-          :image-data="post.featured_source"
-        ></responsive-image>
-      </parallax>
-    </div>
+    <parallax-header
+      v-if="post.featured_source"
+      :image="post.featured_source"
+    ></parallax-header>
     <div class="container-landing margins-header">
       <h1 class="title">
         {{ $content.getPostMeta(post, 'pg_landings_title') }}

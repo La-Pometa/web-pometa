@@ -1,13 +1,13 @@
 <template>
   <div class="responsive-image">
     <image-lazy
-      v-if="imageData || correctSizes"
-      :alt="imageData ? imageData.alt_text : alt"
-      :width="imageData ? imageData.width : width"
-      :height="imageData ? imageData.height : height"
-      :sizes="sizes ? sizes : imageData.sizes"
-      :srcset="imageData ? (imageData.srcset ? imageData.srcset : {}) : {}"
+      v-if="imageData"
+      :alt="alt ? alt : imageData.alt_text"
+      :width="width ? width : imageData.width"
+      :height="height ? height : imageData.height"
+      :srcset="srcset ? srcset : imageData.srcset"
       :format="size"
+      :lazy="lazy"
     ></image-lazy>
     <PuSkeleton v-else height="100%" />
   </div>
@@ -23,9 +23,9 @@ export default {
       type: String,
       default: null,
     },
-    sizes: {
-      type: Object,
-      default: null,
+    size: {
+      type: String,
+      default: 'full',
     },
     alt: {
       type: String,
@@ -51,9 +51,13 @@ export default {
       type: Object,
       default: null,
     },
-    size: {
+    srcset: {
       type: String,
       default: null,
+    },
+    lazy: {
+      type: Boolean,
+      default: true,
     },
   },
   data() {

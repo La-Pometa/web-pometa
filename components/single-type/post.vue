@@ -6,7 +6,10 @@
       ><fa class="mr-5 max-h-3" icon="arrow-left" /> {{ $t('goBack') }}</a
     >
     <div class="single-post">
-      <responsive-image :image-data="post.featured_source"></responsive-image>
+      <responsive-image
+        :image-data="post.featured_source"
+        :lazy="false"
+      ></responsive-image>
       <div>
         <the-content :render="post.title.rendered" tag="h1" />
         <div

@@ -9,13 +9,13 @@
       class="grid msm:grid-cols-1 mlg:grid-cols-2 grid-cols-3 gap-10"
     >
       <nuxt-link
-        v-for="post in posts"
+        v-for="(post, index) in posts"
         :key="post.id"
         :to="localePath(`/${post.slug}`)"
         class="hover:text-main-dark dark:hover:text-white no-highlight"
         :title="post.title.rendered"
       >
-        <post-card :post="post"></post-card>
+        <post-card :post="post" :index="index"></post-card>
       </nuxt-link>
     </div>
     <div v-else class="grid msm:grid-cols-1 mlg:grid-cols-2 grid-cols-3 gap-10">

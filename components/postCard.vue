@@ -1,7 +1,10 @@
 <template>
   <div v-if="post" class="blog-card">
     <div v-if="post.featured_source" class="blog-card-img">
-      <responsive-image :image-data="post.featured_source"></responsive-image>
+      <responsive-image
+        :image-data="post.featured_source"
+        :lazy="index > 6"
+      ></responsive-image>
     </div>
     <div v-else class="blog-card-img"><PuSkeleton height="100%" /></div>
     <div>
@@ -37,6 +40,10 @@ export default {
     post: {
       type: Object,
       default: null,
+    },
+    index: {
+      type: Number,
+      default: 7,
     },
   },
 }

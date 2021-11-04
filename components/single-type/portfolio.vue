@@ -6,6 +6,7 @@
           <responsive-image
             class="w-full h-full"
             :image-data="post.featured_source"
+            :lazy="false"
           ></responsive-image>
         </div>
       </div>

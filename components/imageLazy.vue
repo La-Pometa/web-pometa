@@ -1,6 +1,6 @@
 <template>
   <picture v-if="srcset">
-    <source v-if="!loaded" :srcset="srcMini" />
+    <source v-if="!loaded && lazy" data="mini" :srcset="srcMini" />
     <source
       v-for="(src, index) in getSrcset"
       :key="index"
@@ -14,7 +14,7 @@
       :width="width"
       :height="height"
       :title="title"
-      loading="lazy"
+      :loading="lazy ? 'lazy' : 'default'"
     />
   </picture>
   <picture v-else>
@@ -25,7 +25,7 @@
       :width="width"
       :height="height"
       :title="title"
-      loading="lazy"
+      :loading="lazy ? 'lazy' : 'default'"
     />
   </picture>
 </template>
@@ -59,6 +59,10 @@ export default {
       type: String,
       default: null,
     },
+    lazy: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
@@ -72,13 +76,19 @@ export default {
   },
   computed: {
     getSrcset() {
+      if (this._isServer) {
+        return this.srcset
+      }
       let sets = {}
       let lastKey = false
       for (const [key, src] of Object.entries(this.srcset)) {
         if (src.width <= this.elWidth || src.height <= this.elHeight) {
           if (lastKey) {
             const toSet = Object.entries(this.srcset).filter(
-              (x) => x[1].width === this.srcset[lastKey].width
+              (x) =>
+                x[1].width === this.srcset[lastKey].width &&
+                lastKey !== 'mini' &&
+                lastKey !== 'mini_webp'
             )
             toSet.forEach((item) => {
               sets[item[0]] = this.srcset[item[0]]
@@ -94,7 +104,10 @@ export default {
           ]
           if (key === limitKey) {
             const toSet = Object.entries(this.srcset).filter(
-              (x) => x[1].width === this.srcset[lastKey].width
+              (x) =>
+                x[1].width === this.srcset[lastKey].width &&
+                lastKey !== 'mini' &&
+                lastKey !== 'mini_webp'
             )
             toSet.forEach((item) => {
               sets[item[0]] = this.srcset[item[0]]
@@ -112,24 +125,29 @@ export default {
       return sets
     },
     srcImage() {
-      return this.intersected ? this.loadImage() : this.loadMini()
+      return this.intersected
+        ? this.loadImage()
+        : this.lazy
+        ? this.loadMini()
+        : this.loadImage()
     },
     srcMini() {
-      return this.srcset.mini_webp
-        ? this.srcset.mini_webp.source_url
-        : this.srcset.mini.source_url
+      return this.loadMini()
     },
   },
   mounted() {
-    this.observer = new IntersectionObserver((entries) => {
-      const image = entries[0]
-      if (image.isIntersecting) {
-        this.intersected = true
-        this.observer.disconnect()
-      }
-    })
-
-    this.observer.observe(this.$el)
+    if (this.lazy) {
+      this.observer = new IntersectionObserver((entries) => {
+        const image = entries[0]
+        if (image.isIntersecting) {
+          this.intersected = true
+          this.observer.disconnect()
+        }
+      })
+      this.observer.observe(this.$el)
+    }
+    this.elWidth = this.$el.querySelector('img').offsetWidth
+    this.elHeight = this.$el.querySelector('img').offsetHeight
   },
   destroyed() {
     this.observer.disconnect()
@@ -144,8 +162,6 @@ export default {
       return this.defaultImage()
     },
     loadImage() {
-      this.elWidth = this.$el.querySelector('img').offsetWidth
-      this.elHeight = this.$el.querySelector('img').offsetHeight
       const image =
         this.format && this.srcset[this.format]
           ? this.srcset[this.format].source_url
@@ -157,13 +173,15 @@ export default {
         return image
       }
 
-      this.$refs.image.addEventListener('load', () => {
-        this.$refs.image.classList.remove('hidden')
-        this.$refs.image.classList.remove('loading')
-        this.$refs.image.classList.add('loaded')
-        this.loaded = true
-        this.observer.disconnect()
-      })
+      if (this.lazy) {
+        this.$refs.image.addEventListener('load', () => {
+          this.$refs.image.classList.remove('hidden')
+          this.$refs.image.classList.remove('loading')
+          this.$refs.image.classList.add('loaded')
+          this.loaded = true
+          this.observer.disconnect()
+        })
+      }
 
       return image
     },
