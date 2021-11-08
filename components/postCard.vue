@@ -51,6 +51,7 @@ export default {
 <style lang="scss">
 .blog-card {
   @apply space-y-5 h-full flex flex-col;
+
   .blog-card-img {
     @apply aspect-w-4 aspect-h-3 relative;
 
@@ -58,16 +59,21 @@ export default {
       @apply object-cover w-full h-full;
     }
   }
+
   h2 {
-    @apply my-0 #{!important};
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
   }
+
   .blog-card-title {
     @apply font-butler font-bold leading-relaxed line-clamp-2;
     font-size: 18px;
   }
+
   .date {
     @apply text-gray-400 font-thin;
   }
+
   .blog-card-excerpt {
     @apply pb-5;
 
