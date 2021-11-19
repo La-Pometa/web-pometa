@@ -6,12 +6,22 @@
       ><fa class="mr-5 max-h-3" icon="arrow-left" /> {{ $t('goBack') }}</a
     >
     <div class="single-post">
-      <responsive-image
-        :image-data="post.featured_source"
-        :lazy="false"
-      ></responsive-image>
+      <div class="header">
+        <parallax :section-height="'100%'">
+          <responsive-image
+            :image-data="post.featured_source"
+            :lazy="false"
+            class="featured"
+          ></responsive-image>
+        </parallax>
+      </div>
+
       <div>
-        <the-content :render="post.title.rendered" tag="h1" />
+        <the-content
+          class="post-content"
+          :render="post.title.rendered"
+          tag="h1"
+        />
         <div
           class="
             text-opacity-70
@@ -72,11 +82,20 @@ export default {
 .single-post {
   @apply space-y-10 msm:space-y-5;
 
-  .responsive-image {
+  .header {
     @apply aspect-w-4 aspect-h-3;
-    img {
+    .responsive-image {
       @apply w-full h-full object-cover;
     }
+  }
+
+  .post-content .responsive-image {
+    @apply w-full my-5;
+  }
+
+  video,
+  iframe {
+    @apply w-full;
   }
 }
 </style>
