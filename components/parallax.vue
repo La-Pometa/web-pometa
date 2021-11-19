@@ -29,7 +29,7 @@ export default {
       type: Boolean,
     },
     breakpoint: {
-      default: '(min-width: 968px)',
+      default: '(min-width: 0px)',
       type: String,
     },
     sectionHeight: {
