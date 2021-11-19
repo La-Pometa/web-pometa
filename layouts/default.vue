@@ -3,14 +3,7 @@
     <div
       id="wrapper"
       ref="wrapper"
-      class="
-        transition-all
-        duration-500
-        min-w-screen
-        h-screen
-        flex
-        msm:overflow-x-hidden
-      "
+      class="transition-all duration-500 min-w-screen h-screen flex"
     >
       <div
         id="sidebar-wrapper"
@@ -32,10 +25,7 @@
             z-20
           "
         >
-          <div
-            id="left-sidebar-content"
-            class="p-7 msm:p-5 w-64 flex flex-col overflow-y-auto"
-          >
+          <div id="left-sidebar-content" class="p-7 msm:p-5 w-64 flex flex-col">
             <nuxt-link :to="localePath('/')">
               <div class="logo">
                 <div class="responsive-image">
