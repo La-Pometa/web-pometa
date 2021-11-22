@@ -51,7 +51,7 @@ export default {
     this.loadingMore = true
 
     await this.$content.getAllFromType('posts', this.page).then((res) => {
-      this.posts.push(...res)
+      this.posts.push(...res.data)
       this.loadingMore = false
 
       if (res.length < 9) {

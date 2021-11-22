@@ -96,13 +96,15 @@ export default {
     }
   },
   async fetch() {
-    this.members = await this.$content.getAllFromType(
+    const res = await this.$content.getAllFromType(
       'member',
       1,
       100,
       'menu_order',
       'asc'
     )
+
+    this.members = res.data
   },
   mounted() {
     const hash = window.location.hash

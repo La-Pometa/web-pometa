@@ -96,7 +96,7 @@ export default {
     await this.$content
       .getAllFromType('portfolio', 1, 100, 'menu_order', 'asc')
       .then((res) => {
-        this.projects.push(...res)
+        this.projects.push(...res.data)
       })
   },
   head() {
