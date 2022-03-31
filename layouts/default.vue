@@ -85,22 +85,22 @@
               </div>
             </nuxt-link>
             <nav id="menu" class="flex flex-col mt-7 font-medium text-xs gap-4">
-              <span
+              <span tabindex="0"
                 ><nuxt-link :to="localePath('/')">{{
                   $t('home')
                 }}</nuxt-link></span
               >
-              <span
+              <span tabindex="0"
                 ><nuxt-link :to="localePath('/pometa')">{{
                   $t('laPometa')
                 }}</nuxt-link></span
               >
-              <span
+              <span tabindex="0"
                 ><nuxt-link :to="localePath('/proyectos')">{{
                   $t('projects')
                 }}</nuxt-link></span
               >
-              <span
+              <span tabindex="0"
                 ><a class="not-click">{{ $t('special') }}</a>
                 <div class="sub-menu">
                   <div class="item">
@@ -125,19 +125,24 @@
                   </div>
                 </div>
               </span>
-              <span
+              <span tabindex="0"
                 ><nuxt-link :to="localePath('/blog')">{{
                   $t('blog')
                 }}</nuxt-link></span
               >
-              <span
+              <span tabindex="0"
                 ><nuxt-link :to="localePath('/contacto')">{{
                   $t('contact')
                 }}</nuxt-link></span
               >
-              <span
+              <span tabindex="0"
                 ><nuxt-link :to="localePath('/desayuna-con-manzanas')">{{
                   $t('breakfast')
+                }}</nuxt-link></span
+              >
+              <span tabindex="0" class="featured-item"
+                ><nuxt-link :to="localePath($t('kitdigital').link)">{{
+                  $t('kitdigital').text
                 }}</nuxt-link></span
               >
             </nav>
@@ -445,6 +450,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.featured-item a {
+  @apply bg-primary py-0.5 px-2 hover:bg-gray-700 font-bold text-main-dark;
+}
 @media (max-width: 639px) {
   #content {
     flex: 0 0 100vw;

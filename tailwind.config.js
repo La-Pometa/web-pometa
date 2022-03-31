@@ -1,27 +1,24 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
-  mode: 'jit',
-  purge: {
-    content: ['./src/**/*.html', './src/**/*.vue', './src/**/*.jsx'],
-    safelist: [
-      'grid',
-      'md:grid-cols-2',
-      'w-full',
-      'h-full',
-      'md:row-span-2',
-      'justify-items-center',
-      'items-center',
-      'gap-3',
-      'object-cover',
-      'dark:block',
-      'dark:hidden',
-      'mmd:aspect-w-1',
-      'mmd:aspect-h-1',
-      'mmd:min-h-screen',
-      'mmd:row-start-1',
-      'mmd:row-start-2',
-    ],
-  },
+  content: ['./src/**/*.html', './src/**/*.vue', './src/**/*.jsx'],
+  safelist: [
+    'grid',
+    'md:grid-cols-2',
+    'w-full',
+    'h-full',
+    'md:row-span-2',
+    'justify-items-center',
+    'items-center',
+    'gap-3',
+    'object-cover',
+    'dark:block',
+    'dark:hidden',
+    'mmd:aspect-w-1',
+    'mmd:aspect-h-1',
+    'mmd:min-h-screen',
+    'mmd:row-start-1',
+    'mmd:row-start-2',
+  ],
   darkMode: 'media', // or 'media' or 'class'
   theme: {
     screens: {

@@ -151,6 +151,80 @@ export class Content {
     return new Post(post).getMetaSeo()
   }
 
+  getMetaTitle(meta: any) {
+    if (meta) {
+      return meta.og_title
+    }
+  }
+
+  getMetaSeo(meta: any) {
+    if (meta) {
+      const metas = []
+      for (const key in meta) {
+        if (
+          Object.hasOwnProperty.call(meta, key) &&
+          (key.startsWith('og_') ||
+            key.startsWith('article_') ||
+            key.startsWith('description'))
+        ) {
+          if (key === 'og_image') {
+            metas.push({
+              name: key.replace('_', ':'),
+              content: meta[key][0].url,
+            })
+            metas.push({
+              name: key.replace('_', ':') + ':width',
+              content: meta[key][0].width,
+            })
+            metas.push({
+              name: key.replace('_', ':') + ':height',
+              content: meta[key][0].height,
+            })
+          } else {
+            metas.push({
+              name: key.replace('_', ':'),
+              content: meta[key],
+            })
+          }
+        } else if (
+          Object.hasOwnProperty.call(meta, key) &&
+          key.startsWith('twitter_') &&
+          key !== 'twitter_misc'
+        ) {
+          metas.push({
+            name: key.replace('_', ':'),
+            content: meta[key],
+          })
+        } else if (key === 'robots') {
+          const robots: any[] = []
+
+          for (const robot in meta[key]) {
+            robots.push(meta[key][robot])
+          }
+
+          metas.push({
+            name: 'robots',
+            content: robots.join(', '),
+          })
+        }
+      }
+
+      if (!metas.filter((x) => x.name === 'description').length) {
+        if (metas.filter((x) => x.name === 'og:description').length) {
+          const description = metas.find((x) => x.name === 'og:description')
+          metas.push({
+            name: 'description',
+            content: description ? description.content : '',
+          })
+        }
+      }
+
+      return metas
+    } else {
+      return null
+    }
+  }
+
   getPostHeadTitle(post: any): any | null {
     return new Post(post).getHeadTitle()
   }

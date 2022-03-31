@@ -7,6 +7,10 @@ export default {
     text: 'Departamento de marketing externo',
     link: '/departamento-marketing-externo',
   },
+  kitdigital: {
+    text: 'Kit Digital',
+    link: '/kit-digital',
+  },
   design: {
     text: 'Diseño gráfico',
     link: '/diseno-grafico',

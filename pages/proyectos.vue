@@ -90,6 +90,7 @@ export default {
   data() {
     return {
       projects: [],
+      meta: {},
     }
   },
   async fetch() {
@@ -97,11 +98,13 @@ export default {
       .getAllFromType('portfolio', 1, 100, 'menu_order', 'asc')
       .then((res) => {
         this.projects.push(...res.data)
+        this.meta = res.meta
       })
   },
   head() {
     return {
-      title: this.$content.getTitle(this.$t('projects')),
+      title: this.$content.getMetaTitle(this.meta),
+      meta: [...this.$content.getMetaSeo(this.meta)],
     }
   },
 }

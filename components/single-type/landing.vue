@@ -1,11 +1,28 @@
 <template>
   <section id="single-landing" :style="cssVars">
-    <parallax-header
-      v-if="post.featured_source"
-      :image="post.featured_source"
-    ></parallax-header>
-    <div class="container-landing margins-header">
-      <h1 class="title">
+    <div v-if="$content.getPostMeta(post, 'header') === 'image'">
+      <parallax-header
+        :image="$content.getPostMeta(post, 'header_image')"
+      ></parallax-header>
+    </div>
+    <div
+      v-else-if="$content.getPostMeta(post, 'header') === 'color'"
+      id="header-image"
+    >
+      <div class="flex h-full items-center justify-center py-7">
+        <h1 class="title !text-7xl mmd:!text-5xl text-white !pb-0">
+          {{ $content.getPostMeta(post, 'pg_landings_title') }}
+        </h1>
+      </div>
+    </div>
+    <div
+      class="container-landing"
+      :class="{
+        'margins-header': $content.getPostMeta(post, 'header') !== 'none',
+        'margins msm:mt-14': $content.getPostMeta(post, 'header') === 'none',
+      }"
+    >
+      <h1 v-if="$content.getPostMeta(post, 'header') !== 'color'" class="title">
         {{ $content.getPostMeta(post, 'pg_landings_title') }}
       </h1>
       <h2 class="subtitle">
@@ -13,6 +30,11 @@
           :render="$content.getPostMeta(post, 'pg_landings_subtitle')"
         />
       </h2>
+      <div v-if="$content.getPostMeta(post, 'subtitle_image')">
+        <responsive-image
+          :image-data="$content.getPostMeta(post, 'subtitle_image')"
+        ></responsive-image>
+      </div>
       <div class="grid grid-cols-1 lg:grid-cols-12 mt-10 gap-8">
         <div class="col-span-4 mlg:col-span-1 mlg:row-start-2">
           <div class="sticky top-10">
@@ -23,7 +45,7 @@
             />
           </div>
         </div>
-        <div class="col-span-8 mlg:col-span-1">
+        <div class="col-span-8 mlg:col-span-1 landing-content">
           <the-content :render="post.content.rendered"></the-content>
         </div>
       </div>
@@ -114,7 +136,129 @@ export default {
   },
 }
 </script>
+<style lang="scss">
+.landing-content {
+  .landing-icons-grid .image_with_text > p {
+    flex-direction: row !important;
+    height: auto !important;
+  }
+  .landing-icons-grid .image_with_text a {
+    flex: 0 0 100px;
+    text-align: right !important;
+    margin-top: unset !important;
+    margin-left: auto;
+  }
+  .kit-digital-solucion .wpb_wrapper > .vc_separator + .wpb_text_column {
+    border-left: 1px solid #cccccc;
+    padding-left: 15px;
+    margin-left: 15px;
+  }
+  .kit-digital-solucion + .kit-digital-solucion {
+    margin-top: 35px;
+  }
+
+  .landing-icons-grid .image_with_text img {
+    width: 80px !important;
+    height: 80px !important;
+  }
+  .landing-icons-grid .landing-bullet-title {
+    font-size: 24px !important;
+    text-align: left !important;
+    line-height: 28px !important;
+  }
+
+  @media (max-width: 768px) {
+    .landing-icons-grid .image_with_text img {
+      width: 80px !important;
+      height: 80px !important;
+    }
+    .landing-icons-grid .landing-bullet-title {
+      font-size: 20px !important;
+      line-height: 24px !important;
+    }
+    .landing-icons-grid .image_with_text > p {
+      gap: 5px !important;
+    }
+  }
+
+  h2,
+  h1 {
+    @apply py-5;
+  }
+
+  table {
+    @apply prose dark:prose-invert my-5;
+  }
+
+  img {
+    @apply inline-block;
+  }
+
+  .landing-icons-grid .landing-bullet-title {
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+  }
+  .landing-icons-grid .landing-bullet-title {
+    font-size: 24px !important;
+    text-align: left !important;
+    line-height: 28px !important;
+  }
+
+  .landing-icons-grid .image_with_text a {
+    margin-top: auto;
+    font-size: 12px;
+  }
+
+  .landing-icons-grid .image_with_text a {
+    flex: 0 0 100px;
+    text-align: right !important;
+    margin-top: unset !important;
+    margin-left: auto;
+  }
+
+  .image_with_text {
+    & > p {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      height: 170px;
+      gap: 10px;
+      padding: 10px;
+      box-sizing: border-box;
+      transition: all 0.4s;
+    }
+
+    img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      filter: hue-rotate(166deg) opacity(0.3);
+    }
+
+    & > p {
+      flex-direction: row !important;
+      height: auto !important;
+    }
+  }
+
+  .landing {
+    &-box {
+      @apply border p-5 my-4;
+      border-color: rgba(var(--landing-color), 1);
+    }
+    &-featured {
+      @apply p-5 my-4;
+      background-color: rgba(var(--landing-color), 1);
+    }
+  }
+}
+</style>
 <style lang="scss" scoped>
+#header-image {
+  background-color: rgba(var(--landing-color), 1);
+}
 a:hover {
   color: rgba(var(--landing-color), 1);
 }
@@ -201,7 +345,7 @@ a:hover {
 #bottom-section {
   @apply p-10;
 
-  background-color: rgba(var(--landing-color), 0.03);
+  background-color: rgba(var(--landing-color), 0.13);
 
   @media (prefers-color-scheme: dark) {
     background-color: rgba(var(--landing-color), 0.13);

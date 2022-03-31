@@ -41,6 +41,7 @@ export default {
       page: 1,
       loadingMore: false,
       more: true,
+      meta: [],
     }
   },
   async fetch() {
@@ -53,6 +54,7 @@ export default {
     await this.$content.getAllFromType('posts', this.page).then((res) => {
       this.posts.push(...res.data)
       this.loadingMore = false
+      this.meta = res.meta
 
       if (res.length < 9) {
         this.more = false
@@ -61,7 +63,8 @@ export default {
   },
   head() {
     return {
-      title: this.$content.getTitle('Blog'),
+      title: this.$content.getMetaTitle(this.meta),
+      meta: [...this.$content.getMetaSeo(this.meta)],
     }
   },
   mounted() {
