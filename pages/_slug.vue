@@ -17,16 +17,8 @@ export default {
 
     if (!postData || postData.length === 0) {
       error({ statusCode: 404, message: 'Post not found' })
-    } else {
-      const translations = {}
-
-      if (postData.translations) {
-        for (const translation of postData.translations) {
-          translations[translation.locale] = { slug: translation.slug }
-        }
-      }
-
-      store.dispatch('i18n/setRouteParams', translations)
+    } else if (postData.translation) {
+      await store.dispatch('i18n/setRouteParams', postData.translation)
     }
     return { postData, postType: postData.type }
   },

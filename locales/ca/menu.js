@@ -24,9 +24,15 @@ export default {
     link: '/agencia-publicitat',
   },
   blog: 'Blog',
-  contact: 'Contacte',
-  breakfast: 'Esmorza amb pomes',
-  oficinas: 'Oficines en Lleida i Terrassa (BCN)',
+  contact: {
+    text: 'Contacte',
+    link: '/contacte',
+  },
+  breakfast: {
+    text: 'Esmorza amb pomes',
+    link: '/esmorza-amb-pomes',
+  },
+  oficinas: 'Oficines en Lleida i Barcelona (BCN)',
   privacidad: {
     text: 'Política de Privacitat',
     link: '/politica-de-privacitat',

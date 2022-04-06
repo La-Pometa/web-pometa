@@ -24,9 +24,15 @@ export default {
     link: '/agencia-publicidad',
   },
   blog: 'Blog',
-  contact: 'Contacto',
-  breakfast: 'Desayuna con manzanas',
-  oficinas: 'Oficinas en Lleida y Terrassa (BCN)',
+  contact: {
+    text: 'Contacto',
+    link: '/contacto',
+  },
+  breakfast: {
+    text: 'Desayuna con manzanas',
+    link: '/desayuna-con-manzanas',
+  },
+  oficinas: 'Oficinas en Lleida y Barcelona (BCN)',
   privacidad: {
     text: 'Política de Privacidad',
     link: '/politica-de-privacidad',

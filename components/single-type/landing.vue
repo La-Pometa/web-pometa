@@ -138,6 +138,22 @@ export default {
 </script>
 <style lang="scss">
 .landing-content {
+  .pg-row-col2 {
+    @apply grid sm:grid-cols-2 gap-3;
+
+    img {
+      @apply w-full;
+    }
+  }
+
+  h3 {
+    @apply font-butler font-bold text-lg;
+  }
+
+  img {
+    @apply my-5;
+  }
+
   .landing-icons-grid .image_with_text > p {
     flex-direction: row !important;
     height: auto !important;

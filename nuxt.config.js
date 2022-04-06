@@ -78,15 +78,6 @@ export default {
       proyectos: {
         ca: '/projectes',
       },
-      contacto: {
-        ca: '/contacte',
-      },
-      'departamento-marketing-externo': {
-        ca: '/departament-marqueting-extern',
-      },
-      'desayuna-con-manzanas': {
-        ca: '/esmorza-amb-pomes',
-      },
     },
   },
 

@@ -131,13 +131,13 @@
                 }}</nuxt-link></span
               >
               <span tabindex="0"
-                ><nuxt-link :to="localePath('/contacto')">{{
-                  $t('contact')
+                ><nuxt-link :to="localePath($t('contact').link)">{{
+                  $t('contact').text
                 }}</nuxt-link></span
               >
               <span tabindex="0"
-                ><nuxt-link :to="localePath('/desayuna-con-manzanas')">{{
-                  $t('breakfast')
+                ><nuxt-link :to="localePath($t('breakfast').link)">{{
+                  $t('breakfast').text
                 }}</nuxt-link></span
               >
               <span tabindex="0" class="featured-item"

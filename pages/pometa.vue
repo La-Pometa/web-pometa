@@ -1,21 +1,15 @@
 <template>
-  <section id="page-pometa">
-    <parallax-header :image="pageData.featured_source" class="relative">
-      <div
-        class="header-text absolute bottom-0 left-1/2 tranform -translate-x-1/2"
-      >
-        <span class="text-shadow">Fresh ideas</span>
-        <span class="text-shadow">for new times</span>
-      </div>
-    </parallax-header>
+  <section id="page-pometa" class="margins msm:mt-14">
+    <div class="header-text">
+      <span class="">Fresh ideas</span>
+      <span class="">for new times</span>
+    </div>
 
     <the-content
       id="page-pometa-content"
       :render="pageContent"
       class="container-1024 mx-auto margins-header space-y-10"
     ></the-content>
-    <!--     <the-content v-if="pageContent" :render="pageContent" />
- -->
   </section>
 </template>
 <script>
@@ -37,9 +31,9 @@ export default {
 </script>
 <style lang="scss">
 .header-text {
-  @apply mb-14 flex flex-col items-center space-y-1;
+  @apply flex flex-col items-center space-y-1;
   span {
-    @apply font-butler font-bold text-6xl msm:text-5xl whitespace-nowrap text-white block bg-primary bg-opacity-80 backdrop-filter backdrop-blur px-6 msm:px-3 py-2 msm:py-1;
+    @apply font-butler font-bold text-6xl msm:text-5xl whitespace-nowrap block text-primary bg-opacity-80 backdrop-filter backdrop-blur px-6 msm:px-3 py-2 msm:py-1;
   }
 }
 #page-pometa-content {

@@ -1,0 +1,17 @@
+#contact-page {
+  #grid {
+    @apply grid grid-cols-1 lg:grid-cols-12 mt-10 gap-8;
+
+    .left-sidebar {
+      @apply lg:col-span-4 space-y-5;
+    }
+
+    .content {
+      @apply lg:col-span-8;
+    }
+
+    .cf7-form [type='submit'] {
+      @apply w-auto block px-8 ml-auto;
+    }
+  }
+}
