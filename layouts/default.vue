@@ -27,60 +27,44 @@
         >
           <div id="left-sidebar-content" class="p-7 msm:p-5 w-64 flex flex-col">
             <nuxt-link :to="localePath('/')">
-              <div class="logo">
+              <div v-if="$i18n.locale == 'ca'" class="logo cat">
                 <div class="responsive-image">
-                  <image-lazy
+                  <img
                     class="dark:hidden"
                     alt="logo la pometa"
                     :width="300"
                     :height="82"
-                    :srcset="{
-                      full_webp: {
-                        source_url:
-                          'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/logos-pometa-cat.png.webp',
-                      },
-                      mini: {
-                        source_url:
-                          'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/logos-pometa-cat-40x11.png',
-                      },
-                      mini_webp: {
-                        source_url:
-                          'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/logos-pometa-cat-40x11.png.webp',
-                      },
-                      full: {
-                        source_url:
-                          'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/logos-pometa-cat.png',
-                      },
-                    }"
-                    :blur="false"
-                  ></image-lazy>
+                    src="@/assets/img/logos-pometa-cat.svg"
+                  />
                 </div>
                 <div class="responsive-image">
-                  <image-lazy
+                  <img
                     class="hidden dark:block"
                     alt="logo la pometa"
                     :width="300"
                     :height="82"
-                    :srcset="{
-                      full: {
-                        source_url:
-                          'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/pometa_logo_white_cat-300x80.png',
-                      },
-                      full_webp: {
-                        source_url:
-                          'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/pometa_logo_white_cat-300x80.png.webp',
-                      },
-                      mini: {
-                        source_url:
-                          'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/pometa_logo_white_cat-40x11.png',
-                      },
-                      mini_webp: {
-                        source_url:
-                          'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/pometa_logo_white_cat-40x11.png.webp',
-                      },
-                    }"
-                    :blur="false"
-                  ></image-lazy>
+                    src="@/assets/img/logos-pometa-cat-white.svg"
+                  />
+                </div>
+              </div>
+              <div v-if="$i18n.locale == 'es'" class="logo esp">
+                <div class="responsive-image">
+                  <img
+                    class="dark:hidden"
+                    alt="logo la pometa"
+                    :width="300"
+                    :height="82"
+                    src="@/assets/img/logos-pometa-esp.svg"
+                  />
+                </div>
+                <div class="responsive-image">
+                  <img
+                    class="hidden dark:block"
+                    alt="logo la pometa"
+                    :width="300"
+                    :height="82"
+                    src="@/assets/img/logos-pometa-esp-white.svg"
+                  />
                 </div>
               </div>
             </nuxt-link>
@@ -247,58 +231,37 @@
                   </div>
                 </div>
                 <nuxt-link :to="localePath('/desayuna-con-manzanas')">
-                  <div class="responsive-image w-6">
-                    <image-lazy
+                  <div class="taza responsive-image w-6">
+                    <img
                       class="dark:hidden"
                       alt="desayuno con manzanas"
                       :width="141"
                       :height="113"
-                      :srcset="{
-                        full_webp: {
-                          source_url:
-                            'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa_black.png.webp',
-                        },
-                        mini: {
-                          source_url:
-                            'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa_black-40x32.png',
-                        },
-                        mini_webp: {
-                          source_url:
-                            'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa_black-40x32.png.webp',
-                        },
-                        full: {
-                          source_url:
-                            'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa_black.png',
-                        },
-                      }"
-                      :blur="false"
-                    ></image-lazy>
-                    <image-lazy
+                      src="@/assets/img/taza_pometa.svg"
+                    />
+                    <!--                     <img
+                      class="hover dark:hidden"
+                      alt="desayuno con manzanas"
+                      :width="141"
+                      :height="113"
+                      src="@/assets/img/taza_pometa_hover.svg"
+                    /> -->
+                    <img
                       class="hidden dark:block"
                       alt="desayuno con manzanas"
                       :width="141"
                       :height="113"
-                      :srcset="{
-                        full_webp: {
-                          source_url:
-                            'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa.png.webp',
-                        },
-                        mini: {
-                          source_url:
-                            'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa-40x32.png',
-                        },
-                        mini_webp: {
-                          source_url:
-                            'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa-40x32.png.webp',
-                        },
-                        full: {
-                          source_url:
-                            'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/taza_pometa.png',
-                        },
-                      }"
-                      :blur="false"
-                    ></image-lazy></div
-                ></nuxt-link>
+                      src="@/assets/img/taza_pometa_white.svg"
+                    />
+                    <!--                     <img
+                      class="hover hidden dark:block"
+                      alt="desayuno con manzanas"
+                      :width="141"
+                      :height="113"
+                      src="@/assets/img/taza_pometa_white_hover.svg"
+                    /> -->
+                  </div></nuxt-link
+                >
               </div>
             </div>
 
@@ -316,74 +279,22 @@
               "
             >
               <div class="responsive-image">
-                <image-lazy
+                <img
                   class="dark:hidden"
                   alt="logo la pometa"
                   :width="221"
                   :height="300"
-                  :srcset="{
-                    full: {
-                      file: 'anagrama_pometa_black-221x300.png',
-                      width: 221,
-                      height: 300,
-                      mime_type: 'image\/png',
-                      source_url:
-                        'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_black-221x300.png',
-                    },
-                    full_webp: {
-                      file: 'anagrama_pometa_black-221x300.png.webp',
-                      width: 221,
-                      height: 300,
-                      mime_type: 'image\/webp',
-                      source_url:
-                        'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_black-221x300.png.webp',
-                    },
-                    mini: {
-                      file: 'anagrama_pometa_black-29x40.png',
-                      width: 29,
-                      height: 40,
-                      mime_type: 'image\/png',
-                      source_url:
-                        'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_black-29x40.png',
-                    },
-                    mini_webp: {
-                      file: 'anagrama_pometa_black-29x40.png.webp',
-                      width: 29,
-                      height: 40,
-                      mime_type: 'image\/webp',
-                      source_url:
-                        'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_black-29x40.png.webp',
-                    },
-                  }"
-                  :blur="false"
-                ></image-lazy>
+                  src="@/assets/img/anagrama-pometa.svg"
+                />
               </div>
               <div class="responsive-image">
-                <image-lazy
+                <img
                   class="hidden dark:block"
                   alt="logo la pometa"
                   :width="221"
                   :height="300"
-                  :srcset="{
-                    full: {
-                      source_url:
-                        'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_white-221x300.png',
-                    },
-                    full_webp: {
-                      source_url:
-                        'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_white-221x300.png.webp',
-                    },
-                    mini: {
-                      source_url:
-                        'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_white-29x40.png',
-                    },
-                    mini_webp: {
-                      source_url:
-                        'https:\/\/www.lapometa.com\/headless\/wp-content\/uploads\/2021\/09\/anagrama_pometa_white-29x40.png.webp',
-                    },
-                  }"
-                  :blur="false"
-                ></image-lazy>
+                  src="@/assets/img/anagrama-pometa-white.svg"
+                />
               </div>
             </div>
           </div>
@@ -412,9 +323,7 @@
   </div>
 </template>
 <script>
-import imageLazy from '~/components/imageLazy.vue'
 export default {
-  components: { imageLazy },
   data() {
     return {
       offsetWidth: 0,
@@ -586,5 +495,17 @@ export default {
 }
 #left-sideBar {
   box-shadow: 0 0 0 1px rgba(122, 122, 122, 0.1);
+}
+.taza {
+  &:not(:hover) {
+    .hover {
+      @apply hidden;
+    }
+  }
+  &:hover {
+    & > *:not(.hover) {
+      @apply hidden;
+    }
+  }
 }
 </style>
