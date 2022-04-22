@@ -259,7 +259,8 @@ export default {
       }
     }
   }
-  strong {
+
+  header strong {
     @apply block mt-4;
 
     & + strong {
