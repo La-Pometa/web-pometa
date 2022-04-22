@@ -496,7 +496,7 @@ export default {
 #left-sideBar {
   box-shadow: 0 0 0 1px rgba(122, 122, 122, 0.1);
 }
-.taza {
+/* .taza {
   &:not(:hover) {
     .hover {
       @apply hidden;
@@ -507,5 +507,5 @@ export default {
       @apply hidden;
     }
   }
-}
+} */
 </style>
