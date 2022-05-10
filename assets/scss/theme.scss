@@ -60,6 +60,9 @@ h1 {
 h5 {
   @apply font-butler text-2xl font-bold;
 }
+h6 {
+  @apply font-butler text-lg font-bold;
+}
 
 .responsive-image {
   @apply overflow-hidden;
