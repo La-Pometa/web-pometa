@@ -1,6 +1,13 @@
 <template>
   <div id="social" class="flex gap-3">
     <a
+      href="https://api.whatsapp.com/send?phone=+34649935970&text=!Hola%20Laia!,%20%C2%BFnos%20puedes%20ayudar?"
+      target="_blank"
+      title="Whatsapp de La Pometa"
+      class="no-highlight"
+      ><fa :icon="['fab', 'whatsapp']"
+    /></a>
+    <a
       href="https://www.instagram.com/lapometaagencia/"
       target="_blank"
       title="Instagram La Pometa"
@@ -30,3 +37,8 @@
     /></a>
   </div>
 </template>
+<style lang="scss">
+#social {
+  @apply text-lg;
+}
+</style>
