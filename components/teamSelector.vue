@@ -1,78 +1,75 @@
 <template>
-  <div v-if="members.length" class="team grid md:grid-cols-12 lg:px-20 gap-8">
-    <div class="md:col-span-5">
-      <div
-        v-for="(member, index) in members"
-        :id="generateId($content.getPostTitle(member))"
-        :key="member.title.rendered"
-        :class="index == 0 ? '' : 'hidden'"
-        class="left-image"
-      >
-        <responsive-image :image-data="member.featured_source" />
-        <span>{{ $content.getPostMeta(member, 'members_title') }}</span>
-      </div>
-    </div>
-    <div class="md:col-span-7 space-y-8">
-      <h2 class="font-butler font-bold text-3xl">{{ title }}</h2>
-      <p>
-        {{ content }}
-      </p>
-      <div class="team-selector flex flex-col min-h-[400px]">
-        <a
-          v-for="(member, index) in members"
-          :key="member.title.rendered"
-          :href="'#' + generateId($content.getPostTitle(member))"
-          :data-target="'#' + generateId($content.getPostTitle(member))"
-          class="no-highlight hover:text-main-dark"
-          @click="toggleItem($event)"
-        >
-          <div class="member" :class="index == 0 ? 'open' : ''">
-            <span
-              >{{ $content.getPostTitle(member) }}
-              <fa class="arrow" :icon="['fas', 'chevron-up']"
-            /></span>
-            <div class="content">
-              <the-content :render="$content.getPostContent(member)" />
+  <div id="member-list">
+    <div v-if="members" class="content">
+      <div class="featured-wrapper">
+        <div class="featured-members">
+          <div
+            v-for="(member, index) in featuredMembers"
+            :key="index"
+            class="member featured"
+          >
+            <div v-if="member.featured_source" class="image">
+              <responsive-image
+                :image-data="member.featured_source"
+              ></responsive-image>
+              <div class="overlay" v-html="member.content.rendered"></div>
+            </div>
+            <div class="inner">
+              <div class="name title-3">
+                {{ member.title.rendered }}
+              </div>
+              <div
+                class="position"
+                v-html="member.meta_info.members_title"
+              ></div>
             </div>
           </div>
-        </a>
+        </div>
+      </div>
+      <div class="members">
+        <div v-for="(member, index) in allMembers" :key="index" class="member">
+          <div v-if="member.featured_source" class="image">
+            <responsive-image
+              :image-data="member.featured_source"
+            ></responsive-image>
+            <div class="overlay" v-html="member.content.rendered"></div>
+          </div>
+          <div class="name title-3">
+            {{ member.title.rendered }}
+          </div>
+          <div class="claim" v-html="member.meta_info.members_title"></div>
+        </div>
       </div>
     </div>
-  </div>
-  <div v-else class="team grid md:grid-cols-12 lg:px-20 gap-8">
-    <div class="md:col-span-5 aspect-w-3 aspect-h-4">
-      <PuSkeleton height="100%" />
-    </div>
-    <div class="md:col-span-7 space-y-8">
-      <h2 class="font-butler font-bold text-3xl">{{ title }}</h2>
-      <p>
-        {{ content }}
-      </p>
-      <div class="team-selector flex flex-col">
-        <a class="no-highlight hover:text-main-dark">
-          <div class="member open">
-            <span
-              ><PuSkeleton width="30%" />
-              <fa class="arrow" :icon="['fas', 'chevron-up']"
-            /></span>
-            <div class="content">
-              <PuSkeleton :count="3" />
+    <div v-else class="content">
+      <div class="featured-wrapper">
+        <div class="featured-members">
+          <div v-for="index in 2" :key="index" class="member featured">
+            <div class="image">
+              <PuSkeleton height="100%" />
+            </div>
+            <div class="inner">
+              <div class="name title-3">
+                <PuSkeleton />
+              </div>
+              <div class="position"><PuSkeleton :count="3" /></div>
+              <div class="claim"><PuSkeleton :count="3" /></div>
             </div>
           </div>
-        </a>
-        <a
-          v-for="index in 3"
-          :key="index"
-          class="no-highlight hover:text-main-dark"
-        >
-          <div class="member">
-            <span
-              ><PuSkeleton width="30%" />
-              <fa class="arrow" :icon="['fas', 'chevron-up']"
-            /></span>
-            <div class="content"></div>
+        </div>
+      </div>
+      <div class="members">
+        <div v-for="index in 6" :key="index" class="member">
+          <div class="image">
+            <PuSkeleton height="100%" />
           </div>
-        </a>
+          <div class="title-3 mt-2">
+            <PuSkeleton />
+          </div>
+          <div>
+            <PuSkeleton />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -106,34 +103,15 @@ export default {
 
     this.members = res.data
   },
-  mounted() {
-    const hash = window.location.hash
-    let firstTarget = null
-    if (hash) {
-      firstTarget = document.querySelector(`[data-target="${hash}"] .member`)
-
-      if (!firstTarget) {
-        return
-      }
-
-      firstTarget.classList.add('open')
-
-      document.querySelectorAll('.left-image').forEach((image) => {
-        image.classList.add('hidden')
-      })
-
-      document
-        .querySelector(firstTarget.parentElement.dataset.target)
-        .classList.remove('hidden')
-
-      document.querySelectorAll('.member').forEach((member) => {
-        member.classList.remove('open')
-      })
-      firstTarget.parentElement
-        .querySelector('.member')
-        .classList.toggle('open')
-    }
+  computed: {
+    featuredMembers() {
+      return this.members.filter((member) => member.meta_info.members_featured)
+    },
+    allMembers() {
+      return this.members.filter((member) => !member.meta_info.members_featured)
+    },
   },
+  mounted() {},
   methods: {
     generateId(string) {
       return string
@@ -163,36 +141,136 @@ export default {
 </script>
 
 <style lang="scss">
-.team-selector {
-  * {
-    transition-timing-function: linear !important;
+#member-list {
+  @apply mb-20;
+
+  .content {
+    @apply space-y-16;
+  }
+
+  .featured-wrapper {
+    @apply max-w-screen-md mx-auto;
+  }
+  .featured-members {
+    @apply grid justify-center justify-items-stretch gap-8;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 350px));
+  }
+  .members {
+    @apply sm:grid sm:gap-7;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+
+    @screen msm {
+      @apply snap-mandatory snap-x overflow-x-auto;
+      @apply flex -m-5 pb-3;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      .member {
+        @apply snap-center;
+        --slider-margin: 1.25rem;
+
+        margin: 0 calc(var(--slider-margin) / 4);
+        flex: 0 0 calc(100% - (var(--slider-margin) * 2));
+
+        &:first-child {
+          margin-left: var(--slider-margin);
+        }
+      }
+
+      &:after {
+        content: '';
+        @apply block pr-3;
+      }
+    }
   }
   .member {
-    @apply relative text-sm cursor-pointer transition-all duration-300 mb-4;
+    @apply relative;
 
-    & > span {
-      @apply font-bold block w-full md:max-w-xs relative transition-all duration-300;
-    }
-
-    & > .content {
-      @apply pl-2 pt-2 overflow-hidden transition-all duration-300;
-      max-height: 85px;
-    }
-
-    .arrow {
-      @apply absolute top-1/2 right-0 text-sm w-3 transform -translate-y-1/2 transition-all duration-300;
-    }
-
-    &.open {
-      @apply text-secondary;
-    }
-
-    &:not(.open) {
-      .content {
-        max-height: 0;
+    &.featured {
+      .name {
+        @apply mt-5;
       }
-      .arrow {
-        @apply -rotate-180;
+
+      &:nth-child(even) {
+        .image {
+          &:before {
+            @apply translate-y-3;
+          }
+        }
+      }
+
+      .image {
+        .overlay {
+          @apply msm:opacity-0;
+        }
+
+        @screen sm {
+          &:after,
+          &:before {
+            @apply transition duration-300 origin-bottom-left;
+          }
+
+          &:before {
+            content: '';
+            @apply absolute inset-0 bg-primary;
+            @apply -translate-y-3 translate-x-3;
+          }
+        }
+      }
+    }
+
+    .position {
+      @apply text-center;
+    }
+
+    .name {
+      @apply text-center z-20 relative font-butler font-bold text-3xl;
+      @apply leading-[4rem];
+
+      .featured {
+        @apply leading-[4rem];
+      }
+    }
+
+    .claim {
+      @apply text-center -mt-4;
+    }
+
+    .image {
+      @apply aspect-w-9 aspect-h-12;
+
+      .overlay {
+        @apply absolute inset-0 flex flex-col items-center justify-center z-10;
+        @apply font-butler text-white text-2xl text-center bg-dark-100/70 p-5;
+        @apply sm:opacity-0 transition duration-300;
+      }
+
+      img {
+        @apply absolute w-full h-full object-cover grayscale z-10;
+      }
+    }
+
+    /* 
+      &:not(.featured) {
+        .image {
+          @screen sm {
+            &:before {
+              @apply transition duration-300 origin-bottom-left;
+            }
+
+            &:before {
+              content: '';
+              @apply absolute inset-0 bg-primary;
+            }
+          }
+        }
+      } */
+
+    &:hover {
+      .overlay {
+        @apply opacity-100;
       }
     }
   }
