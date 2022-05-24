@@ -184,23 +184,66 @@
                 top-0
                 -left-px
                 text-white
-                w-14
-                h-14
-                flex
-                items-center
-                justify-center
-                text-xl
-                bg-main-dark
                 transition-all
                 duration-500
                 z-20
+                flex
+                w-screen
               "
-              @click="toggleSidebar"
             >
-              <div class="burger">
-                <span></span>
-                <span></span>
-                <span></span>
+              <div
+                class="
+                  button
+                  w-14
+                  h-14
+                  flex
+                  items-center
+                  justify-center
+                  text-xl
+                  bg-main-dark
+                "
+                @click="toggleSidebar"
+              >
+                <div class="burger">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+              <div
+                class="
+                  logo
+                  h-14
+                  p-3
+                  px-4
+                  bg-white/90
+                  backdrop-filter backdrop-blur-md backdrop-saturate-200
+                  dark:bg-black/90
+                  flex
+                  items-center
+                  justify-center
+                  relative
+                  flex-1
+                "
+              >
+                <div class="responsive-image">
+                  <img
+                    class="dark:hidden"
+                    alt="logo la pometa"
+                    :width="130"
+                    :height="34"
+                    src="@/assets/img/logos-pometa-plain.svg"
+                  />
+                </div>
+                <div class="responsive-image">
+                  <img
+                    class="hidden dark:block"
+                    alt="logo la pometa"
+                    :width="130"
+                    :height="34"
+                    src="@/assets/img/logos-pometa-plain-white.svg"
+                  />
+                </div>
               </div>
             </div>
             <div
@@ -264,7 +307,6 @@
                 >
               </div>
             </div>
-
             <div
               class="
                 logo-mini
@@ -373,7 +415,7 @@ export default {
   }
   #wrapper:not(.open) {
     #sidebarToggler {
-      @apply transform translate-x-full;
+      @apply transform translate-x-14;
     }
     #sidebar-wrapper {
       #left-sideBar {
