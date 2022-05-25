@@ -72,6 +72,8 @@ export default {
 </style>
 <style lang="scss">
 .post-content {
+  @apply prose dark:prose-invert;
+
   h3 {
     @apply text-xl my-5 font-sset;
   }
